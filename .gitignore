@@ -1,0 +1,18 @@
+#Maven Ignores#
+
+target/
+pom.xml.tag
+pom.xml.releaseBackup
+pom.xml.next
+release.properties
+
+#Java Ignores#
+
+*.class
+/.metadata
+
+# Package Files #
+
+*.jar
+*.war
+*.ear
