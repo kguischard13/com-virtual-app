@@ -31,7 +31,7 @@ public class HomeController {
 		
 		String formattedDate = dateFormat.format(date);
 		String name = "Kester Guischard";
-		String c = "Class 784 - Web Application Development";
+		String c = "Class 784 - Web Application Development Course";
 		
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("Name", name); 
