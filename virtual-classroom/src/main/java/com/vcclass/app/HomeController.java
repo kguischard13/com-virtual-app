@@ -40,4 +40,23 @@ public class HomeController {
 		return "home";
 	}
 	
+	@RequestMapping(value = "/note", method = RequestMethod.GET)
+	public String getNote(Locale locale, Model model) {
+		logger.info("Welcome home! The client locale is {}.", locale);
+		
+		Date date = new Date();
+		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
+		String formattedDate = dateFormat.format(date);
+		String name = "These are notes";
+		String c = "Class 784 - Web App Web Dev";
+		
+		model.addAttribute("serverTime", formattedDate );
+		model.addAttribute("Name", name); 
+		model.addAttribute("Class", c);
+		
+		return "home";
+	}
+	
+	
 }
