@@ -1,0 +1,44 @@
+package com.vcclass.app.Data;
+
+import java.util.Date;
+
+public class NoteElement 
+{
+	private int Id; 
+	private int ParentId; 
+	private String ElementType; 
+	private Date DateCreated; 
+	private Date DateModified; 
+	private String Message; 
+
+	public int GetId()
+	{
+		return this.Id; 
+	}
+	
+	public void SetId(int id)
+	{
+		this.Id = id; 
+	}
+	
+	public int GetParentId()
+	{
+		return this.ParentId; 
+	}
+	
+	public void SetParentId(int id)
+	{
+		this.ParentId = id; 
+	}
+	
+	public String GetElementType()
+	{
+		return this.ElementType; 
+	}
+	
+	public void SetElementType(String type)
+	{
+		this.ElementType = type; 
+	}
+	
+}
