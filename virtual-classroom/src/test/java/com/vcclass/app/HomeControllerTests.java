@@ -1,9 +1,13 @@
 package com.vcclass.app;
 
 import static org.junit.Assert.*;
+
 import java.util.Locale;
+
 import org.junit.Test;
 import org.springframework.ui.ExtendedModelMap;
+
+import com.vcclass.app.Controllers.HomeController;
 
 public class HomeControllerTests {
 	
