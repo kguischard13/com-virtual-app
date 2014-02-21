@@ -7,6 +7,7 @@ public class NoteElement
 	private int Id; 
 	private int ParentId; 
 	private String ElementType; 
+	// change.
 	private Date DateCreated; 
 	private Date DateModified; 
 	private String Message; 
