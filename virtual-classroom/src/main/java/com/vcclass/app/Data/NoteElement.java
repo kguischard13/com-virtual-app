@@ -41,4 +41,14 @@ public class NoteElement
 		this.ElementType = type; 
 	}
 	
+	public Date GetCreationDate ()
+	{
+		return this.DateCreated; 
+	}
+	
+	public void SetCreationDate (Date date)
+	{
+		this.DateCreated = date; 
+	}
+	
 }
