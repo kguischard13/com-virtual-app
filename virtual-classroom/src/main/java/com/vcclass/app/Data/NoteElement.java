@@ -10,6 +10,7 @@ public class NoteElement
 	// change.
 	// second change
 	// third change
+	// FOURTH!
 	private Date DateCreated; 
 	private Date DateModified; 
 	private String Message; 
