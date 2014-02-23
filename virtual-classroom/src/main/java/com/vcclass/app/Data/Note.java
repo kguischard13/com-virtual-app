@@ -3,6 +3,7 @@ package com.vcclass.app.Data;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
+import java.util.ListIterator;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
@@ -103,5 +104,23 @@ public class Note
 	{
 		NoteElement element = this.GetNoteElementById(id); 
 		return this.NoteElementList.remove(element); 
+	}
+	
+	public int GetNoteElementIndex(NoteElement element)
+	{
+		ListIterator<NoteElement> itr = this.NoteElementList.listIterator(); 
+		
+		while(itr.hasNext())
+		{
+			int index = itr.nextIndex(); 
+			NoteElement elm = (NoteElement)itr.next(); 
+			
+			if(elm.GetId() == element.GetId())
+			{
+				return index; 
+			}
+		}
+		
+		return -1; 
 	}
 }
