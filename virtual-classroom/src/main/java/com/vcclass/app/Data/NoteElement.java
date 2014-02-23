@@ -1,7 +1,6 @@
 package com.vcclass.app.Data;
 
 import java.util.Date;
-import java.util.List;
 
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
