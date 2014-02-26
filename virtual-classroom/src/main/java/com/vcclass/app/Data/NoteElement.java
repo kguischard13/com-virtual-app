@@ -1,20 +1,29 @@
 package com.vcclass.app.Data;
 
 import java.util.Date;
-
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-@Service
 @Scope(WebApplicationContext.SCOPE_REQUEST)
-public class NoteElement 
+public class NoteElement
 {
-	private int Id; 
+	@JsonProperty(value="Id")
+	private int Id;
+	
+	@JsonProperty(value="ParentId")
 	private int ParentId; 
+	
+	@JsonProperty(value="ElementType")
 	private String ElementType; 
+	
+	@JsonProperty(value="DateCreated")
 	private Date DateCreated; 
+	
+	@JsonProperty(value="DateModified")
 	private Date DateModified; 
+	
+	@JsonProperty(value="Message")
 	private String Message; 
 	
 	public NoteElement()
