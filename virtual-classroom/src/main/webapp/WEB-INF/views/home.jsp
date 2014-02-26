@@ -6,7 +6,7 @@
 </head>
 <body>
 <h1>
-	Hello ${Name} and Chris wuz here again! Does this change?
+	Let's just make sure this still works...
 </h1>
 
 <P>  The time on the server is ${serverTime}. And the ${Class}. </P>
