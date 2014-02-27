@@ -3,7 +3,7 @@ package com.vcclass.app.Data;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 import java.util.*;
 
 import javax.sql.DataSource;
@@ -13,6 +13,7 @@ import javax.sql.DataSource;
 //import org.springframework.jdbc.datasource.SimpleDriverDataSource;
 //import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
+//test
 
 public class UserService {
 	//private SimpleDriverDataSource dataSource;
