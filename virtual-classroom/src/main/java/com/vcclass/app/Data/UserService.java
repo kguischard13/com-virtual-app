@@ -8,10 +8,10 @@ import java.util.*;
 
 import javax.sql.DataSource;
 
-import org.springframework.jdbc.core.JdbcTemplate;
-import org.springframework.jdbc.core.RowMapper;
+//import org.springframework.jdbc.core.JdbcTemplate;
+//import org.springframework.jdbc.core.RowMapper;
 //import org.springframework.jdbc.datasource.SimpleDriverDataSource;
-import org.springframework.jdbc.datasource.DriverManagerDataSource;
+//import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class UserService {
