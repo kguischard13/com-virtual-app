@@ -7,6 +7,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 import org.codehaus.jackson.annotate.JsonProperty;
 
+//course
+
 @Service
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class User {
