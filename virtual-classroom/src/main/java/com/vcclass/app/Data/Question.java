@@ -5,6 +5,8 @@ import java.util.Iterator;
 import java.util.List;
 //import java.util.ListIterator;
 
+
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
@@ -14,17 +16,40 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class Question
 {
-	private int questionId; 
+	@JsonProperty(value="questionId")
+	private int questionId;
+	
+	@JsonProperty(value="studentId")
 	private int studentId; 
+	
+	@JsonProperty(value="classId")
 	private int classId; 
+	
+	@JsonProperty(value="likes")
 	private int likes;
+	
+	@JsonProperty(value="comments")
 	private int comments;
+	
+	@JsonProperty(value="questionType")
 	private int questionType;
-	private boolean flagAsInappropriate;	
+	
+	@JsonProperty(value="flagAsInappropriate")
+	private boolean flagAsInappropriate;
+	
+	@JsonProperty(value="anonymous")
 	private boolean anonymous;
+	
+	@JsonProperty(value="dateCreated")
 	private Date dateCreated; 
+	
+	@JsonProperty(value="contents")
 	private String contents;
+	
+	@JsonProperty(value="filePath")
 	private String filePath; 
+	
+	@JsonProperty(value="commentsList")
 	private List<Comment> commentsList; 
 	
 	public Question()

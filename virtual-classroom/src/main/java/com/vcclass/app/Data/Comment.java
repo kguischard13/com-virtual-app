@@ -2,6 +2,7 @@ package com.vcclass.app.Data;
 
 import java.util.Date;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
@@ -11,11 +12,22 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class Comment
 {
+	@JsonProperty(value="commentId")
 	private int commentId; 
+	
+	@JsonProperty(value="userId")
 	private int userId; 
+	
+	@JsonProperty(value="questionId")
 	private int questionId; 
+	
+	@JsonProperty(value="dateCreated")
 	private Date dateCreated; 
+	
+	@JsonProperty(value="contents")
 	private String contents;
+	
+	@JsonProperty(value="filePath")
 	private String filePath; 
 	
 	public Comment()
