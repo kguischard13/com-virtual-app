@@ -22,14 +22,11 @@
 		<beans:property name="prefix" value="/WEB-INF/views/" />
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
-<<<<<<< HEAD
+
 	
 	<context:component-scan base-package="com.vcclass.app" />
 	
+
 	
-=======
 
-	<context:component-scan base-package="com.vcclass.app" />	
-
->>>>>>> FETCH_HEAD
 </beans:beans>
