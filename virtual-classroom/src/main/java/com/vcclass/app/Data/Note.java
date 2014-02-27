@@ -1,9 +1,11 @@
 package com.vcclass.app.Data;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+<<<<<<< HEAD
 
 
 import org.springframework.context.annotation.Scope;
@@ -12,19 +14,33 @@ import org.springframework.web.context.WebApplicationContext;
 
 
 
+=======
+import org.codehaus.jackson.annotate.JsonProperty;
+>>>>>>> FETCH_HEAD
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
+<<<<<<< HEAD
 
 @Service
+=======
+>>>>>>> FETCH_HEAD
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class Note
 {
+	@JsonProperty(value="Id")
 	private int Id; 
+	
+	@JsonProperty(value="CourseId")
 	private String CourseId; 
+	
+	@JsonProperty(value="DateCreated")
 	private Date DateCreated; 
+	
+	@JsonProperty(value="FilePath")
 	private String FilePath; 
+
+	@JsonProperty(value="Elements")
 	private List<NoteElement> NoteElementList; 
 	
 	public Note()
@@ -33,7 +49,7 @@ public class Note
 		this.CourseId = null; 
 		this.DateCreated = null; 
 		this.FilePath = null; 
-		this.NoteElementList = null; 
+		this.NoteElementList = new ArrayList<NoteElement>();  
 	}
 	
 	public int GetId()
@@ -51,11 +67,12 @@ public class Note
 		return this.CourseId;
 	}
 	
+
 	public void SetCourseId(String courseId)
 	{
 		this.CourseId = courseId; 
 	}
-	
+
 	public String GetFilePath()
 	{
 		return this.FilePath; 
@@ -65,7 +82,7 @@ public class Note
 	{
 		this.FilePath = filePath; 
 	}
-	
+
 	public Date GetCreationDate()
 	{
 		return this.DateCreated; 
