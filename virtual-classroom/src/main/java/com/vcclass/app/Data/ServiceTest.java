@@ -2,11 +2,14 @@ package com.vcclass.app.Data;
 
 import java.util.List;
 import java.sql.*;
+import org.springframework.context.ApplicationContext;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+import com.vcclass.app.Data.UserService;
 
 public class ServiceTest {
 
 	public static void main(String[] args) {
-		Connection conn = null;
+		/*Connection conn = null;
 		Statement stmt = null;
 		try {
 			Class.forName("com.mysql.jdbc.Driver").newInstance();
@@ -45,23 +48,21 @@ public class ServiceTest {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}
-		
-		
-		
-		
-		
-		/*
-		UserService a = new UserService();
-		//a.getUser(1);
-		List<User> test = a.getUser(1);
-		
-		
-		for(User i : test){
-			System.out.println(i.GetFirstName()+"\n");
-			System.out.println(i.GetAccountType()+"\n");
-		
 		}*/
+		
+		
+		
+		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
+		
+		UserService student = (UserService) context.getBean("student");
+		
+		Student stud = student.GetStudent(1);
+		System.out.println("ID: "+stud.GetUserId()+"\n");
+		System.out.println("ID: "+stud.GetFirstName()+"\n");
+		System.out.println("ID"+stud.GetLastName()+"\n");
+		
+		
+		
 
 	}
 
