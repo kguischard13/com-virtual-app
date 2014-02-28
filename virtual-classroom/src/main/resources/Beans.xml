@@ -12,7 +12,7 @@
 	</bean>
 	
 	<bean id="student" 
-	class="com.vcclass.app.Data.UserService">
+	class="com.vcclass.app.Services.UserService">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 
