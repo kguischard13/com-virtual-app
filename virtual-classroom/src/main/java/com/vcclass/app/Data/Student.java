@@ -11,19 +11,19 @@ import org.codehaus.jackson.annotate.JsonProperty;
 
 @Service
 @Scope(WebApplicationContext.SCOPE_REQUEST)
-public class User {
+public class Student {
 	
-	@JsonProperty(value="Id")
-	private int UserId;
-	
-	@JsonProperty(value="AccountType")
-	private String AccountType;
-	
+	@JsonProperty(value="StudId")
+	private int StudId;
+
 	@JsonProperty(value="FirstName")
 	private String FirstName;
 	
 	@JsonProperty(value="LastName")
 	private String LastName;
+	
+	@JsonProperty(value="PhoneNumber")
+	private String PhoneNumber;
 	
 	@JsonProperty(value="Email")
 	private String Email;
@@ -35,40 +35,40 @@ public class User {
 	private String SchoolName;
 	
 	
-	public User(){
-		this.UserId = -1;
-		this.AccountType = null;
+	public Student(){
+		this.StudId = -1;
 		this.FirstName = null;
 		this.LastName = null;
+		this.PhoneNumber = null;
 		this.Email = null;
 		this.Password = null;
 		this.SchoolName = "Iona College";
 	}
 	
-	public User(int id, String type,String fName, String lName, String login, String pword){
-		this.UserId = id;
-		this.AccountType = type;
+	public Student(int id,String fName, String lName,String pnum,String login, String pword){
+		this.StudId = id;
 		this.FirstName = fName;
 		this.LastName = lName;
+		this.PhoneNumber = pnum;
 		this.Email = login;
 		this.Password = pword;
 		this.SchoolName = "Iona College";
 	}
 
 	public int GetUserId(){
-		return this.UserId;
+		return this.StudId;
 	}
 	
 	public void SetUserId(int id){
-		this.UserId = id;
+		this.StudId = id;
 	}
 	
 	public String GetAccountType(){
-		return this.AccountType;
+		return this.PhoneNumber;
 	}
 	
-	public void SetAccountType(String type){
-		this.AccountType = type;
+	public void SetAccountType(String pnum){
+		this.PhoneNumber = pnum;
 	}
 	
 	public String GetFirstName(){
