@@ -1,4 +1,4 @@
-package com.vcclass.app.Services;
+package com.vcclass.app.Repository;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.vcclass.app.Data;
+package com.vcclass.app.Services;
 
 import java.util.List;
 import java.sql.*;
@@ -6,7 +6,7 @@ import java.sql.*;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.vcclass.app.Services.UserService;
+import com.vcclass.app.Data.Student;
 
 public class ServiceTest {
 
