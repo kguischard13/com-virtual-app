@@ -5,182 +5,203 @@ import java.util.Iterator;
 import java.util.List;
 //import java.util.ListIterator;
 
+import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-@Service
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 
 public class Question
 {
-	private int questionId; 
-	private int studentId; 
-	private int classId; 
-	private int likes;
-	private int comments;
-	private int questionType;
-	private boolean flagAsInappropriate;	
-	private boolean anonymous;
-	private Date dateCreated; 
-	private String contents;
-	private String filePath; 
-	private List<Comment> commentsList; 
+	@JsonProperty(value="QuestionId")
+	private int QuestionId;
+	
+	@JsonProperty(value="StudentId")
+	private int StudentId; 
+	
+	@JsonProperty(value="ClassId")
+	private int ClassId; 
+	
+	@JsonProperty(value="Likes")
+	private int Likes;
+	
+	@JsonProperty(value="Comments")
+	private int Comments;
+	
+	@JsonProperty(value="QuestionType")
+	private int QuestionType;
+	
+	@JsonProperty(value="FlagAsInappropriate")
+	private boolean FlagAsInappropriate;
+	
+	@JsonProperty(value="Anonymous")
+	private boolean Anonymous;
+	
+	@JsonProperty(value="DateCreated")
+	private Date DateCreated; 
+	
+	@JsonProperty(value="Contents")
+	private String Contents;
+	
+	@JsonProperty(value="FilePath")
+	private String FilePath; 
+	
+	@JsonProperty(value="CommentsList")
+	private List<Comment> CommentsList; 
 	
 	public Question()
 	{
-		this.questionId = -1; 
-		this.studentId = -1; 
-		this.classId = -1;
-		this.likes = -1;
-		this.comments = -1;
-		this.questionType = -1;
-		this.flagAsInappropriate = false;	
-		this.anonymous = true;
-		this.dateCreated = null;
-		this.contents = "";
-		this.filePath = ""; 
-		this.commentsList = null;
+		this.QuestionId = -1; 
+		this.StudentId = -1; 
+		this.ClassId = -1;
+		this.Likes = 0;
+		this.Comments = 0;
+		this.QuestionType = -1;
+		this.FlagAsInappropriate = false;	
+		this.Anonymous = true;
+		this.DateCreated = null;
+		this.Contents = "";
+		this.FilePath = ""; 
+		this.CommentsList = null;
 	}
 	
 	
 //Getters & Setters
 	public int GetId()
 	{
-		return this.questionId; 
+		return this.QuestionId; 
 	}
 	
 	public void SetId(int id)
 	{
-		this.questionId = id; 
+		this.QuestionId = id; 
 	}
 	
 	public int GetStudentId()
 	{
-		return this.studentId;
+		return this.StudentId;
 	}
 	
 	public void SetStudentId(int studentId)
 	{
-		this.studentId = studentId; 
+		this.StudentId = studentId; 
 	}
 	
 	public int GetClassId()
 	{
-		return this.classId;
+		return this.ClassId;
 	}
 	
 	public void SetClassId(int classId)
 	{
-		this.classId = classId; 
+		this.ClassId = classId; 
 	}
 	
 	public int Likes()
 	{
-		return this.likes;
+		return this.Likes;
 	}
 	
 	public void SetLikes(int likes)
 	{
-		this.likes = likes; 
+		this.Likes = likes; 
 	}
 	
 	public int GetComments()
 	{
-		return this.comments;
+		return this.Comments;
 	}
 	
 	public void SetComments(int comments)
 	{
-		this.comments = comments; 
+		this.Comments = comments; 
 	}
 	
 	public int GetQuestionType()
 	{
-		return this.questionType;
+		return this.QuestionType;
 	}
 	
 	public void SetQuestionType(int questionType)
 	{
-		this.questionType = questionType; 
+		this.QuestionType = questionType; 
 	}
 	
 	public boolean GetFlag()
 	{
-		return this.flagAsInappropriate;
+		return this.FlagAsInappropriate;
 	}
 	
 	public void SetFlag(boolean flagAsInappropriate)
 	{
-		this.flagAsInappropriate = flagAsInappropriate; 
+		this.FlagAsInappropriate = flagAsInappropriate; 
 	}
 	
 	public boolean GetAnonymous()
 	{
-		return this.anonymous;
+		return this.Anonymous;
 	}
 	
 	public void Setanonymous(boolean anonymous)
 	{
-		this.anonymous = anonymous; 
+		this.Anonymous = anonymous; 
 	}
 	
 	public Date GetCreationDate()
 	{
-		return this.dateCreated; 
+		return this.DateCreated; 
 	}
 	
 	public void SetCreationDate(Date dateCreated)
 	{
-		this.dateCreated = dateCreated; 
+		this.DateCreated = dateCreated; 
 	}
 	
 	public String GetContents()
 	{
-		return this.contents; 
+		return this.Contents; 
 	}
 	
 	public void SetContents(String contents)
 	{
-		this.contents = contents; 
+		this.Contents = contents; 
 	}
 	
 	public String GetFilePath()
 	{
-		return this.filePath; 
+		return this.FilePath; 
 	}
 	
 	public void SetFilePath(String filePath)
 	{
-		this.filePath = filePath; 
+		this.FilePath = filePath; 
 	}
 	
 	public List<Comment> GetCommentsList()
 	{
-		return this.commentsList; 
+		return this.CommentsList; 
 	}
 	
 	public void SetCommentsList (List<Comment> list)
 	{
-		this.commentsList = list; 
+		this.CommentsList = list; 
 	}
 	
 	
 	
 	
-//Service methods	
-	
+
 	//Add comment to question
 	public void AddComment(Comment comment)
 	{
-		this.commentsList.add(comment); 
+		this.CommentsList.add(comment); 
 	}
 	
 
 	//Get comment by ID
 	public Comment GetCommentById(int commentId)
 	{
-		Iterator<Comment> itr = this.commentsList.iterator(); 
+		Iterator<Comment> itr = this.CommentsList.iterator(); 
 		
 		while(itr.hasNext())
 		{
@@ -200,7 +221,7 @@ public class Question
 	public boolean DeleteComment (int commentId)
 	{
 		Comment comment = this.GetCommentById(commentId); 
-		return this.commentsList.remove(comment); 
+		return this.CommentsList.remove(comment); 
 	}
 
 }

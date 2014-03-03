@@ -31,10 +31,12 @@ public class HomeController {
 		String formattedDate = dateFormat.format(date);
 		String name = "Kester Guischard";
 		String c = "Class 784 - Web App Web Dev";
+
 		
 		model.addAttribute("serverTime", formattedDate );
 		model.addAttribute("Name", name); 
 		model.addAttribute("Class", c);
+		
 		
 		return "home";
 	}

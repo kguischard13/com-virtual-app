@@ -9,8 +9,10 @@
 	Let's just make sure this still works...
 </h1>
 
-<P>  The time on the server is ${serverTime}. And the ${Class}. </P>
+<P>  The time on the server is ${serverTime}. <P> And the ${Class}. </P>
 
 <P>  The content of the note is ${Note}</P>
+
+<P>	 The question is ${Question} and the comment is ${Comment}</P>
 </body>
 </html>
