@@ -1,59 +1,62 @@
 package com.vcclass.app.Data;
 
 import org.codehaus.jackson.annotate.JsonProperty;
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.WebApplicationContext;
 
+@Scope(WebApplicationContext.SCOPE_REQUEST)
 public class PositionInfo 
 {
 	@JsonProperty(value="X")
-	private int x; 
+	private int X; 
 	
 	@JsonProperty(value="Y")
-	private int y; 
+	private int Y; 
 	
 	@JsonProperty(value="Height")
-	private int height;
+	private int Height;
 	
 	@JsonProperty(value="Width")
-	private int width; 
+	private int Width; 
 	
 	
 	public int GetX()
 	{
-		return this.x;
+		return this.X;
 	}
 	
 	public int GetY()
 	{
-		return this.y; 
+		return this.Y; 
 	}
 	
 	public int GetHeight()
 	{
-		return this.height; 
+		return this.Height; 
 	}
 	
 	public int GetWidth()
 	{
-		return this.width; 
+		return this.Width; 
 	}
 	
 	public void SetX(int x)
 	{
-		this.x = x; 
+		this.X = x; 
 	}
 	
 	public void SetY(int y)
 	{
-		this.y = y; 
+		this.Y = y; 
 	}
 	
 	public void SetHeight(int height)
 	{
-		this.height = height; 
+		this.Height = height; 
 	}
 	
 	public void SetWidth(int width)
 	{
-		this.width = width; 
+		this.Width = width; 
 	}
 }

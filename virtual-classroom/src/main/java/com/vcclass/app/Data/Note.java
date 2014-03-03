@@ -5,10 +5,23 @@ import java.util.Date;
 import java.util.Iterator;
 import java.util.List;
 import java.util.ListIterator;
+
+
+import org.codehaus.jackson.annotate.JsonProperty;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.WebApplicationContext;
+import org.springframework.stereotype.Service;
+
+import org.codehaus.jackson.annotate.JsonProperty;
+
+import org.springframework.context.annotation.Scope;
+import org.springframework.web.context.WebApplicationContext;
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.context.WebApplicationContext;
 
+@Service
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class Note
 {
