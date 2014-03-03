@@ -4,102 +4,100 @@ import java.util.Date;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 import org.springframework.context.annotation.Scope;
-import org.springframework.stereotype.Service;
 import org.springframework.web.context.WebApplicationContext;
 
-@Service
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 
 public class Comment
 {
-	@JsonProperty(value="commentId")
-	private int commentId; 
+	@JsonProperty(value="CommentId")
+	private int CommentId; 
 	
-	@JsonProperty(value="userId")
-	private int userId; 
+	@JsonProperty(value="UserId")
+	private int UserId; 
 	
-	@JsonProperty(value="questionId")
-	private int questionId; 
+	@JsonProperty(value="QuestionId")
+	private int QuestionId; 
 	
-	@JsonProperty(value="dateCreated")
-	private Date dateCreated; 
+	@JsonProperty(value="DateCreated")
+	private Date DateCreated; 
 	
-	@JsonProperty(value="contents")
-	private String contents;
+	@JsonProperty(value="Contents")
+	private String Contents;
 	
-	@JsonProperty(value="filePath")
-	private String filePath; 
+	@JsonProperty(value="FilePath")
+	private String FilePath; 
 	
 	public Comment()
 	{
-		this.commentId = -1; 
-		this.userId = -1; 
-		this.questionId = -1;
-		this.dateCreated = null;
-		this.contents = "";
-		this.filePath = ""; 
+		this.CommentId = -1; 
+		this.UserId = -1; 
+		this.QuestionId = -1;
+		this.DateCreated = null;
+		this.Contents = "";
+		this.FilePath = ""; 
 	}
 	
 	
 //Getters & Setters
 	public int GetId()
 	{
-		return this.commentId; 
+		return this.CommentId; 
 	}
 	
 	public void SetId(int id)
 	{
-		this.commentId = id; 
+		this.CommentId = id; 
 	}
 	
 	public int GetUserId()
 	{
-		return this.userId;
+		return this.UserId;
 	}
 	
 	public void SetUserId(int userId)
 	{
-		this.userId = userId; 
+		this.UserId = userId; 
 	}
 	
 	public int GetQuestionId()
 	{
-		return this.questionId;
+		return this.QuestionId;
 	}
 	
 	public void SetQuestionId(int questionId)
 	{
-		this.questionId = questionId; 
+		this.QuestionId = questionId; 
 	}
 		
 	public Date GetCreationDate()
 	{
-		return this.dateCreated; 
+		return this.DateCreated; 
 	}
 	
 	public void SetCreationDate(Date dateCreated)
 	{
-		this.dateCreated = dateCreated; 
+		this.DateCreated = dateCreated; 
 	}
 	
 	public String GetContents()
 	{
-		return this.contents; 
+		return this.Contents; 
 	}
 	
 	public void SetContents(String contents)
 	{
-		this.contents = contents; 
+		this.Contents = contents; 
 	}
 	
 	public String GetFilePath()
 	{
-		return this.filePath; 
+		return this.FilePath; 
 	}
 	
 	public void SetFilePath(String filePath)
 	{
-		this.filePath = filePath; 
+		this.FilePath = filePath; 
 	}
 	
 }
