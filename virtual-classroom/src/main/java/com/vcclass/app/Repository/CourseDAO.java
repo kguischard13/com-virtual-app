@@ -1,0 +1,18 @@
+package com.vcclass.app.Repository;
+
+import javax.sql.DataSource;
+import java.util.List;
+import com.vcclass.app.Data.*;
+
+public interface CourseDAO {
+	public int CreateCourseSession(int courseid);
+	public int CreateCourse(int teacher, int courseid);
+	//public void EndCourseSession(int coursesessionid);
+	public Course GetCourse(int courseid);
+	public CourseSession GetCourseSession(int coursesessionid);
+	public boolean DeleteCourse(int courseid);
+	public boolean DeleteCourseSession(int coursesessionid);
+	public boolean UpdateCourse(int courseid);
+	public boolean UpdateCourseSession(int coursesessionid);
+
+}
