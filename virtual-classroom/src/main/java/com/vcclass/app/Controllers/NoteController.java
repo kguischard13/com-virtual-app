@@ -35,7 +35,7 @@ public class NoteController
 	public @ResponseBody Note GetNote(Model model)
 	{
 		noteService.setDataSource(ds);
-		Note note = noteService.GetNote(1); 
+		Note note = noteService.GetNote(0); 
 		return note; 
 		
 /*		Note note = new Note(); 
