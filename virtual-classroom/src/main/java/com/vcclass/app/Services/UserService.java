@@ -37,8 +37,8 @@ public class UserService {
 						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 			}
 		});
+		
 		return stud;
-
 	}
 	
 	
