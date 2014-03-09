@@ -26,68 +26,39 @@ import org.springframework.web.context.WebApplicationContext;
 public class Note
 {
 	@JsonProperty(value="Id")
-	private int Id; 
+	public int Id; 
 	
 	@JsonProperty(value="CourseId")
-	private String CourseId; 
+	public int CourseId; 
+	
+	@JsonProperty(value="OwnerId")
+	public int OwnerId; 
+	
+	@JsonProperty(value="CourseCode")
+	public String CourseCode; 
+	
+	@JsonProperty(value="CourseName")
+	public String CourseName; 
 	
 	@JsonProperty(value="DateCreated")
-	private Date DateCreated; 
+	public Date DateCreated; 
 	
 	@JsonProperty(value="FilePath")
-	private String FilePath; 
+	public String FilePath; 
 
 	@JsonProperty(value="Elements")
-	private List<NoteElement> NoteElementList; 
+	public List<NoteElement> NoteElementList; 
 	
 	public Note()
 	{
 		this.Id = -1; 
-		this.CourseId = null; 
+		this.CourseId = -1; 
 		this.DateCreated = null; 
 		this.FilePath = null; 
-		this.NoteElementList = new ArrayList<NoteElement>();  
-	}
-	
-	public int GetId()
-	{
-		return this.Id; 
-	}
-	
-	public void SetId(int id)
-	{
-		this.Id = id; 
-	}
-	
-	public String GetCourseId()
-	{
-		return this.CourseId;
-	}
-	
-
-	public void SetCourseId(String courseId)
-	{
-		this.CourseId = courseId; 
-	}
-
-	public String GetFilePath()
-	{
-		return this.FilePath; 
-	}
-	
-	public void SetFilePath(String filePath)
-	{
-		this.FilePath = filePath; 
-	}
-
-	public Date GetCreationDate()
-	{
-		return this.DateCreated; 
-	}
-	
-	public void SetCreationDate(Date creationDate)
-	{
-		this.DateCreated = creationDate; 
+		this.NoteElementList = new ArrayList<NoteElement>(); 
+		this.CourseCode = null; 
+		this.CourseName = null; 
+		this.OwnerId = -1; 
 	}
 	
 	public List<NoteElement> GetNoteElementList()
