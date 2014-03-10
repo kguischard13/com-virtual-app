@@ -52,6 +52,16 @@ public class Teacher {
 		this.SchoolName = "Iona College";
 	}
 
+	public Teacher(String fName, String lName,String pnum,String login, String pword){
+		this.TeacherId = -1;
+		this.FirstName = fName;
+		this.LastName = lName;
+		this.PhoneNumber = pnum;
+		this.Email = login;
+		this.Password = pword;
+		this.SchoolName = "Iona College";
+	}
+	
 	public int GetUserId(){
 		return this.TeacherId;
 	}
