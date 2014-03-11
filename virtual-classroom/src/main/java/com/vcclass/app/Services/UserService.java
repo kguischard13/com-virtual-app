@@ -102,7 +102,9 @@ public class UserService implements UserDAO {
 						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 			}
 		});
+
 		return students;
+
 	}
 	
 
