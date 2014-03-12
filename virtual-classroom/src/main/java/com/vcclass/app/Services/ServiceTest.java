@@ -68,21 +68,6 @@ public class ServiceTest {
 			System.out.println("ID: "+a+" was updated");
 		
 		
-		
-<<<<<<< HEAD
-		Student stud = new Student("KayVee", "GEE", "732873738", "kvgEEEe@test.com",  "good_luck");
-		int a = student.AddUser(stud);
-		System.out.println("ID of new student: "+a+ " firstname: " +stud.GetFirstName()+ "\n");
-		
-		stud = student.GetUser(a);
-		stud.SetFirstName("Kester");
-		if(student.UpdateUser(stud))
-			System.out.println("ID: "+a+" was updated");
-		
-		
-		
-=======
->>>>>>> 3ebc81f15d601976a1dd8a41bb01d296f31db6a7
 		System.out.println("ID: "+stud.GetUserId()+"\n");
 		System.out.println("Name: "+stud.GetFirstName()+" "+stud.GetLastName()+"\n");
 		
