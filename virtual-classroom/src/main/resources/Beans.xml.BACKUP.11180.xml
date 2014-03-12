@@ -19,8 +19,13 @@
 	class="com.vcclass.app.Services.NoteService">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
+<<<<<<< HEAD
+		
+	<bean id="student1" 
+=======
 	
 	<bean id="courseService" 
+>>>>>>> 3ebc81f15d601976a1dd8a41bb01d296f31db6a7
 	class="com.vcclass.app.Services.CourseService">
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
