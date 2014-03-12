@@ -56,7 +56,7 @@ public class ServiceTest {
 		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		
-		UserService student = (UserService) context.getBean("student");
+		UserService student = (UserService) context.getBean("userService");
 		
 		Student stud = new Student("KayVee", "GEE", "732873738", "kvgEEEe@test.com",  "good_luck");
 		int a = student.AddUser(stud);
