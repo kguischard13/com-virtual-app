@@ -26,17 +26,17 @@ import com.vcclass.app.Services.UserService;
 public class NoteController 
 {
 	ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
-	private DataSource ds = (DataSource) context.getBean("dataSource"); 
 	private NoteService noteService = (NoteService) context.getBean("noteService");
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoteController.class); 
 	
-	@RequestMapping(value = "/note", method = RequestMethod.GET)
-	public @ResponseBody Note GetNote(Model model)
+	@RequestMapping(value = "/note/getnotes", method = RequestMethod.GET)
+	public @ResponseBody List<Note> GetNotes(Model model)
 	{
-		noteService.setDataSource(ds);
-		Note note = noteService.GetNote(0); 
-		return note; 
+		//noteService.setDataSource(ds);
+		//Note note = noteService.GetNote(0); 
+		List<Note> noteList = noteService.GetStudentNotes(0); 
+		return noteList; 
 		
 /*		Note note = new Note(); 
 		
@@ -55,4 +55,5 @@ public class NoteController
 		
 		return note;*/
 	}
+
 }

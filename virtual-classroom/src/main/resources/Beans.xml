@@ -13,7 +13,7 @@
 	<bean id="student" 
 	class="com.vcclass.app.Services.UserService">
 		<property name="dataSource" ref="dataSource"/>
-	</bean> <!-- Kester, this should probably not have a bean id as student, it should be userService -->
+	</bean>
 	
 	<bean id="noteService"
 	class="com.vcclass.app.Services.NoteService">

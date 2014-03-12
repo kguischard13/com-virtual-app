@@ -37,28 +37,26 @@ public class NoteService implements NoteDAO
 	@Override
 	public List<Note> GetStudentNotes(int studentId) 
 	{			
-//		String sql = "select * FROM Note WHERE Id = ?"; 
-//		Note note = new ArrayList<Note>();
-//		
-//		//List<Map<String, Object>> rows = jdbc.queryForList(sql);
-//		note = this.jdbc.queryForObject(sql, new Object[]{studentId}, new NoteRowMapper());
-//		return null; 
+		String sql = "select * FROM Note WHERE Student_StudentId = ?"; 
+		List<Note> noteList = new ArrayList<Note>();
 		
-//		for(Map row: rows)
-//		{
-//			Note note = new Note(); 
-//			note.Id = (Integer) row.get("Note Id"); 
-//			note.CourseId = (Integer)row.get("Courses_CourseID");
-//			note.DateCreated = (Date)row.get("DateCreated"); 
-//			note.CourseCode = (String)row.get("CourseCode"); 
-//			note.CourseName = (String)row.get("CourseName"); 
-//			note.FilePath = (String)row.get("FilePath"); 
-//			note.OwnerId = (Integer)row.get("Student_StudentID"); 
-//			noteList.add(note); 
-//		}
-//		
-//		return noteList;
-		return null; 
+		Object [] parameters = new Object[]{new Integer(studentId)};  
+		List<Map<String, Object>> rows = jdbc.queryForList(sql, parameters);
+		
+		for(Map row: rows)
+		{
+			Note note = new Note(); 
+			note.Id = (Integer) row.get("Note Id"); 
+			note.CourseId = (Integer)row.get("Courses_CourseID");
+			note.DateCreated = (Date)row.get("DateCreated"); 
+			note.CourseCode = (String)row.get("CourseCode"); 
+			note.CourseName = (String)row.get("CourseName"); 
+			note.FilePath = (String)row.get("FilePath"); 
+			note.OwnerId = (Integer)row.get("Student_StudentID"); 
+			noteList.add(note); 
+		}
+				
+		return noteList;
 	}
 	
 	@Override
