@@ -54,6 +54,16 @@ public class User {
 		this.Password = pword;
 		this.SchoolName = "Iona College";
 	}
+	
+	public User(String type,String fName, String lName, String login, String pword){
+		this.UserId = -1;
+		this.AccountType = type;
+		this.FirstName = fName;
+		this.LastName = lName;
+		this.Email = login;
+		this.Password = pword;
+		this.SchoolName = "Iona College";
+	}
 
 	public int GetUserId(){
 		return this.UserId;
