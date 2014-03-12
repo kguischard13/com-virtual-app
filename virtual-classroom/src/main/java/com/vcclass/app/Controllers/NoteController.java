@@ -33,27 +33,8 @@ public class NoteController
 	@RequestMapping(value = "/note/getnotes", method = RequestMethod.GET)
 	public @ResponseBody List<Note> GetNotes(Model model)
 	{
-		//noteService.setDataSource(ds);
-		//Note note = noteService.GetNote(0); 
 		List<Note> noteList = noteService.GetStudentNotes(0); 
 		return noteList; 
-		
-/*		Note note = new Note(); 
-		
-		note.SetId(10);
-		note.CourseCode = "CS230"; 
-		
-		
-		NoteElement element = new NoteElement(); 
-		element.SetId(22);
-		element.SetMessage("Hello World");
-		
-		note.AddNoteElement(element);
-		model.addAttribute("Note", note.GetCourseId()); 
-		
-		logger.info("About to return the note");
-		
-		return note;*/
 	}
 
 }
