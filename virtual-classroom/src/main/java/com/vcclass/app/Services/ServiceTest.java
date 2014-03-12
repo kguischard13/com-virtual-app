@@ -58,10 +58,33 @@ public class ServiceTest {
 		
 		UserService student = (UserService) context.getBean("student");
 		
-		Student stud = student.GetStudent(1);
+		Student stud = new Student("KayVee", "GEE", "732873738", "kvgEEEe@test.com",  "good_luck");
+		int a = student.AddUser(stud);
+		System.out.println("ID of new student: "+a+ " firstname: " +stud.GetFirstName()+ "\n");
+		
+		stud = student.GetUser(a);
+		stud.SetFirstName("Kester");
+		if(student.UpdateUser(stud))
+			System.out.println("ID: "+a+" was updated");
+		
+		
+		
 		System.out.println("ID: "+stud.GetUserId()+"\n");
-		System.out.println("ID: "+stud.GetFirstName()+"\n");
-		System.out.println("ID"+stud.GetLastName()+"\n");
+		System.out.println("Name: "+stud.GetFirstName()+" "+stud.GetLastName()+"\n");
+		
+		if(student.DeleteUser( stud.GetUserId() ) ){
+			System.out.println("ID: " +stud.GetUserId()+ " was deleted\n" );
+		}
+		
+		List<Student> list1 = student.GetAllUsers();
+		
+		for(Student user : list1){
+			System.out.println("ID: "+user.GetUserId());
+		}
+		
+		
+		
+		
 		
 		
 		
