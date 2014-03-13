@@ -1,5 +1,6 @@
 package com.vcclass.app.Controllers;
 
+import java.sql.Date;
 import java.util.List;
 
 import javax.sql.DataSource;
@@ -35,6 +36,19 @@ public class NoteController
 	{
 		List<Note> noteList = noteService.GetStudentNotes(0); 
 		return noteList; 
+	}
+	
+	@RequestMapping(value = "/note/addnote", method = RequestMethod.GET)
+	public @ResponseBody int AddNote()
+	{
+		int courseId = 1; 
+		int studentId = 0; 
+		Note note = new Note(); 
+		note.DateCreated = new Date(System.currentTimeMillis());
+		note.FilePath = "/src/documents/newNote.png"; 
+		
+		int id = noteService.AddNote(studentId, note, courseId); 
+		return id; 
 	}
 
 }
