@@ -44,6 +44,20 @@ public class Course {
 		this.CourseTitle = title;
 	}
 	
+	public Course(int teacherId, Date sD, Date eD, String title){
+		this.CourseId = -1;
+		this.InstructorId = teacherId;
+		this.StartTime = sD;
+		this.EndTime = eD;
+		this.CourseTitle = title;
+	}
+	public Course(Course course){
+		this.CourseId = course.GetCourseId();
+		this.InstructorId = course.GetInstructorId();
+		this.StartTime = course.GetStartTime();
+		this.EndTime = course.GetEndTime();
+		this.CourseTitle = course.GetCourseTitle();
+	}
 	public int GetCourseId(){
 		return this.CourseId;
 	}

@@ -11,7 +11,7 @@
 
 <P>  The time on the server is ${serverTime}. <P> And the ${Class}. </P>
 
-<P>  The content of the note is ${Note}</P>
+<P>  The name of the student is ${Name}</P>
 
 <P>	 The question is ${Question} and the comment is ${Comment}</P>
 </body>

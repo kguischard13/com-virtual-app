@@ -54,6 +54,15 @@ public class Student {
 		this.Password = pword;
 		this.SchoolName = "Iona College";
 	}
+	public Student(String fName, String lName,String pnum,String login, String pword){
+		this.StudId = -1;
+		this.FirstName = fName;
+		this.LastName = lName;
+		this.PhoneNumber = pnum;
+		this.Email = login;
+		this.Password = pword;
+		this.SchoolName = "Iona College";
+	}
 
 	public int GetUserId(){
 		return this.StudId;
@@ -63,11 +72,11 @@ public class Student {
 		this.StudId = id;
 	}
 	
-	public String GetAccountType(){
+	public String GetPhoneNumber(){
 		return this.PhoneNumber;
 	}
 	
-	public void SetAccountType(String pnum){
+	public void SetPhoneNumber(String pnum){
 		this.PhoneNumber = pnum;
 	}
 	

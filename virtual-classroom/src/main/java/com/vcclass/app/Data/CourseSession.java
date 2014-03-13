@@ -34,6 +34,22 @@ public class CourseSession extends Course{
 		this.MeetingDate = meetdate;
 		this.ClassTopic = topic;
 	}
+	public CourseSession(int courseid, int teacherid, Date sd, Date ed, String title,
+			Date meetdate, String topic){
+		super(courseid, teacherid, sd, ed, title);
+		this.CourseSessionId = -1;
+		this.MeetingDate = meetdate;
+		this.ClassTopic = topic;
+	}
+	
+	public CourseSession(Course course, int coursesessionid,
+			Date meetdate, String topic){
+		super(course);
+		this.CourseSessionId = coursesessionid;
+		this.MeetingDate = meetdate;
+		this.ClassTopic = topic;
+	}
+	
 	
 	public int GetCourseSessionId(){
 		return this.CourseSessionId;
