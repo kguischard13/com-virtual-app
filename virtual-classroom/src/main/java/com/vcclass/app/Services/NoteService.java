@@ -1,6 +1,7 @@
 package com.vcclass.app.Services;
 
 import java.sql.Date;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,8 +9,12 @@ import java.util.Map;
 import javax.sql.DataSource;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Service;
 
+import com.mysql.jdbc.PreparedStatement;
 import com.vcclass.app.Data.Note;
 import com.vcclass.app.Repository.NoteDAO;
 import com.vcclass.app.RowMappers.NoteRowMapper;
@@ -53,35 +58,45 @@ public class NoteService implements NoteDAO
 	}
 	
 	@Override
-	public Note GetNote(int studentId)
+	public Note GetNote(int studentId, int noteId)
 	{
-		String sql = "select * FROM Note WHERE Student_StudentID = ?"; 
+		String sql = "select * FROM Note WHERE Student_StudentID = ? AND NoteId = ?"; 
 		Note note = new Note();
-		note = jdbc.queryForObject(sql, new Object[]{studentId}, new NoteRowMapper());
+		note = jdbc.queryForObject(sql, new Object[]{studentId, noteId}, new NoteRowMapper());
 		
 		return note; 
 	}
 	
 	@Override
-	public int AddNote(int studentId, Note note) 
+	public int AddNote(final int studentId, final Note note, final int courseId) 
 	{
+		final String sql = "insert into Note (Student_StudentID, Courses_CourseID, DateCreated, FilePath) values (?, ?, ?, ?)";
 		
-		
-		// TODO Auto-generated method stub
-		return 0;
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+	        jdbc.update(
+	        		new PreparedStatementCreator()  
+	        		{	             
+						@Override
+						public java.sql.PreparedStatement createPreparedStatement(
+								java.sql.Connection arg0) throws SQLException {
+							   PreparedStatement ps =
+			                            (PreparedStatement) arg0.prepareStatement(sql, new String[] {"id"});
+			                        ps.setInt(1, studentId);
+			                        ps.setInt(2, courseId); 
+			                        ps.setDate(3, (Date) note.DateCreated);
+			                        ps.setString(4, note.FilePath);
+			                        return ps;
+						}
+	                }, keyHolder);
+	        
+        return keyHolder.getKey().intValue();
 	}
 	
 	@Override
 	public boolean DeleteNote(int studentId, int noteId) 
 	{
-		// TODO Auto-generated method stub
-		return false;
+		String sql = "delete FROM Note WHERE NoteId = ?"; 
+		jdbc.update(sql, noteId); 
+		return true;
 	}
-	
-	@Override
-	public boolean UpdateNote(int studentId, int noteId) 
-	{
-		// TODO Auto-generated method stub
-		return false;
-	} 
 }

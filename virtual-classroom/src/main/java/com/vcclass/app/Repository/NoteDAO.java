@@ -14,11 +14,7 @@ public interface NoteDAO
 {
 	public void setDataSource(DataSource ds); 
 	public List<Note> GetStudentNotes(int studentId); 
-	public int AddNote(int studentId, Note note); 
+	public int AddNote(int studentId, Note note, int courseId); 
 	public boolean DeleteNote(int studentId, int noteId); 
-	public boolean UpdateNote(int studentId, int noteId); 
-	public Note GetNote(int studentId); 
-	//public void AddNoteElement(int studentId, Note note); 
-	//public NoteElement GetNoteElementById(int noteId, int noteElementId); 
-	//public List<NoteElement> GetNoteElements(Note note);
+	public Note GetNote(int studentId, int noteId); 
 }
