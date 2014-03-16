@@ -35,8 +35,10 @@ public class HomeController {
 		
 		//UserService student = (UserService) context.getBean("userservice");
 		CourseService course = (CourseService) context.getBean("courseService");
-		
 		CourseSession cour = course.GetCourseSession(4);
+		
+		QuestionService question = (QuestionService) context.getBean("questionService");
+		CommentService comment = (CommentService) context.getBean("commentService");
 		
 		//int a = 2;
 		//Student stud = student.GetUser(a);

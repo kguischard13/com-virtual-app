@@ -5,9 +5,9 @@ import javax.sql.DataSource;
 
 public interface QuestionDAO 
 {
-	public void SetDataSource(DataSource ds);
-	public Question GetQuestion(int questionId, int studentId, int classId);
+	public void setDataSource(DataSource ds);
 	public int CreateQuestion(int studentId, Question question);
-	public boolean UpdateQuestion(int studentId, int questionId);
+	public Question GetQuestion(int questionId, int studentId, int courseId);
+	public boolean UpdateQuestion(Question question);
 	public boolean DeleteQuestion(int studentId, int questionId);
 }

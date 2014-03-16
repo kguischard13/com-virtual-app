@@ -13,11 +13,14 @@ public class Comment
 	@JsonProperty(value="CommentId")
 	private int CommentId; 
 	
-	@JsonProperty(value="UserId")
-	private int UserId; 
-	
 	@JsonProperty(value="QuestionId")
-	private int QuestionId; 
+	private int QuestionId;
+	
+	@JsonProperty(value="StudentId")
+	private int StudentId; 
+	
+	@JsonProperty(value="TeacherId")
+	private int TeacherId; 
 	
 	@JsonProperty(value="DateCreated")
 	private Date DateCreated; 
@@ -30,34 +33,38 @@ public class Comment
 	
 	public Comment()
 	{
-		this.CommentId = -1; 
-		this.UserId = -1; 
+		this.CommentId = -1;
 		this.QuestionId = -1;
-		this.DateCreated = null;
+		this.StudentId = -1; 
+		this.TeacherId = -1;
 		this.Contents = "";
-		this.FilePath = ""; 
+		this.DateCreated = null;
+		//this.FilePath = ""; //Missing from db
 	}
+	
+	public Comment(int commentId, int questionId, int studentId, int teacherID, String contents, Date dateCreated)
+	{
+		this.CommentId = commentId;
+		this.QuestionId = questionId;
+		this.StudentId = studentId; 
+		this.TeacherId = teacherID;
+		this.Contents = contents;
+		this.DateCreated = dateCreated;
+		//this.FilePath = ""; //Missing from db
+		
+	}
+			 
 	
 	
 //Getters & Setters
-	public int GetId()
+	public int GetCommentId()
 	{
 		return this.CommentId; 
 	}
 	
-	public void SetId(int id)
+	public void SetCommentId(int id)
 	{
 		this.CommentId = id; 
-	}
-	
-	public int GetUserId()
-	{
-		return this.UserId;
-	}
-	
-	public void SetUserId(int userId)
-	{
-		this.UserId = userId; 
 	}
 	
 	public int GetQuestionId()
@@ -69,15 +76,25 @@ public class Comment
 	{
 		this.QuestionId = questionId; 
 	}
-		
-	public Date GetCreationDate()
+	
+	public int GetStudentId()
 	{
-		return this.DateCreated; 
+		return this.StudentId;
 	}
 	
-	public void SetCreationDate(Date dateCreated)
+	public void SetStudentId(int studentId)
 	{
-		this.DateCreated = dateCreated; 
+		this.StudentId = studentId; 
+	}
+	
+	public int GetTeacherId()
+	{
+		return this.TeacherId;
+	}
+	
+	public void SetTeacherId(int teacherId)
+	{
+		this.TeacherId = teacherId; 
 	}
 	
 	public String GetContents()
@@ -88,8 +105,20 @@ public class Comment
 	public void SetContents(String contents)
 	{
 		this.Contents = contents; 
+	}	
+	
+	public Date GetCreationDate()
+	{
+		return this.DateCreated; 
 	}
 	
+	public void SetCreationDate(Date dateCreated)
+	{
+		this.DateCreated = dateCreated; 
+	}
+	
+	
+	/*// needs to be added to db
 	public String GetFilePath()
 	{
 		return this.FilePath; 
@@ -99,5 +128,6 @@ public class Comment
 	{
 		this.FilePath = filePath; 
 	}
+	*/
 	
 }
