@@ -9,11 +9,13 @@ import com.vcclass.app.Data.*;
 public interface UserDAO {
 	
 	public void setDataSource(DataSource dataSource);
-	public Student GetUser (int id);
-	public List<Student> GetAllUsers();
-	public int AddUser (Student stud); // only if we arent having automated ids
+	public User GetUser (int id);
+	public List<User> GetAllUsers();
+	public List<User> GetTeachers();
+	public List<User> GetStudents();
+	public int AddUser (User user);
 	public boolean DeleteUser (int id);
-	public boolean UpdateUser(Student stud);
+	public boolean UpdateUser(User user);
 	public boolean ValidateUser(int id);
 
 }
