@@ -4,7 +4,6 @@ package com.vcclass.app.Services;
 import java.sql.*;
 import java.util.*;
 import java.util.Date;
-
 import com.vcclass.app.Repository.*;
 import com.vcclass.app.Data.*;
 
@@ -24,18 +23,18 @@ public class CourseService implements CourseDAO {
 	}
 	public int CreateCourseSession(CourseSession coursesession){
 		
-		String sql = "insert into CourseSession (Courses_courseID, MeetingDate, Topic) values (?, ?, ?)";
-		String sql2 = "select max(CourseSessionID) from `CourseSession`";
+		String sql = "insert into CourseSession (Courses_Id, MeetingDate, Topic) values (?, ?, ?)";
+		String sql2 = "select max(Id) from `CourseSession`";
 		jdbcTemplateObject.update(sql, coursesession.GetCourseId() , coursesession.getMeetingDate(), coursesession.getClassTopic());
 		
 		return jdbcTemplateObject.queryForInt(sql2);
 	}
 	public int CreateCourse(Course course){
-		String sql = "insert into Course (Teacher_instrID, StartDate, EndDate, CourseTitle) values (?, ?, "
-				+ "?,?)";
-		String sql2 = "select max(CourseID) from `Course`";
-		jdbcTemplateObject.update(sql, course.GetInstructorId() , course.GetStartTime(), course.GetEndTime(),
-				course.GetCourseTitle());
+		String sql = "insert into Course (User_UserId, StartDate, EndDate, CourseTitle, CourseCode) values (?, ?, "
+				+ "?,?,?)";
+		String sql2 = "select max(Id) from `Course`";
+		jdbcTemplateObject.update(sql, course.GetUserId() , course.GetStartTime(), course.GetEndTime(),
+				course.GetCourseTitle(), course.GetCourseCode());
 		
 		
 		return jdbcTemplateObject.queryForInt(sql2);
@@ -45,12 +44,12 @@ public class CourseService implements CourseDAO {
 		Course cours = null;
 		
 		if(ValidateCourse(courseid)){
-			String sql = "select * from Course where CourseID = ?";
+			String sql = "select * from Course where Id = ?";
 			cours = jdbcTemplateObject.queryForObject(sql, new Object[]{courseid}, new RowMapper<Course>(){
 				@Override
 				public Course mapRow(ResultSet rs, int rowNum) throws SQLException{
-					return new Course (rs.getInt("CourseID"), rs.getInt("Teacher_instrID"),
-							rs.getDate("StartDate"),rs.getDate("EndDate"), rs.getString("CourseTitle"));
+					return new Course (rs.getInt("Id"), rs.getInt("User_UserId"),
+							rs.getDate("StartDate"),rs.getDate("EndDate"), rs.getString("CourseTitle"), rs.getString("CourseCode"));
 				}
 			});
 		}
@@ -60,13 +59,13 @@ public class CourseService implements CourseDAO {
 		CourseSession session = null;
 		
 		if(ValidateCourseSess(coursesessionid)){
-			String sql = "select * from CourseSession where CourseSessionID = ?";
+			String sql = "select * from CourseSession where Id = ?";
 			session = jdbcTemplateObject.queryForObject(sql, new Object[]{coursesessionid}, new RowMapper<CourseSession>(){
 				@Override
 				public CourseSession mapRow(ResultSet rs, int rowNum) throws SQLException{
-					Course course = GetCourse(rs.getInt("Courses_courseID") );
+					Course course = GetCourse(rs.getInt("Courses_Id") );
 					
-					return new CourseSession (course,rs.getInt("CourseSessionID"), rs.getDate("MeetingDate"),
+					return new CourseSession (course,rs.getInt("Id"), rs.getDate("MeetingDate"),
 							rs.getString("Topic"));
 				}
 			});
@@ -76,10 +75,9 @@ public class CourseService implements CourseDAO {
 	}
 	public boolean DeleteCourse(int id){
 		if(this.ValidateCourse(id)){
-			String sql = "delete from Course where CourseID = ?";
-			String sql2 = "delete from CourseSession where Courses_courseID = ?";
+			String sql = "delete from Course where Id = ?";
+			String sql2 = "delete from CourseSession where Courses_Id = ?";
 			
-			// delete coursesessions in the live discussion table
 			jdbcTemplateObject.update(sql,id);
 			jdbcTemplateObject.update(sql2,id);
 			return true;
@@ -88,8 +86,8 @@ public class CourseService implements CourseDAO {
 	}
 	public boolean DeleteCourseSession(int id){
 		if(this.ValidateCourseSess(id)){
-			String sql = "delete from CourseSession where CourseSessionID = ?";
-			String sql2 = "delete from LiveDiscussion where CourseSession_CourseSessionID = ?";
+			String sql = "delete from CourseSession where Id = ?";
+			String sql2 = "delete from LiveDiscussion where CourseSession_Id = ?";
 			jdbcTemplateObject.update(sql,id);
 			jdbcTemplateObject.update(sql2,id);
 			return true;
@@ -98,53 +96,112 @@ public class CourseService implements CourseDAO {
 	}
 	public boolean UpdateCourse(Course course){
 		if(this.ValidateCourse(course.GetCourseId())){
-			String sql = "update Course set Teacher_instrID = ?, StartDate = ?, EndDate= ?, CourseTitle = ? "
-					+ "where CourseID = ?";
-			jdbcTemplateObject.update(sql, course.GetInstructorId(), course.GetStartTime(), course.GetEndTime(),course.GetCourseTitle(),
-					course.GetCourseId());
+			String sql = "update Course set User_UserId = ?, StartDate = ?, EndDate= ?, CourseTitle = ?, CourseCode =? "
+					+ "where Id = ?";
+			jdbcTemplateObject.update(sql, course.GetUserId(), course.GetStartTime(), course.GetEndTime(),course.GetCourseTitle(),
+					course.GetCourseCode(),course.GetCourseId());
 			return true;
 		}
 		return false;
 	}
-	
 	public boolean UpdateCourseSession(CourseSession session){
-		if(this.ValidateCourseSess(session.GetCourseSessionId())){
+		if(this.ValidateCourseSess(session.GetId())){
 			String sql = "update CourseSession set MeetingDate = ?, Topic= ? "
-					+ "where CourseSessionID = ?";
-			jdbcTemplateObject.update(sql, session.getMeetingDate(), session.getClassTopic());
+					+ "where Id = ?";
+			jdbcTemplateObject.update(sql, session.getMeetingDate(), session.getClassTopic(), session.GetId());
 			return true;
 		}
 		return false;
 	}
+
 	public List<Course> GetAllCourses(){
+		
 		String sql = "select * from Course";
 		List<Course> course = jdbcTemplateObject.query(sql, new RowMapper<Course>(){
 			@Override
 			public Course mapRow(ResultSet rs, int rowNum) throws SQLException{
-				return new Course (rs.getInt("CourseID"), rs.getInt("Teacher_instrID"),
-						rs.getDate("StartDate"),rs.getDate("EndDate"), rs.getString("CourseTitle"));
+				return new Course (rs.getInt("Id"), rs.getInt("User_UserId"),
+						rs.getDate("StartDate"),rs.getDate("EndDate"), rs.getString("CourseTitle"),rs.getString("CourseCode") );
 			}
 		});
 		return course;
 	}
-	
 	public List<CourseSession> GetAllCourseSessions(){
 		String sql = "select * from CourseSession";
 		List<CourseSession> session = jdbcTemplateObject.query(sql, new RowMapper<CourseSession>(){
 			@Override
 			public CourseSession mapRow(ResultSet rs, int rowNum) throws SQLException{
-				Course course = GetCourse(rs.getInt("Courses_courseID") );
+				Course course = GetCourse(rs.getInt("Courses_Id") );
 				
-				return new CourseSession (course,rs.getInt("CourseSessionID"), rs.getDate("MeetingDate"),
+				return new CourseSession (course,rs.getInt("Id"), rs.getDate("MeetingDate"),
 						rs.getString("Topic"));
 			}
 		});
 		return session;
 	}
-	
+	public boolean AddStudentToCourse(int stud, int course){
+		String sql = "insert into Student_has_Courses (User_UserId, Courses_Id) values (?,?)";
+		
+		if(this.ValidateCourse(course)){
+			jdbcTemplateObject.update(sql, stud, course);
+			return true;
+		}
+		return false;
+	}
+	public List<User> GetStudentsOfCourse(int course){
+		List<User> user = null;
+		
+		if(this.ValidateCourse(course)){
+			String sql = "SELECT * FROM Student_Has_Courses Join User on User_UserId = User.`UserId` "
+				+ "where Student_Has_Courses.Courses_Id = ?";
+		
+			user = jdbcTemplateObject.query(sql,new Object[]{course} ,new RowMapper<User>(){
+				@Override
+				public User mapRow(ResultSet rs, int rowNum) throws SQLException{
+					return new User (rs.getInt("UserId"), rs.getString("AccountType"),
+							rs.getString("FirstName"),rs.getString("LastName"), rs.getString("PhoneNumber"),rs.getString("Email"),
+							rs.getString("Password"));
+				}
+			});
+		}
+		return user;
+	}
+	public List<Course> GetCoursesOfStudent(int stud){
+		
+		String sql = "SELECT * FROM Student_Has_Courses Join Course on Courses_Id = Course.`Id` where "
+				+ "Student_Has_Courses.`User_UserId`= ?;";
+		
+		List<Course> course = jdbcTemplateObject.query(sql,new Object[]{stud} ,new RowMapper<Course>(){
+			@Override
+			public Course mapRow(ResultSet rs, int rowNum) throws SQLException{
+				return new Course (rs.getInt("Id"), rs.getInt("User_UserId"),
+						rs.getDate("StartDate"),rs.getDate("EndDate"), rs.getString("CourseTitle"), rs.getString("CourseCode"));
+			}
+		});
+		
+		
+		return course;
+	}
+	public List<CourseSession> GetSessionsOfCourse(int course){
+		List<CourseSession> session = null;
+		
+		if(ValidateCourse(course)){
+			String sql = "select * from CourseSession where Courses_Id = ?";
+			session = jdbcTemplateObject.query(sql, new Object[]{course}, new RowMapper<CourseSession>(){
+				@Override
+				public CourseSession mapRow(ResultSet rs, int rowNum) throws SQLException{
+					Course course = GetCourse(rs.getInt("Courses_Id"));
+					
+					return new CourseSession (course,rs.getInt("Id"), rs.getDate("MeetingDate"),
+							rs.getString("Topic"));
+				}
+			});
+		}
+		return session;
+	}
 	
 	private boolean ValidateCourse(int id){
-		String sql = "select count(*) from Course where CourseID = ?";
+		String sql = "select count(*) from Course where Id = ?";
 	
 		if(jdbcTemplateObject.queryForInt(sql, id) == 0){
 			return false;
@@ -153,7 +210,7 @@ public class CourseService implements CourseDAO {
 		return true;
 	}
 	private boolean ValidateCourseSess(int id){
-		String sql = "select count(*) from CourseSession where CourseSessionID = ?";
+		String sql = "select count(*) from CourseSession where Id = ?";
 		if(jdbcTemplateObject.queryForInt(sql, id) == 0){
 			return false;
 		}
