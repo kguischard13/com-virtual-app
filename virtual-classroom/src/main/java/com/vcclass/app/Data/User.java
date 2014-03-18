@@ -25,6 +25,9 @@ public class User {
 	@JsonProperty(value="LastName")
 	private String LastName;
 	
+	@JsonProperty(value="PhoneNumber")
+	private String PhoneNumber;
+	
 	@JsonProperty(value="Email")
 	private String Email;
 	
@@ -40,26 +43,29 @@ public class User {
 		this.AccountType = null;
 		this.FirstName = null;
 		this.LastName = null;
+		this.PhoneNumber = null;
 		this.Email = null;
 		this.Password = null;
 		this.SchoolName = "Iona College";
 	}
 	
-	public User(int id, String type,String fName, String lName, String login, String pword){
+	public User(int id, String type,String fName, String lName,String num ,String login, String pword){
 		this.UserId = id;
 		this.AccountType = type;
 		this.FirstName = fName;
 		this.LastName = lName;
+		this.PhoneNumber = num;
 		this.Email = login;
 		this.Password = pword;
 		this.SchoolName = "Iona College";
 	}
 	
-	public User(String type,String fName, String lName, String login, String pword){
+	public User(String type,String fName, String lName, String num,String login, String pword){
 		this.UserId = -1;
 		this.AccountType = type;
 		this.FirstName = fName;
 		this.LastName = lName;
+		this.PhoneNumber = num;
 		this.Email = login;
 		this.Password = pword;
 		this.SchoolName = "Iona College";
@@ -95,6 +101,14 @@ public class User {
 	
 	public void SetLastName(String lname){
 		this.LastName = lname;
+	}
+	
+	public String GetPhoneNumber(){
+		return this.PhoneNumber;
+	}
+	
+	public void SetPhoneNumber(String num){
+		this.PhoneNumber = num;
 	}
 	
 	public String GetEmail(){

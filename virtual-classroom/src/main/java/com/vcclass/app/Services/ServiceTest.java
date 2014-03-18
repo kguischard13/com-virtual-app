@@ -1,16 +1,19 @@
 package com.vcclass.app.Services;
 
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.sql.*;
 
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import com.vcclass.app.Data.Student;
+import com.vcclass.app.Data.*;
 
 public class ServiceTest {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ParseException {
 		/*Connection conn = null;
 		Statement stmt = null;
 		try {
@@ -58,7 +61,38 @@ public class ServiceTest {
 		
 		UserService student = (UserService) context.getBean("userService");
 		
-		Student stud = new Student("KayVee", "GEE", "732873738", "kvgEEEe@test.com",  "good_luck");
+		List<User> students = student.GetStudents();
+		
+		//for(User user : students){
+			//System.out.println("ID: "+user.GetUserId() +"\t\t Name: "+user.GetFirstName()+" "+user.GetLastName());
+		//}
+		
+		CourseService courses = (CourseService) context.getBean("courseService");
+		
+		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
+		java.util.Date mD = dateFormat.parse("2014/02/16");
+		
+		Course course = courses.GetCourse(6);
+		
+		CourseSession sess = new CourseSession(course, mD, "Merge Sort");
+		int a = courses.CreateCourseSession(sess);
+		System.out.println("ID of a: "+a);
+		
+		sess = courses.GetCourseSession(a);
+		System.out.println("ID: "+sess.GetId() + " Meeting Time: "+sess.getMeetingDate() +" Topic: "+sess.getClassTopic());
+		
+		sess.setClassTopic("Array Lists");
+		if(courses.UpdateCourseSession(sess))
+			System.out.println("ID: "+sess.GetId()+" Topic: "+sess.getClassTopic());
+		
+		sess = courses.GetCourseSession(sess.GetId());
+		System.out.println("Id: "+sess.GetId()+" Meeting Date: "+sess.getMeetingDate()+" Topic "+sess.getClassTopic());
+		
+		if( courses.DeleteCourseSession(sess.GetId() )){
+			System.out.println("ID of course "+sess.GetId() +" was deleted");
+		}
+		
+		/*User stud = new User("Student","KayVee", "GEE", "732873738", "kvgEEEe@test.com",  "good_luck");
 		int a = student.AddUser(stud);
 		System.out.println("ID of new student: "+a+ " firstname: " +stud.GetFirstName()+ "\n");
 		
@@ -75,11 +109,11 @@ public class ServiceTest {
 			System.out.println("ID: " +stud.GetUserId()+ " was deleted\n" );
 		}
 		
-		List<Student> list1 = student.GetAllUsers();
+		List<User> list1 = student.GetAllUsers();
 		
-		for(Student user : list1){
+		for(User user : list1){
 			System.out.println("ID: "+user.GetUserId());
-		}
+		}*/
 		
 		
 		

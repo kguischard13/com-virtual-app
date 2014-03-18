@@ -47,8 +47,8 @@ public class NoteService implements NoteDAO
 			note.Id = (Integer) row.get("Note Id"); 
 			note.CourseId = (Integer)row.get("Courses_CourseID");
 			note.DateCreated = (Date)row.get("DateCreated"); 
-			note.CourseCode = (String)row.get("CourseCode"); 
-			note.CourseName = (String)row.get("CourseName"); 
+//			note.CourseCode = (String)row.get("CourseCode"); 
+//			note.CourseName = (String)row.get("CourseName"); 
 			note.FilePath = (String)row.get("FilePath"); 
 			note.OwnerId = (Integer)row.get("Student_StudentID"); 
 			noteList.add(note); 
@@ -95,8 +95,8 @@ public class NoteService implements NoteDAO
 	@Override
 	public boolean DeleteNote(int studentId, int noteId) 
 	{
-		String sql = "delete FROM Note WHERE NoteId = ?"; 
-		jdbc.update(sql, noteId); 
+		String sql = "delete FROM Note WHERE NoteId = ? AND Student_StudentID = ?"; 
+		jdbc.update(sql, noteId, studentId); 
 		return true;
 	}
 }

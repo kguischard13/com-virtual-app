@@ -13,11 +13,11 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class Course {
 	
-	@JsonProperty(value="CourseId")
-	private int CourseId;
+	@JsonProperty(value="Id")
+	private int Id;
 	
-	@JsonProperty(value="InstructorId")
-	private int InstructorId;
+	@JsonProperty(value="UserId")
+	private int UserId;
 	
 	@JsonProperty(value="StartTime")
 	private Date StartTime;
@@ -28,50 +28,57 @@ public class Course {
 	@JsonProperty(value="CourseTitle")
 	private String CourseTitle;
 	
+	@JsonProperty(value="CourseCode")
+	private String CourseCode;
+	
 	public Course(){
-		this.CourseId = -1;
-		this.InstructorId = -1;
+		this.Id = -1;
+		this.UserId = -1;
 		this.StartTime = null;
 		this.EndTime = null;
 		this.CourseTitle = null;
+		this.CourseCode = null;
 	}
 	
-	public Course(int incomingId, int teacherId, Date sD, Date eD, String title){
-		this.CourseId = incomingId;
-		this.InstructorId = teacherId;
+	public Course(int incomingId, int teacherId, Date sD, Date eD, String title, String code){
+		this.Id = incomingId;
+		this.UserId = teacherId;
 		this.StartTime = sD;
 		this.EndTime = eD;
 		this.CourseTitle = title;
+		this.CourseCode = code;
 	}
 	
-	public Course(int teacherId, Date sD, Date eD, String title){
-		this.CourseId = -1;
-		this.InstructorId = teacherId;
+	public Course(int teacherId, Date sD, Date eD, String title, String code){
+		this.Id = -1;
+		this.UserId = teacherId;
 		this.StartTime = sD;
 		this.EndTime = eD;
 		this.CourseTitle = title;
+		this.CourseCode = code;
 	}
 	public Course(Course course){
-		this.CourseId = course.GetCourseId();
-		this.InstructorId = course.GetInstructorId();
+		this.Id = course.GetCourseId();
+		this.UserId = course.GetUserId();
 		this.StartTime = course.GetStartTime();
 		this.EndTime = course.GetEndTime();
 		this.CourseTitle = course.GetCourseTitle();
+		this.CourseCode = course.GetCourseCode();
 	}
 	public int GetCourseId(){
-		return this.CourseId;
+		return this.Id;
 	}
 	
 	public void SetCourseId(int incomingid){
-		this.CourseId = incomingid;
+		this.Id = incomingid;
 	}
 	
-	public int GetInstructorId(){
-		return this.InstructorId;
+	public int GetUserId(){
+		return this.UserId;
 	}
 	
-	public void SetInstructorId(int incomingid){
-		this.InstructorId = incomingid;
+	public void SetUserId(int incomingid){
+		this.UserId = incomingid;
 	}
 	
 	public Date GetStartTime(){
@@ -96,6 +103,14 @@ public class Course {
 	
 	public void SetCourseTitle(String title){
 		this.CourseTitle = title;
+	}
+	
+	public String GetCourseCode(){
+		return this.CourseCode;
+	}
+	
+	public void SetCourseCode(String code){
+		this.CourseCode = code;
 	}
 
 }
