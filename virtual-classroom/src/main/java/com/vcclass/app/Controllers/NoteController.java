@@ -13,6 +13,8 @@ import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -31,24 +33,33 @@ public class NoteController
 	
 	private static final Logger logger = LoggerFactory.getLogger(NoteController.class); 
 	
-	@RequestMapping(value = "/note/getnotes", method = RequestMethod.GET)
-	public @ResponseBody List<Note> GetNotes(Model model)
+	@RequestMapping(value = "/note/getnotes/{studentId}", method = RequestMethod.GET)
+	public @ResponseBody List<Note> GetAllNotes(@PathVariable int studentId)
 	{
-		List<Note> noteList = noteService.GetStudentNotes(0); 
+		List<Note> noteList = noteService.GetStudentNotes(studentId); 
 		return noteList; 
 	}
 	
-	@RequestMapping(value = "/note/addnote", method = RequestMethod.GET)
-	public @ResponseBody int AddNote()
+	@RequestMapping(value = "/note/getnotes/{noteId}/student/{studentId}", method = RequestMethod.GET)
+	public @ResponseBody Note GetNoteForStudent(@PathVariable int noteId, @PathVariable int studentId)
 	{
-		int courseId = 1; 
-		int studentId = 0; 
-		Note note = new Note(); 
-		note.DateCreated = new Date(System.currentTimeMillis());
-		note.FilePath = "/src/documents/newNote.png"; 
+		Note note = noteService.GetNote(studentId, noteId);
+		return note;
+	}
+	
+	@RequestMapping(value = "/note/addnote", method = RequestMethod.POST)
+	public @ResponseBody int CreateNote(@RequestBody Note newNote)
+	{
+		Note note = newNote;  
 		
-		int id = noteService.AddNote(studentId, note, courseId); 
+		int id = noteService.AddNote(newNote.OwnerId, newNote, newNote.CourseId); 
 		return id; 
+	}
+	
+	@RequestMapping(value="/note/delete/{studentId}/note/{noteId}", method=RequestMethod.GET)
+	public @ResponseBody boolean DeleteNote(@PathVariable int studentId, @PathVariable int noteId)
+	{
+		return noteService.DeleteNote(studentId, noteId);  
 	}
 
 }
