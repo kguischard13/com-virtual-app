@@ -11,8 +11,8 @@ import org.codehaus.jackson.annotate.JsonProperty;
 @Scope(WebApplicationContext.SCOPE_REQUEST)
 public class CourseSession extends Course{
 	
-	@JsonProperty(value="CourseSessionId")
-	private int CourseSessionId;
+	@JsonProperty(value="Id")
+	private int Id;
 	
 	@JsonProperty(value="MeetingDate")
 	private Date MeetingDate;
@@ -22,22 +22,22 @@ public class CourseSession extends Course{
 
 	public CourseSession(){
 		super();
-		this.CourseSessionId = -1;
+		this.Id = -1;
 		this.MeetingDate = null;
 		this.ClassTopic = null;
 	}
 	
-	public CourseSession(int courseid, int teacherid, Date sd, Date ed, String title,int sessionid,
+	public CourseSession(int courseid, int teacherid, Date sd, Date ed, String title, String code,int sessionid,
 			Date meetdate, String topic){
-		super(courseid, teacherid, sd, ed, title);
-		this.CourseSessionId = sessionid;
+		super(courseid, teacherid, sd, ed, title, code);
+		this.Id = sessionid;
 		this.MeetingDate = meetdate;
 		this.ClassTopic = topic;
 	}
-	public CourseSession(int courseid, int teacherid, Date sd, Date ed, String title,
+	public CourseSession(int courseid, int teacherid, Date sd, Date ed, String title, String code,
 			Date meetdate, String topic){
-		super(courseid, teacherid, sd, ed, title);
-		this.CourseSessionId = -1;
+		super(courseid, teacherid, sd, ed, title, code);
+		this.Id = -1;
 		this.MeetingDate = meetdate;
 		this.ClassTopic = topic;
 	}
@@ -45,18 +45,23 @@ public class CourseSession extends Course{
 	public CourseSession(Course course, int coursesessionid,
 			Date meetdate, String topic){
 		super(course);
-		this.CourseSessionId = coursesessionid;
+		this.Id = coursesessionid;
+		this.MeetingDate = meetdate;
+		this.ClassTopic = topic;
+	}
+	public CourseSession(Course course, Date meetdate, String topic){
+		super(course);
+		this.Id = -1;
 		this.MeetingDate = meetdate;
 		this.ClassTopic = topic;
 	}
 	
-	
-	public int GetCourseSessionId(){
-		return this.CourseSessionId;
+	public int GetId(){
+		return this.Id;
 	}
 	
-	public void setCourseSession(int id){
-		this.CourseSessionId = id;
+	public void setId(int id){
+		this.Id = id;
 	}
 	
 	public Date getMeetingDate(){

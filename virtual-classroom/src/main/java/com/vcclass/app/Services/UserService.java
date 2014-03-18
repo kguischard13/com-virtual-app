@@ -11,6 +11,7 @@ import javax.sql.DataSource;
 
 
 
+
 //import org.springframework.context.ApplicationContext;
 //import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.jdbc.core.JdbcTemplate;
@@ -31,33 +32,33 @@ public class UserService implements UserDAO {
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 	
-	public Student GetUser(int id){
-		Student stud = null;
+	public User GetUser(int id){
+		User user = null;
 		
 		if(this.ValidateUser(id)){
-			String sql = "select * from Student where StudID = ?";
-			stud = jdbcTemplateObject.queryForObject(sql, new Object[]{id}, new RowMapper<Student>(){
+			String sql = "select * from User where UserId = ?";
+			user = jdbcTemplateObject.queryForObject(sql, new Object[]{id}, new RowMapper<User>(){
 				@Override
-				public Student mapRow(ResultSet rs, int rowNum) throws SQLException{
-					return new Student (rs.getInt("StudID"), rs.getString("FirstName"),
+				public User mapRow(ResultSet rs, int rowNum) throws SQLException{
+					return new User (rs.getInt("UserId"),rs.getString("AccountType") ,rs.getString("FirstName"),
 							rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 				}
 			});
 		}
 		
 		
-		return stud;
+		return user;
 		
 
 	}
 	
-	public int AddUser (Student stud){
-		String sql = "insert into Student (FirstName, LastName, PhoneNumber, Email, Password) values (?, ?,"
+	public int AddUser (User user){
+		String sql = "insert into User (AccountType, FirstName, LastName, PhoneNumber, Email, Password) values (?, ?, ?,"
 				+ "?,?,?)";
 		//String sql2 = "select LAST_INSERT_ID()";
-		String sql2 = "select max(StudID) from `Student`";
-		jdbcTemplateObject.update(sql, stud.GetFirstName(), stud.GetLastName(), stud.GetPhoneNumber(),stud.GetEmail(),
-				stud.GetPassword());
+		String sql2 = "select max(UserId) from `User`";
+		jdbcTemplateObject.update(sql, user.GetAccountType(),user.GetFirstName(), user.GetLastName(), user.GetPhoneNumber(),user.GetEmail(),
+				user.GetPassword());
 		
 		
 		return jdbcTemplateObject.queryForInt(sql2);
@@ -66,46 +67,71 @@ public class UserService implements UserDAO {
 	
 	public boolean DeleteUser (int id){
 		if(this.ValidateUser(id)){
-			String sql = "delete from Student where StudID = ?";
+			String sql = "delete from User where UserId = ?";
 			jdbcTemplateObject.update(sql,id);
 			return true;
 		}
 		return false;
 	}
-	public boolean UpdateUser(Student stud){
+	public boolean UpdateUser(User user){
 		
-		if(this.ValidateUser(stud.GetUserId())){
-			String sql = "update Student set FirstName = ?, LastName = ?,  PhoneNumber = ?, Email = ?, Password = ? "
-					+ "where StudID = ?";
-			jdbcTemplateObject.update(sql, stud.GetFirstName(), stud.GetLastName(), stud.GetPhoneNumber(),stud.GetEmail(),
-					stud.GetPassword(), stud.GetUserId());
+		if(this.ValidateUser(user.GetUserId())){
+			String sql = "update User set AccountType = ?, FirstName = ?, LastName = ?,  PhoneNumber = ?, Email = ?, Password = ? "
+					+ "where UserId = ?";
+			jdbcTemplateObject.update(sql, user.GetAccountType(),user.GetFirstName(), user.GetLastName(), user.GetPhoneNumber(),user.GetEmail(),
+					user.GetPassword(), user.GetUserId());
 			return true;
 		}
 		return false;
 		
 	}
 	public boolean ValidateUser(int id){
-		String sql = "select count(*) from Student where StudID = ?";
+		String sql = "select count(*) from User where UserId = ?";
 		if(jdbcTemplateObject.queryForInt(sql, id) == 0){
 			return false;
 		}
 		return true;
 	}
+	
 
-
-	public List<Student> GetAllUsers() {
-		String sql = "select * from Student";
-		List<Student> students = jdbcTemplateObject.query(sql, new RowMapper<Student>(){
+	public List<User> GetAllUsers(){
+		String sql = "select * from User";
+		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
 			@Override
-			public Student mapRow(ResultSet rs, int rowNum) throws SQLException{
-				return new Student (rs.getInt("StudID"), rs.getString("FirstName"),
+			public User mapRow(ResultSet rs, int rowNum) throws SQLException{
+				return new User (rs.getInt("UserId"),rs.getString("AccountType"),rs.getString("FirstName"),
 						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 			}
 		});
 
-		return students;
+		return users;
 
 	}
-	
+
+	public List<User> GetTeachers(){
+		String sql = "select * from User where AccountType LIKE 'Teacher'";
+		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
+			@Override
+			public User mapRow(ResultSet rs, int rowNum) throws SQLException{
+				return new User (rs.getInt("UserId"),rs.getString("AccountType"),rs.getString("FirstName"),
+						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
+			}
+		});
+
+		return users;
+	}
+	public List<User> GetStudents(){
+		String sql = "select * from User where AccountType LIKE 'Student'";
+		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
+			@Override
+			public User mapRow(ResultSet rs, int rowNum) throws SQLException{
+				return new User (rs.getInt("UserId"),rs.getString("AccountType"),rs.getString("FirstName"),
+						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
+			}
+		});
+
+		return users;
+		
+	}
 
 }

@@ -21,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.vcclass.app.Data.Note;
 import com.vcclass.app.Data.NoteElement;
-import com.vcclass.app.Data.Student;
+import com.vcclass.app.Data.*;
 import com.vcclass.app.Services.NoteService;
 import com.vcclass.app.Services.UserService;
 
