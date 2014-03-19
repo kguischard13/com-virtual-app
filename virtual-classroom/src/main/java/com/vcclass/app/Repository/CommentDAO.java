@@ -5,10 +5,9 @@ import javax.sql.DataSource;
 
 public interface CommentDAO 
 {
-	//All 'students' to be changed to 'user'
 	public void setDataSource(DataSource ds);
-	public int CreateComment(int studentId, Comment comment);
-	public Comment GetComment(int commentId, int studentId, int questionId);
+	public int CreateComment(int userId, Comment comment);
+	public Comment GetComment(int commentId, int userId, int questionId);
 	public boolean UpdateComment(Comment comment);
-	public boolean DeleteComment(int studentId, int commentId);
+	public boolean DeleteComment(int userId, int commentId);
 }

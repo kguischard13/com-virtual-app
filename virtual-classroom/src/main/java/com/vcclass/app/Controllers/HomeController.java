@@ -31,7 +31,7 @@ public class HomeController {
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
 		
-<<<<<<< HEAD
+//<<<<<<< HEAD
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		
 		//UserService student = (UserService) context.getBean("userservice");
@@ -44,8 +44,8 @@ public class HomeController {
 		//int a = 2;
 		//Student stud = student.GetUser(a);
 		
-=======
->>>>>>> FETCH_HEAD
+//=======
+//>>>>>>> FETCH_HEAD
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 		String formattedDate = dateFormat.format(date);

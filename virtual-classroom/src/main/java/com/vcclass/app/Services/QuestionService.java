@@ -1,38 +1,66 @@
 package com.vcclass.app.Services;
 
 import java.sql.*;
+import java.sql.Date;
 import java.util.*;
 
 import javax.sql.DataSource;
 
+import com.mysql.jdbc.PreparedStatement;
 import com.vcclass.app.Repository.*;
 import com.vcclass.app.Data.*;
 
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
 import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
+import org.springframework.stereotype.Service;
 
-
+@Service("questionService")
 public class QuestionService implements QuestionDAO
 {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
 	
-	
+	@Override
 	public void setDataSource(DataSource ds)
 	{
 		this.dataSource = ds;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
 	}
 	
-	
-	public int CreateQuestion(int studentId, Question question)
+	@Override
+	public int CreateQuestion(final int userId, final Question question)
 	{
-		String sql = "INSERT INTO Question (QuestionID, Courses_courseID, Student_StudID, "
+		final String sql = "INSERT INTO Question (QuestionID, Courses_courseID, User_userID, "
 				+ "DateCreated, Contents, QuestionType, Public, Flag, AmtOfLikes, Anonymous) "
 				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
-		String sql2 = "select max(QuestionID) from Question";
+		
+		/*
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+        	jdbc.update(
+        		new PreparedStatementCreator()  
+        		{	             
+					@Override
+					public java.sql.PreparedStatement createPreparedStatement(
+							java.sql.Connection arg0) throws SQLException {
+						   PreparedStatement ps =
+		                            (PreparedStatement) arg0.prepareStatement(sql, new String[] {"id"});
+		                        ps.setInt(1, questionId);
+		                        ps.setInt(2, courseId); 
+		                        ps.setDate(3, (Date) note.DateCreated);
+		                        ps.setString(4, note.FilePath);
+		                        return ps;
+					}
+                }, keyHolder);
+        
+        return keyHolder.getKey().intValue();
+		*/
+		
+		String sql2 = "select max(Id) from Question";
 		jdbcTemplateObject.update(sql, question.GetQuestionId(), question.GetCourseId(), 
-				question.GetStudentId(), question.GetCreationDate(), question.GetContents(),
+				question.GetUserId(), question.GetCreationDate(), question.GetContents(),
 				question.GetQuestionType(), question.GetPublic(), question.GetFlag(), question.GetLikes(),
 				question.GetAnonymous());
 		
@@ -40,21 +68,22 @@ public class QuestionService implements QuestionDAO
 		
 	}
 	
-	public Question GetQuestion(int questionId, int studentId, int classId)
+	@Override
+	public Question GetQuestion(int questionId, int userId, int classId)
 	{
 		Question quest = null;
 		
 		if (ValidateQuestion(questionId))
 		{
-			String sql = "SELECT * FROM Question WHERE QuestionID = ?";
+			String sql = "SELECT * FROM Question WHERE Id = ?";
 			quest = jdbcTemplateObject.queryForObject(sql, new Object[]{questionId}, new RowMapper<Question>()
 					{
 						public Question mapRow(ResultSet rs, int rowNum) throws SQLException
 						{
 							return new Question ( 
-								rs.getInt("QuestionID"),
-								rs.getInt("Courses_courseID"),
-								rs.getInt("StudentId"),
+								rs.getInt("Id"),
+								rs.getInt("Course_Id"),
+								rs.getInt("User_Id"),
 								rs.getDate("DateCreated"),
 								rs.getString("Contents"),
 								rs.getInt("QuestionType"),
@@ -62,10 +91,6 @@ public class QuestionService implements QuestionDAO
 								rs.getBoolean("Flag"),
 								rs.getInt("AmtOfLikes"),
 								rs.getBoolean("Anonymous"));
-							
-							/*// Currently no place for comment list or filepath in db
-							rs.getInt("Comments"),
-							rs.getString("FilePath"), */
 						}
 					});
 		}
@@ -73,15 +98,15 @@ public class QuestionService implements QuestionDAO
 	}
 	
 	
-	
+	@Override
 	public boolean UpdateQuestion(Question question)
 	{
 		if (this.ValidateQuestion(question.GetQuestionId()))
 		{
-			String sql = "UPDATE Question SET Courses_courseID = ?, Student_StudID = ?, "
+			String sql = "UPDATE Question SET Course_Id = ?, User_Id = ?, "
 				+ "DateCreated = ?, Contents = ?, QuestionType = ?, Public = ?, Flag = ?, AmtOfLikes = ?, Anonymous = ?"
-					+ "WHERE QuestionID = ?";
-			jdbcTemplateObject.update(sql, question.GetCourseId(), question.GetStudentId(), question.GetCreationDate(),
+					+ "WHERE Id = ?";
+			jdbcTemplateObject.update(sql, question.GetCourseId(), question.GetUserId(), question.GetCreationDate(),
 					question.GetContents(), question.GetQuestionType(), question.GetPublic(), question.GetFlag(),
 					question.GetLikes(), question.GetAnonymous());
 			return true;
@@ -89,13 +114,13 @@ public class QuestionService implements QuestionDAO
 		return false;
 	}
 	
-	
-	public boolean DeleteQuestion(int studentId, int questionId)
+	@Override
+	public boolean DeleteQuestion(int userId, int questionId)
 	{
 		if (this.ValidateQuestion(questionId))
 		{
-			String sql = "DELETE FROM Question WHERE QuestionID = ?";
-			String sql2 = "DELETE FROM Comments WHERE Question_questionID = ?";
+			String sql = "DELETE FROM Question WHERE Id = ?";
+			String sql2 = "DELETE FROM Comment WHERE Question_Id = ?";
 			jdbcTemplateObject.update(sql,questionId);
 			jdbcTemplateObject.update(sql2,questionId);
 			return true;
@@ -105,7 +130,7 @@ public class QuestionService implements QuestionDAO
 	
 	private boolean ValidateQuestion(int id)
 	{
-		String sql = "SELECT count(*) FROM Question WHERE QuestionID = ?";
+		String sql = "SELECT count(*) FROM Question WHERE Id = ?";
 		if(jdbcTemplateObject.queryForInt(sql, id) == 0)
 		{
 			return false;

@@ -13,11 +13,11 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class Question
 {
-	@JsonProperty(value="QuestionId")
-	private int QuestionId;
+	@JsonProperty(value="Id")
+	private int Id;
 	
-	@JsonProperty(value="StudentId")
-	private int StudentId; 
+	@JsonProperty(value="UserId")
+	private int UserId; 
 	
 	@JsonProperty(value="CourseId")
 	private int CourseId; 
@@ -54,9 +54,9 @@ public class Question
 	
 	public Question()
 	{
-		this.QuestionId = -1;
+		this.Id = -1;
 		this.CourseId = -1;
-		this.StudentId = -1; 
+		this.UserId = -1; 
 		this.DateCreated = null;
 		this.Contents = null;
 		this.QuestionType = -1;
@@ -67,12 +67,12 @@ public class Question
 		this.Comments = 0;
 	}
 	
-	public Question(int questionId, int courseId, int studentId, Date dateCreated, String contents,
+	public Question(int questionId, int courseId, int userId, Date dateCreated, String contents,
 			int questionType, boolean isPublic, boolean flagAsInappropriate, int numOfLikes, boolean isAnonymous)
 	{
-		this.QuestionId = questionId;
+		this.Id = questionId;
 		this.CourseId = courseId;
-		this.StudentId = studentId;
+		this.UserId = userId;
 		this.DateCreated = dateCreated;
 		this.Contents = contents;
 		this.QuestionType = questionType;
@@ -88,15 +88,15 @@ public class Question
 	}
 	
 	
-//Getters & Setters
+	//Getters & Setters
 	public int GetQuestionId()
 	{
-		return this.QuestionId; 
+		return this.Id; 
 	}
 	
 	public void SetQuestionId(int id)
 	{
-		this.QuestionId = id; 
+		this.Id = id; 
 	}
 	
 	public int GetCourseId()
@@ -109,14 +109,14 @@ public class Question
 		this.CourseId = courseId; 
 	}
 	
-	public int GetStudentId()
+	public int GetUserId()
 	{
-		return this.StudentId;
+		return this.UserId;
 	}
 	
-	public void SetStudentId(int studentId)
+	public void SetUserId(int userId)
 	{
-		this.StudentId = studentId; 
+		this.UserId = userId; 
 	}
 	
 	public Date GetCreationDate()

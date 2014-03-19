@@ -10,61 +10,51 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class Comment
 {
-	@JsonProperty(value="CommentId")
-	private int CommentId; 
+	@JsonProperty(value="Id")
+	private int Id; 
 	
 	@JsonProperty(value="QuestionId")
 	private int QuestionId;
 	
-	@JsonProperty(value="StudentId")
-	private int StudentId; 
+	@JsonProperty(value="UserId")
+	private int UserId; 
 	
-	@JsonProperty(value="TeacherId")
-	private int TeacherId; 
+	@JsonProperty(value="Content")
+	private String Content;
 	
 	@JsonProperty(value="DateCreated")
 	private Date DateCreated; 
 	
-	@JsonProperty(value="Contents")
-	private String Contents;
-	
-	@JsonProperty(value="FilePath")
-	private String FilePath; 
-	
 	public Comment()
 	{
-		this.CommentId = -1;
+		this.Id = -1;
 		this.QuestionId = -1;
-		this.StudentId = -1; 
-		this.TeacherId = -1;
-		this.Contents = "";
+		this.UserId = -1;
+		this.Content = "";
 		this.DateCreated = null;
-		//this.FilePath = ""; //Missing from db
 	}
 	
-	public Comment(int commentId, int questionId, int studentId, int teacherID, String contents, Date dateCreated)
+	public Comment(int commentId, int questionId, int userId, String contents, Date dateCreated)
 	{
-		this.CommentId = commentId;
+		this.Id = commentId;
 		this.QuestionId = questionId;
-		this.StudentId = studentId; 
-		this.TeacherId = teacherID;
-		this.Contents = contents;
+		this.UserId = userId; 
+		this.Content = contents;
 		this.DateCreated = dateCreated;
-		//this.FilePath = ""; //Missing from db
 		
 	}
 			 
 	
 	
-//Getters & Setters
+	//Getters & Setters
 	public int GetCommentId()
 	{
-		return this.CommentId; 
+		return this.Id; 
 	}
 	
 	public void SetCommentId(int id)
 	{
-		this.CommentId = id; 
+		this.Id = id; 
 	}
 	
 	public int GetQuestionId()
@@ -77,57 +67,33 @@ public class Comment
 		this.QuestionId = questionId; 
 	}
 	
-	public int GetStudentId()
+	public int GetUserId()
 	{
-		return this.StudentId;
+		return this.UserId;
 	}
 	
-	public void SetStudentId(int studentId)
+	public void SetUserId(int userId)
 	{
-		this.StudentId = studentId; 
-	}
-	
-	public int GetTeacherId()
-	{
-		return this.TeacherId;
-	}
-	
-	public void SetTeacherId(int teacherId)
-	{
-		this.TeacherId = teacherId; 
+		this.UserId = userId; 
 	}
 	
 	public String GetContents()
 	{
-		return this.Contents; 
+		return this.Content; 
 	}
 	
-	public void SetContents(String contents)
+	public void SetContents(String content)
 	{
-		this.Contents = contents; 
+		this.Content = content; 
 	}	
 	
-	public Date GetCreationDate()
+	public Date GetDateCreated()
 	{
 		return this.DateCreated; 
 	}
 	
-	public void SetCreationDate(Date dateCreated)
+	public void SetDateCreated(Date dateCreated)
 	{
 		this.DateCreated = dateCreated; 
 	}
-	
-	
-	/*// needs to be added to db
-	public String GetFilePath()
-	{
-		return this.FilePath; 
-	}
-	
-	public void SetFilePath(String filePath)
-	{
-		this.FilePath = filePath; 
-	}
-	*/
-	
 }
