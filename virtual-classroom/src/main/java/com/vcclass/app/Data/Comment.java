@@ -41,8 +41,16 @@ public class Comment
 		this.UserId = userId; 
 		this.Content = contents;
 		this.DateCreated = dateCreated;
-		
 	}
+	
+	public Comment(int questionId, int userId, String contents, Date dateCreated)
+	{
+		this.QuestionId = questionId;
+		this.UserId = userId; 
+		this.Content = contents;
+		this.DateCreated = dateCreated;
+	}
+	
 			 
 	
 	

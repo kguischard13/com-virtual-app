@@ -74,7 +74,7 @@ public class NoteService implements NoteDAO
 		final String sql = "insert into Note (Student_StudentID, Courses_CourseID, DateCreated, FilePath) values (?, ?, ?, ?)";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-	        /*jdbc.update(
+	        jdbc.update(
 	        		new PreparedStatementCreator()  
 	        		{	             
 						@Override
@@ -89,7 +89,7 @@ public class NoteService implements NoteDAO
 			                        return ps;
 						}
 	                }, keyHolder);
-	        */
+	        
         return keyHolder.getKey().intValue();
 	}
 	

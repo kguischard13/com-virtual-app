@@ -33,11 +33,11 @@ public class CommentService implements CommentDAO
 	@Override
 	public int CreateComment(int userId, Comment comment)
 	{
-		String sql = "INSERT INTO Comment (Id, Question_Id, User_Id,"
-				+ "Contents, DateCreated) "
-				+ "values (?, ?, ?, ?, ?, ?)";
-		String sql2 = "select max(Id) from Comments";
-		jdbcTemplateObject.update(sql, comment.GetCommentId(), comment.GetQuestionId(), 
+		String sql = "INSERT INTO Comment (Question_Id, User_Id,"
+				+ "Content, DateCreated) "
+				+ "values (?, ?, ?, ?)";
+		String sql2 = "select max(Id) from Comment";
+		jdbcTemplateObject.update(sql, comment.GetQuestionId(), 
 				comment.GetUserId(), comment.GetContents(), 
 				comment.GetDateCreated());
 		
@@ -75,11 +75,11 @@ public class CommentService implements CommentDAO
 	{
 		if (this.ValidateComment(comment.GetCommentId()))
 		{
-			String sql = "UPDATE Comment SET Question_Id = ?, User_Id = ?"
-				+ "Content = ?, DateCreated = ?"
-					+ "WHERE CommentID = ?";
+			String sql = "UPDATE Comment SET Question_Id = ?, User_Id = ?,"
+				+ " Content = ?, DateCreated = ?"
+					+ " WHERE Id = ?";
 			jdbcTemplateObject.update(sql, comment.GetQuestionId(), comment.GetUserId(),
-					comment.GetContents(), comment.GetDateCreated());
+					comment.GetContents(), comment.GetDateCreated(), comment.GetCommentId());
 			return true;
 		}
 		return false;

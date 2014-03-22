@@ -33,33 +33,13 @@ public class QuestionService implements QuestionDAO
 	@Override
 	public int CreateQuestion(final int userId, final Question question)
 	{
-		final String sql = "INSERT INTO Question (QuestionID, Courses_courseID, User_userID, "
+		final String sql = "INSERT INTO Question (Course_Id, User_Id, "
 				+ "DateCreated, Contents, QuestionType, Public, Flag, AmtOfLikes, Anonymous) "
-				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
-		/*
-		KeyHolder keyHolder = new GeneratedKeyHolder();
-        	jdbc.update(
-        		new PreparedStatementCreator()  
-        		{	             
-					@Override
-					public java.sql.PreparedStatement createPreparedStatement(
-							java.sql.Connection arg0) throws SQLException {
-						   PreparedStatement ps =
-		                            (PreparedStatement) arg0.prepareStatement(sql, new String[] {"id"});
-		                        ps.setInt(1, questionId);
-		                        ps.setInt(2, courseId); 
-		                        ps.setDate(3, (Date) note.DateCreated);
-		                        ps.setString(4, note.FilePath);
-		                        return ps;
-					}
-                }, keyHolder);
-        
-        return keyHolder.getKey().intValue();
-		*/
 		
 		String sql2 = "select max(Id) from Question";
-		jdbcTemplateObject.update(sql, question.GetQuestionId(), question.GetCourseId(), 
+		jdbcTemplateObject.update(sql, question.GetCourseId(), 
 				question.GetUserId(), question.GetCreationDate(), question.GetContents(),
 				question.GetQuestionType(), question.GetPublic(), question.GetFlag(), question.GetLikes(),
 				question.GetAnonymous());
@@ -105,10 +85,10 @@ public class QuestionService implements QuestionDAO
 		{
 			String sql = "UPDATE Question SET Course_Id = ?, User_Id = ?, "
 				+ "DateCreated = ?, Contents = ?, QuestionType = ?, Public = ?, Flag = ?, AmtOfLikes = ?, Anonymous = ?"
-					+ "WHERE Id = ?";
+					+ " WHERE Id = ?";
 			jdbcTemplateObject.update(sql, question.GetCourseId(), question.GetUserId(), question.GetCreationDate(),
 					question.GetContents(), question.GetQuestionType(), question.GetPublic(), question.GetFlag(),
-					question.GetLikes(), question.GetAnonymous());
+					question.GetLikes(), question.GetAnonymous(), question.GetQuestionId());
 			return true;
 		}
 		return false;

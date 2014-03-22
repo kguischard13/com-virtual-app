@@ -77,14 +77,30 @@ public class Question
 		this.Contents = contents;
 		this.QuestionType = questionType;
 		this.IsPublic = isPublic;
-		this.FlagAsInappropriate = false;
+		this.FlagAsInappropriate = flagAsInappropriate;
 		this.Likes = numOfLikes;
 		this.Anonymous = isAnonymous;
 		this.Comments = 0;
 
-		this.FilePath = ""; 
-		this.CommentsList = null;
+		//this.FilePath = ""; 
+		//this.CommentsList = null;
 		
+	}
+	
+	
+	public Question(int courseId, int userId, Date dateCreated, String contents,
+			int questionType, boolean isPublic, boolean flagAsInappropriate, int numOfLikes, boolean isAnonymous)
+	{
+		this.CourseId = courseId;
+		this.UserId = userId;
+		this.DateCreated = dateCreated;
+		this.Contents = contents;
+		this.QuestionType = questionType;
+		this.IsPublic = isPublic;
+		this.FlagAsInappropriate = flagAsInappropriate;
+		this.Likes = numOfLikes;
+		this.Anonymous = isAnonymous;
+		this.Comments = 0;
 	}
 	
 	
@@ -203,7 +219,7 @@ public class Question
 		this.Comments = comments; 
 	}
 	
-	
+	/*
 	public String GetFilePath()
 	{
 		return this.FilePath; 
@@ -213,6 +229,7 @@ public class Question
 	{
 		this.FilePath = filePath; 
 	}
+	*/
 	
 	public List<Comment> GetCommentsList()
 	{
