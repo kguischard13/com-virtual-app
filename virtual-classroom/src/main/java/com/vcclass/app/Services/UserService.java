@@ -36,11 +36,11 @@ public class UserService implements UserDAO {
 		User user = null;
 		
 		if(this.ValidateUser(id)){
-			String sql = "select * from User where UserId = ?";
+			String sql = "select * from User where Id = ?";
 			user = jdbcTemplateObject.queryForObject(sql, new Object[]{id}, new RowMapper<User>(){
 				@Override
 				public User mapRow(ResultSet rs, int rowNum) throws SQLException{
-					return new User (rs.getInt("UserId"),rs.getString("AccountType") ,rs.getString("FirstName"),
+					return new User (rs.getInt("Id"),rs.getString("AccountType") ,rs.getString("FirstName"),
 							rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 				}
 			});
@@ -56,7 +56,7 @@ public class UserService implements UserDAO {
 		String sql = "insert into User (AccountType, FirstName, LastName, PhoneNumber, Email, Password) values (?, ?, ?,"
 				+ "?,?,?)";
 		//String sql2 = "select LAST_INSERT_ID()";
-		String sql2 = "select max(UserId) from `User`";
+		String sql2 = "select max(Id) from `User`";
 		jdbcTemplateObject.update(sql, user.GetAccountType(),user.GetFirstName(), user.GetLastName(), user.GetPhoneNumber(),user.GetEmail(),
 				user.GetPassword());
 		
@@ -67,7 +67,7 @@ public class UserService implements UserDAO {
 	
 	public boolean DeleteUser (int id){
 		if(this.ValidateUser(id)){
-			String sql = "delete from User where UserId = ?";
+			String sql = "delete from User where Id = ?";
 			jdbcTemplateObject.update(sql,id);
 			return true;
 		}
@@ -75,18 +75,18 @@ public class UserService implements UserDAO {
 	}
 	public boolean UpdateUser(User user){
 		
-		if(this.ValidateUser(user.GetUserId())){
+		if(this.ValidateUser(user.GetId())){
 			String sql = "update User set AccountType = ?, FirstName = ?, LastName = ?,  PhoneNumber = ?, Email = ?, Password = ? "
-					+ "where UserId = ?";
+					+ "where Id = ?";
 			jdbcTemplateObject.update(sql, user.GetAccountType(),user.GetFirstName(), user.GetLastName(), user.GetPhoneNumber(),user.GetEmail(),
-					user.GetPassword(), user.GetUserId());
+					user.GetPassword(), user.GetId());
 			return true;
 		}
 		return false;
 		
 	}
 	public boolean ValidateUser(int id){
-		String sql = "select count(*) from User where UserId = ?";
+		String sql = "select count(*) from User where Id = ?";
 		if(jdbcTemplateObject.queryForInt(sql, id) == 0){
 			return false;
 		}
@@ -99,7 +99,7 @@ public class UserService implements UserDAO {
 		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException{
-				return new User (rs.getInt("UserId"),rs.getString("AccountType"),rs.getString("FirstName"),
+				return new User (rs.getInt("Id"),rs.getString("AccountType"),rs.getString("FirstName"),
 						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 			}
 		});
@@ -113,7 +113,7 @@ public class UserService implements UserDAO {
 		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException{
-				return new User (rs.getInt("UserId"),rs.getString("AccountType"),rs.getString("FirstName"),
+				return new User (rs.getInt("Id"),rs.getString("AccountType"),rs.getString("FirstName"),
 						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 			}
 		});
@@ -125,7 +125,7 @@ public class UserService implements UserDAO {
 		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
 			@Override
 			public User mapRow(ResultSet rs, int rowNum) throws SQLException{
-				return new User (rs.getInt("UserId"),rs.getString("AccountType"),rs.getString("FirstName"),
+				return new User (rs.getInt("Id"),rs.getString("AccountType"),rs.getString("FirstName"),
 						rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
 			}
 		});

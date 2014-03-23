@@ -16,8 +16,8 @@ public class Course {
 	@JsonProperty(value="Id")
 	private int Id;
 	
-	@JsonProperty(value="UserId")
-	private int UserId;
+	@JsonProperty(value="User_Id")
+	private int User_Id;
 	
 	@JsonProperty(value="StartTime")
 	private Date StartTime;
@@ -33,7 +33,7 @@ public class Course {
 	
 	public Course(){
 		this.Id = -1;
-		this.UserId = -1;
+		this.User_Id = -1;
 		this.StartTime = null;
 		this.EndTime = null;
 		this.CourseTitle = null;
@@ -42,7 +42,7 @@ public class Course {
 	
 	public Course(int incomingId, int teacherId, Date sD, Date eD, String title, String code){
 		this.Id = incomingId;
-		this.UserId = teacherId;
+		this.User_Id = teacherId;
 		this.StartTime = sD;
 		this.EndTime = eD;
 		this.CourseTitle = title;
@@ -51,7 +51,7 @@ public class Course {
 	
 	public Course(int teacherId, Date sD, Date eD, String title, String code){
 		this.Id = -1;
-		this.UserId = teacherId;
+		this.User_Id = teacherId;
 		this.StartTime = sD;
 		this.EndTime = eD;
 		this.CourseTitle = title;
@@ -59,7 +59,7 @@ public class Course {
 	}
 	public Course(Course course){
 		this.Id = course.GetCourseId();
-		this.UserId = course.GetUserId();
+		this.User_Id = course.GetUserId();
 		this.StartTime = course.GetStartTime();
 		this.EndTime = course.GetEndTime();
 		this.CourseTitle = course.GetCourseTitle();
@@ -74,11 +74,11 @@ public class Course {
 	}
 	
 	public int GetUserId(){
-		return this.UserId;
+		return this.User_Id;
 	}
 	
 	public void SetUserId(int incomingid){
-		this.UserId = incomingid;
+		this.User_Id = incomingid;
 	}
 	
 	public Date GetStartTime(){
