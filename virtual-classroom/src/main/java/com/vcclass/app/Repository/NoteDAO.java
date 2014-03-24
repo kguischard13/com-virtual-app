@@ -5,7 +5,6 @@ import java.util.List;
 import javax.sql.DataSource;
 
 import org.springframework.stereotype.Repository;
-import org.springframework.stereotype.Service;
 
 import com.vcclass.app.Data.Note;
 
