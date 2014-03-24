@@ -13,14 +13,14 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class Question
 {
-	@JsonProperty(value="QuestionId")
-	private int QuestionId;
+	@JsonProperty(value="Id")
+	private int Id;
 	
-	@JsonProperty(value="StudentId")
-	private int StudentId; 
+	@JsonProperty(value="UserId")
+	private int UserId; 
 	
-	@JsonProperty(value="ClassId")
-	private int ClassId; 
+	@JsonProperty(value="CourseId")
+	private int CourseId; 
 	
 	@JsonProperty(value="Likes")
 	private int Likes;
@@ -33,6 +33,9 @@ public class Question
 	
 	@JsonProperty(value="FlagAsInappropriate")
 	private boolean FlagAsInappropriate;
+	
+	@JsonProperty(value="IsPublic")
+	private boolean IsPublic;
 	
 	@JsonProperty(value="Anonymous")
 	private boolean Anonymous;
@@ -51,100 +54,85 @@ public class Question
 	
 	public Question()
 	{
-		this.QuestionId = -1; 
-		this.StudentId = -1; 
-		this.ClassId = -1;
-		this.Likes = 0;
-		this.Comments = 0;
-		this.QuestionType = -1;
-		this.FlagAsInappropriate = false;	
-		this.Anonymous = true;
+		this.Id = -1;
+		this.CourseId = -1;
+		this.UserId = -1; 
 		this.DateCreated = null;
-		this.Contents = "";
-		this.FilePath = ""; 
-		this.CommentsList = null;
+		this.Contents = null;
+		this.QuestionType = -1;
+		this.IsPublic = true;
+		this.FlagAsInappropriate = false;
+		this.Likes = 0;
+		this.Anonymous = true;
+		this.Comments = 0;
+	}
+	
+	public Question(int questionId, int courseId, int userId, Date dateCreated, String contents,
+			int questionType, boolean isPublic, boolean flagAsInappropriate, int numOfLikes, boolean isAnonymous)
+	{
+		this.Id = questionId;
+		this.CourseId = courseId;
+		this.UserId = userId;
+		this.DateCreated = dateCreated;
+		this.Contents = contents;
+		this.QuestionType = questionType;
+		this.IsPublic = isPublic;
+		this.FlagAsInappropriate = flagAsInappropriate;
+		this.Likes = numOfLikes;
+		this.Anonymous = isAnonymous;
+		this.Comments = 0;
+
+		//this.FilePath = ""; 
+		//this.CommentsList = null;
+		
 	}
 	
 	
-//Getters & Setters
-	public int GetId()
+	public Question(int courseId, int userId, Date dateCreated, String contents,
+			int questionType, boolean isPublic, boolean flagAsInappropriate, int numOfLikes, boolean isAnonymous)
 	{
-		return this.QuestionId; 
+		this.CourseId = courseId;
+		this.UserId = userId;
+		this.DateCreated = dateCreated;
+		this.Contents = contents;
+		this.QuestionType = questionType;
+		this.IsPublic = isPublic;
+		this.FlagAsInappropriate = flagAsInappropriate;
+		this.Likes = numOfLikes;
+		this.Anonymous = isAnonymous;
+		this.Comments = 0;
 	}
 	
-	public void SetId(int id)
+	
+	//Getters & Setters
+	public int GetQuestionId()
 	{
-		this.QuestionId = id; 
+		return this.Id; 
 	}
 	
-	public int GetStudentId()
+	public void SetQuestionId(int id)
 	{
-		return this.StudentId;
+		this.Id = id; 
 	}
 	
-	public void SetStudentId(int studentId)
+	public int GetCourseId()
 	{
-		this.StudentId = studentId; 
+		return this.CourseId;
 	}
 	
-	public int GetClassId()
+	public void SetCourseId(int courseId)
 	{
-		return this.ClassId;
+		this.CourseId = courseId; 
 	}
 	
-	public void SetClassId(int classId)
+	public int GetUserId()
 	{
-		this.ClassId = classId; 
+		return this.UserId;
 	}
 	
-	public int Likes()
+	public void SetUserId(int userId)
 	{
-		return this.Likes;
-	}
-	
-	public void SetLikes(int likes)
-	{
-		this.Likes = likes; 
-	}
-	
-	public int GetComments()
-	{
-		return this.Comments;
-	}
-	
-	public void SetComments(int comments)
-	{
-		this.Comments = comments; 
-	}
-	
-	public int GetQuestionType()
-	{
-		return this.QuestionType;
-	}
-	
-	public void SetQuestionType(int questionType)
-	{
-		this.QuestionType = questionType; 
-	}
-	
-	public boolean GetFlag()
-	{
-		return this.FlagAsInappropriate;
-	}
-	
-	public void SetFlag(boolean flagAsInappropriate)
-	{
-		this.FlagAsInappropriate = flagAsInappropriate; 
-	}
-	
-	public boolean GetAnonymous()
-	{
-		return this.Anonymous;
-	}
-	
-	public void Setanonymous(boolean anonymous)
-	{
-		this.Anonymous = anonymous; 
+		this.UserId = userId; 
 	}
 	
 	public Date GetCreationDate()
@@ -167,6 +155,71 @@ public class Question
 		this.Contents = contents; 
 	}
 	
+	public int GetQuestionType()
+	{
+		return this.QuestionType;
+	}
+	
+	public void SetQuestionType(int questionType)
+	{
+		this.QuestionType = questionType; 
+	}
+	
+	public boolean GetPublic()
+	{
+		return this.IsPublic;
+	}
+	
+	public void SetPublic(boolean isPublic)
+	{
+		this.IsPublic = isPublic; 
+	}
+	
+	public boolean GetFlag()
+	{
+		return this.FlagAsInappropriate;
+	}
+	
+	public void SetFlag(boolean flagAsInappropriate)
+	{
+		this.FlagAsInappropriate = flagAsInappropriate; 
+	}
+	
+	public int GetLikes()
+	{
+		return this.Likes;
+	}
+	
+	public void SetLikes(int likes)
+	{
+		this.Likes = likes; 
+	}
+	
+	public boolean GetAnonymous()
+	{
+		return this.Anonymous;
+	}
+	
+	public void Setanonymous(boolean anonymous)
+	{
+		this.Anonymous = anonymous; 
+	}
+	
+	
+	
+	
+	
+	public int GetComments()
+	{
+		return this.Comments;
+	}
+	
+	public void SetComments(int comments)
+	{
+		this.Comments = comments; 
+	}
+	
+	/*
 	public String GetFilePath()
 	{
 		return this.FilePath; 
@@ -176,6 +229,7 @@ public class Question
 	{
 		this.FilePath = filePath; 
 	}
+	*/
 	
 	public List<Comment> GetCommentsList()
 	{
@@ -186,10 +240,6 @@ public class Question
 	{
 		this.CommentsList = list; 
 	}
-	
-	
-	
-	
 
 	//Add comment to question
 	public void AddComment(Comment comment)
@@ -207,7 +257,7 @@ public class Question
 		{
 			Comment comment = (Comment)itr.next(); 
 			
-			if(comment.GetId() == commentId)
+			if(comment.GetCommentId() == commentId)
 			{
 				return comment; 
 			}

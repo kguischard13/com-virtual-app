@@ -10,44 +10,69 @@ import org.springframework.web.context.WebApplicationContext;
 
 public class Comment
 {
-	@JsonProperty(value="CommentId")
-	private int CommentId; 
+	@JsonProperty(value="Id")
+	private int Id; 
+	
+	@JsonProperty(value="QuestionId")
+	private int QuestionId;
 	
 	@JsonProperty(value="UserId")
 	private int UserId; 
 	
-	@JsonProperty(value="QuestionId")
-	private int QuestionId; 
+	@JsonProperty(value="Content")
+	private String Content;
 	
 	@JsonProperty(value="DateCreated")
 	private Date DateCreated; 
 	
-	@JsonProperty(value="Contents")
-	private String Contents;
-	
-	@JsonProperty(value="FilePath")
-	private String FilePath; 
-	
 	public Comment()
 	{
-		this.CommentId = -1; 
-		this.UserId = -1; 
+		this.Id = -1;
 		this.QuestionId = -1;
+		this.UserId = -1;
+		this.Content = "";
 		this.DateCreated = null;
-		this.Contents = "";
-		this.FilePath = ""; 
 	}
 	
-	
-//Getters & Setters
-	public int GetId()
+	public Comment(int commentId, int questionId, int userId, String contents, Date dateCreated)
 	{
-		return this.CommentId; 
+		this.Id = commentId;
+		this.QuestionId = questionId;
+		this.UserId = userId; 
+		this.Content = contents;
+		this.DateCreated = dateCreated;
 	}
 	
-	public void SetId(int id)
+	public Comment(int questionId, int userId, String contents, Date dateCreated)
 	{
-		this.CommentId = id; 
+		this.QuestionId = questionId;
+		this.UserId = userId; 
+		this.Content = contents;
+		this.DateCreated = dateCreated;
+	}
+	
+			 
+	
+	
+	//Getters & Setters
+	public int GetCommentId()
+	{
+		return this.Id; 
+	}
+	
+	public void SetCommentId(int id)
+	{
+		this.Id = id; 
+	}
+	
+	public int GetQuestionId()
+	{
+		return this.QuestionId;
+	}
+	
+	public void SetQuestionId(int questionId)
+	{
+		this.QuestionId = questionId; 
 	}
 	
 	public int GetUserId()
@@ -60,44 +85,23 @@ public class Comment
 		this.UserId = userId; 
 	}
 	
-	public int GetQuestionId()
+	public String GetContents()
 	{
-		return this.QuestionId;
+		return this.Content; 
 	}
 	
-	public void SetQuestionId(int questionId)
+	public void SetContents(String content)
 	{
-		this.QuestionId = questionId; 
-	}
-		
-	public Date GetCreationDate()
+		this.Content = content; 
+	}	
+	
+	public Date GetDateCreated()
 	{
 		return this.DateCreated; 
 	}
 	
-	public void SetCreationDate(Date dateCreated)
+	public void SetDateCreated(Date dateCreated)
 	{
 		this.DateCreated = dateCreated; 
 	}
-	
-	public String GetContents()
-	{
-		return this.Contents; 
-	}
-	
-	public void SetContents(String contents)
-	{
-		this.Contents = contents; 
-	}
-	
-	public String GetFilePath()
-	{
-		return this.FilePath; 
-	}
-	
-	public void SetFilePath(String filePath)
-	{
-		this.FilePath = filePath; 
-	}
-	
 }

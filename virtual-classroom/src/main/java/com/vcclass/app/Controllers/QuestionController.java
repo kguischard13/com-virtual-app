@@ -24,12 +24,12 @@ public class QuestionController
 	{
 		Question question = new Question(); 
 		
-		question.SetId(11);
+		question.SetQuestionId(11);
 		question.SetContents("What question is this?");
 		
 		Comment comment = new Comment();
 		
-		comment.SetId(22);
+		comment.SetCommentId(22);
 		comment.SetContents("My comment is that I like this question");
 		
 		question.AddComment(comment);
