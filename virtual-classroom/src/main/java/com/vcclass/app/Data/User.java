@@ -14,7 +14,7 @@ import org.codehaus.jackson.annotate.JsonProperty;
 public class User {
 	
 	@JsonProperty(value="Id")
-	private int UserId;
+	private int Id;
 	
 	@JsonProperty(value="AccountType")
 	private String AccountType;
@@ -39,7 +39,7 @@ public class User {
 	
 	
 	public User(){
-		this.UserId = -1;
+		this.Id = -1;
 		this.AccountType = null;
 		this.FirstName = null;
 		this.LastName = null;
@@ -50,7 +50,7 @@ public class User {
 	}
 	
 	public User(int id, String type,String fName, String lName,String num ,String login, String pword){
-		this.UserId = id;
+		this.Id = id;
 		this.AccountType = type;
 		this.FirstName = fName;
 		this.LastName = lName;
@@ -61,7 +61,7 @@ public class User {
 	}
 	
 	public User(String type,String fName, String lName, String num,String login, String pword){
-		this.UserId = -1;
+		this.Id = -1;
 		this.AccountType = type;
 		this.FirstName = fName;
 		this.LastName = lName;
@@ -71,12 +71,12 @@ public class User {
 		this.SchoolName = "Iona College";
 	}
 
-	public int GetUserId(){
-		return this.UserId;
+	public int GetId(){
+		return this.Id;
 	}
 	
-	public void SetUserId(int id){
-		this.UserId = id;
+	public void SetId(int id){
+		this.Id = id;
 	}
 	
 	public String GetAccountType(){

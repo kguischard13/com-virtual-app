@@ -75,11 +75,11 @@ public class UserService implements UserDAO {
 	}
 	public boolean UpdateUser(User user){
 		
-		if(this.ValidateUser(user.GetUserId())){
+		if(this.ValidateUser(user.GetId())){
 			String sql = "update User set AccountType = ?, FirstName = ?, LastName = ?,  PhoneNumber = ?, Email = ?, Password = ? "
 					+ "where Id = ?";
 			jdbcTemplateObject.update(sql, user.GetAccountType(),user.GetFirstName(), user.GetLastName(), user.GetPhoneNumber(),user.GetEmail(),
-					user.GetPassword(), user.GetUserId());
+					user.GetPassword(), user.GetId());
 			return true;
 		}
 		return false;
