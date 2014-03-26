@@ -13,13 +13,11 @@ public class LiveDiscussionRowMapper implements RowMapper<LiveDiscussion>
 	public LiveDiscussion mapRow(ResultSet rs, int row) throws SQLException 
 	{
 		LiveDiscussion discussion = new LiveDiscussion(); 
-		discussion.Id = rs.getInt("LiveDiscussionID"); 
-		discussion.CourseId = rs.getInt("Courses_CourseID"); 
+		discussion.Id = rs.getInt("Id"); 
+		discussion.CourseSessionId = rs.getInt("CourseSession_Id"); 
 		discussion.DateCreated = rs.getDate("DateCreated"); 
 		discussion.FilePath = rs.getString("FilePath"); 
-		discussion.OwnerId = rs.getInt("Student_StudentID"); 
-		discussion.CourseSessionId = rs.getInt("Courses_CourseSessionID"); 
-		discussion.FilePath = rs.getString("FilePath"); 
+		discussion.OwnerId = rs.getInt("User_Id"); 
 		discussion.Topic = rs.getString("Topic"); 
 		
 		return discussion; 
