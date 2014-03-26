@@ -20,6 +20,11 @@
 		<property name="dataSource" ref="dataSource"/>
 	</bean>
 	
+	<bean id="liveDiscussionService"
+	class="com.vcclass.app.Services.LiveDiscussionService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+		
 	<bean id="courseService" 
 	class="com.vcclass.app.Services.CourseService">
 		<property name="dataSource" ref="dataSource"/>

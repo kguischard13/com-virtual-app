@@ -35,7 +35,7 @@ public class NoteService implements NoteDAO
 	@Override
 	public List<Note> GetStudentNotes(int studentId) 
 	{			
-		String sql = "select * FROM Note WHERE Student_StudentId = ?"; 
+		String sql = "select * FROM Note WHERE User_Id = ?"; 
 		List<Note> noteList = new ArrayList<Note>();
 		
 		Object [] parameters = new Object[]{new Integer(studentId)};  
@@ -44,13 +44,12 @@ public class NoteService implements NoteDAO
 		for(Map row: rows)
 		{
 			Note note = new Note(); 
-			note.Id = (Integer) row.get("Note Id"); 
-			note.CourseId = (Integer)row.get("Courses_CourseID");
+			note.Id = (Integer) row.get("Id"); 
+			note.CourseId = (Integer)row.get("Course_Id");
 			note.DateCreated = (Date)row.get("DateCreated"); 
-//			note.CourseCode = (String)row.get("CourseCode"); 
-//			note.CourseName = (String)row.get("CourseName"); 
 			note.FilePath = (String)row.get("FilePath"); 
-			note.OwnerId = (Integer)row.get("Student_StudentID"); 
+			note.OwnerId = (Integer)row.get("User_Id"); 
+			
 			noteList.add(note); 
 		}
 				
@@ -60,7 +59,7 @@ public class NoteService implements NoteDAO
 	@Override
 	public Note GetNote(int studentId, int noteId)
 	{
-		String sql = "select * FROM Note WHERE Student_StudentID = ? AND NoteId = ?"; 
+		String sql = "select * FROM Note WHERE User_Id = ? AND Id = ?"; 
 		Note note = new Note();
 		note = jdbc.queryForObject(sql, new Object[]{studentId, noteId}, new NoteRowMapper());
 		
@@ -71,7 +70,7 @@ public class NoteService implements NoteDAO
 	@Override
 	public int AddNote(final int studentId, final Note note, final int courseId) 
 	{
-		final String sql = "insert into Note (Student_StudentID, Courses_CourseID, DateCreated, FilePath) values (?, ?, ?, ?)";
+		final String sql = "insert into Note (User_Id, Course_Id, DateCreated, FilePath) values (?, ?, ?, ?)";
 		
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 	        jdbc.update(
@@ -96,7 +95,7 @@ public class NoteService implements NoteDAO
 	@Override
 	public boolean DeleteNote(int studentId, int noteId) 
 	{
-		String sql = "delete FROM Note WHERE NoteId = ? AND Student_StudentID = ?"; 
+		String sql = "delete FROM Note WHERE Id = ? AND User_Id = ?"; 
 		jdbc.update(sql, noteId, studentId); 
 		return true;
 	}
