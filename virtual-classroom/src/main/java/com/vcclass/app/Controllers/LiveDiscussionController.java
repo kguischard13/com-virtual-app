@@ -23,7 +23,7 @@ public class LiveDiscussionController
 	private static final Logger logger = LoggerFactory.getLogger(LiveDiscussionController.class); 
 	
 	@RequestMapping(value = "/live-discussion/get-discussion/{liveDiscussionId}/course-session/{courseSessionId}", method = RequestMethod.GET)
-	public @ResponseBody LiveDiscussion GetLiveDiscussion(@PathVariable int liveDiscussionId, int courseSessionId)
+	public @ResponseBody LiveDiscussion GetLiveDiscussion(@PathVariable int liveDiscussionId, @PathVariable int courseSessionId)
 	{
 		LiveDiscussion discussion = liveDiscussionService.GetLiveDiscussion(liveDiscussionId, courseSessionId); 
 		return discussion; 
@@ -33,7 +33,7 @@ public class LiveDiscussionController
 	public @ResponseBody int CreateLiveDiscussion(@RequestBody LiveDiscussion discussion, int courseSessionId)
 	{
 		int id = liveDiscussionService.CreateLiveDiscussion(courseSessionId, discussion); 
-		return id; 
+		return id;
 	}
 	
 	@RequestMapping(value="/live-discussion/delete-live-discussion/{liveDiscussionId}/course-session/{courseSessionId}", method=RequestMethod.GET)
@@ -41,6 +41,5 @@ public class LiveDiscussionController
 	{
 		return liveDiscussionService.DeleteLiveDiscussion(liveDiscussionId, courseSessionId);  
 	}
-
 }
 
