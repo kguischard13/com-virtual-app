@@ -32,9 +32,9 @@ public class LiveDiscussionService implements LiveDiscussionDAO
 	@Override
 	public LiveDiscussion GetLiveDiscussion(int liveDiscussionId, int courseSessionId) 
 	{
-		String sql = "select * FROM LiveDiscussion WHERE User_Id = ? AND Id = ?"; 
+		String sql = "select * FROM LiveDiscussion WHERE Id = ? AND CourseSession_Id = ?"; 
 		LiveDiscussion discussion = new LiveDiscussion();
-		discussion = jdbc.queryForObject(sql, new Object[]{liveDiscussionId}, new LiveDiscussionRowMapper());
+		discussion = jdbc.queryForObject(sql, new Object[]{liveDiscussionId, courseSessionId}, new LiveDiscussionRowMapper());
 		
 		return discussion; 
 	}

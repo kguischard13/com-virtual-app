@@ -17,7 +17,6 @@ public class LiveDiscussionRowMapper implements RowMapper<LiveDiscussion>
 		discussion.CourseSessionId = rs.getInt("CourseSession_Id"); 
 		discussion.DateCreated = rs.getDate("DateCreated"); 
 		discussion.FilePath = rs.getString("FilePath"); 
-		discussion.OwnerId = rs.getInt("User_Id"); 
 		discussion.Topic = rs.getString("Topic"); 
 		
 		return discussion; 
