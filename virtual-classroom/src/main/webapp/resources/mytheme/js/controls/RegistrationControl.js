@@ -24,6 +24,7 @@ var VirtualClass = window.VirtualClass || {};
         var elm = self.element;
         var options = self.options;
         
+        
         var _strings = {
         	LabelFirstName: "First Name:",
         	LabelLastName: "Last Name:",
@@ -41,7 +42,8 @@ var VirtualClass = window.VirtualClass || {};
  
         var _foo = options.Foo;
         var _isLoginControl = self.options.IsLoginControl; 
-
+        var _dataManager = self.options.DataManager; 
+        
         //  ------------------------------------------------------------------------------------------------
         // UI elements.
         //  ------------------------------------------------------------------------------------------------        
@@ -131,6 +133,7 @@ var VirtualClass = window.VirtualClass || {};
             
             btnSubmit = $("<button id ='btnSubmit' type='button' />")
             	.addClass("btn-form")
+            	.click(btnSubmit_click)
             	.appendTo(pnlButtonContainer); 
             	
             btnCancel = $("<button id='btnCancel' type='button' />")
@@ -159,8 +162,9 @@ var VirtualClass = window.VirtualClass || {};
             	lblEmail.hide(); 
             	lnkForgotPassword.show();
             	lnkRegisterAccount.show();
-            	SetSubmitLabel(); 
         	}
+            
+        	SetSubmitLabel(); 
         };
 
         var SetSubmitLabel = function ()
@@ -175,9 +179,15 @@ var VirtualClass = window.VirtualClass || {};
         	}
         }; 
         
-        var txtFoo_click = function (evt)
+        var btnSubmit_click = function ()
         {
-            alert("Click");
+            var url = "http://localhost:8080/app/user/login/{0}/{1}"; 
+            var username = txtUserName.val(); 
+            var password = txtPassword.val(); 
+            
+            url = url.replace("{0}", username).replace("{1}", password); 
+                        
+            window.location = url;  
         };
 
         var Value = function ()

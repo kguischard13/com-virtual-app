@@ -1,17 +1,19 @@
 package com.vcclass.app.Controllers;
 
-
 import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
 import com.vcclass.app.Data.*;
 import com.vcclass.app.Services.*;
 
@@ -64,5 +66,18 @@ public class UserController {
 		return userService.ValidateUser(userid);  
 	}
 	
-
+	@RequestMapping(value="/user/login/{email}/{password}", method=RequestMethod.GET)
+	public String LoginUser(@PathVariable String email, @PathVariable String password)
+	{
+		User user = userService.LoginUser(email, password); 
+		
+		if(user == null)
+		{
+			return "unauthorized"; 
+		}
+		else
+		{
+			return "registration"; 
+		}
+	}
 }
