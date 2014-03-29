@@ -24,7 +24,6 @@ public class UserController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserController.class); 
 	
-	
 	@RequestMapping(value = "/user/getuser/{userid}", method = RequestMethod.GET)
 	public @ResponseBody User GetUser(@PathVariable int userid){
 		return userService.GetUser(userid); 
