@@ -26,7 +26,6 @@ public class UserService implements UserDAO {
 	private DataSource dataSource;
 	private JdbcTemplate jdbcTemplateObject;
 	
-	
 	public void setDataSource(DataSource dataSource){
 		this.dataSource = dataSource;
 		this.jdbcTemplateObject = new JdbcTemplate(dataSource);
@@ -64,7 +63,6 @@ public class UserService implements UserDAO {
 		return jdbcTemplateObject.queryForInt(sql2);
 	}
 	
-	
 	public boolean DeleteUser (int id){
 		if(this.ValidateUser(id)){
 			String sql = "delete from User where Id = ?";
@@ -73,6 +71,7 @@ public class UserService implements UserDAO {
 		}
 		return false;
 	}
+	
 	public boolean UpdateUser(User user){
 		
 		if(this.ValidateUser(user.GetId())){
@@ -85,6 +84,7 @@ public class UserService implements UserDAO {
 		return false;
 		
 	}
+	
 	public boolean ValidateUser(int id){
 		String sql = "select count(*) from User where Id = ?";
 		if(jdbcTemplateObject.queryForInt(sql, id) == 0){
@@ -93,7 +93,14 @@ public class UserService implements UserDAO {
 		return true;
 	}
 	
-
+	public boolean ValidateUser(String email, String password){
+		String sql = "select count(*) from User where Email = ? AND Password = ?";
+		if(jdbcTemplateObject.queryForInt(sql, email, password) == 0){
+			return false;
+		}
+		return true;
+	}
+	
 	public List<User> GetAllUsers(){
 		String sql = "select * from User";
 		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
@@ -120,6 +127,7 @@ public class UserService implements UserDAO {
 
 		return users;
 	}
+	
 	public List<User> GetStudents(){
 		String sql = "select * from User where AccountType LIKE 'Student'";
 		List<User> users = jdbcTemplateObject.query(sql, new RowMapper<User>(){
@@ -134,4 +142,27 @@ public class UserService implements UserDAO {
 		
 	}
 
+	public User LoginUser(String email, String password)
+	{
+		boolean isFound = this.ValidateUser(email, password); 
+		
+		if(isFound)
+		{
+			String sql = "select * from User where Email = ? AND Password = ?";
+			User user = jdbcTemplateObject.queryForObject(sql, new Object[]{email, password}, new RowMapper<User>(){
+				
+				@Override
+				public User mapRow(ResultSet rs, int rowNum) throws SQLException{
+					return new User (rs.getInt("Id"),rs.getString("AccountType") ,rs.getString("FirstName"),
+							rs.getString("LastName"),rs.getString("PhoneNumber"), rs.getString("Email"), rs.getString("Password"));
+				}
+			});
+			
+			return user;
+		}
+		else
+		{
+			return null; 
+		}
+	}
 }

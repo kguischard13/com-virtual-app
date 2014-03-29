@@ -17,5 +17,6 @@ public interface UserDAO {
 	public boolean DeleteUser (int id);
 	public boolean UpdateUser(User user);
 	public boolean ValidateUser(int id);
+	public User LoginUser(String email, String password); 
 
 }
