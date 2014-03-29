@@ -26,9 +26,8 @@
 
 <div id="container">
 
-<h1 class="header-text">CREATE AN ACCOUNT</h1>
-<div id="ctrlRegistration">
-</div>
+<h1 class="header-text">Create an account</h1>
+<div id="ctrlRegistration"></div>
 
 
 

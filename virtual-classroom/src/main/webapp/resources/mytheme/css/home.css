@@ -40,12 +40,45 @@ body
 	background-color: white; 
 }
 
-#navigation-panel .navigation-item
+#navigation-panel #sub-menu
+{
+	position: absolute;
+	background-color: lightblue;
+	margin: 0;
+	padding-top: 10px;
+	padding-bottom: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+	top: 87px;
+	border-bottom: 7px solid beige;
+	width: 193px;
+	left: 967px;
+}
+
+.sub-navigation-item:hover,
+.navigation-item:hover
+{
+	background-color: beige; 
+}
+
+#navigation-panel a
+{
+	text-decoration: none; 
+}
+
+.navigation-item
 {
 	float: left; 
 	padding: 20px;
 	margin-left: 50px; 
 	font-size: 20px; 
+}
+
+.sub-navigation-item
+{
+	font-size: 18px;
+	margin: 0;
+	list-style: none;
 }
 
 #footer
@@ -58,4 +91,6 @@ body
 	margin-left: auto; 
 	background-color: lightblue; 
 	border-top: 7px solid beige;
-}
+	text-align: center; 
+	line-height: 60px; 
+} 
