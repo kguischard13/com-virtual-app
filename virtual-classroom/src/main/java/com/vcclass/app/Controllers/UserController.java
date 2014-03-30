@@ -77,7 +77,7 @@ public class UserController {
 		}
 		else
 		{
-			return "registration"; 
+			return "instructor-portal"; 
 		}
 	}
 }

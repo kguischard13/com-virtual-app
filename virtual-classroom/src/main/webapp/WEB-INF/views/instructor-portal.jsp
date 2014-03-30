@@ -1,17 +1,14 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
+
 <html>
 <head>
-	<title>VirtualClass - Login</title>
+	<title>VirtualClass - Instructor Portal</title>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/jquery-1.10.2.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/ui/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/main.js" />"></script>
-	<script src="<c:url value="/resources/mytheme/js/registration.js" />"></script>
-	<script src="<c:url value="/resources/mytheme/js/controls/RegistrationControl.js" />"></script>
 	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
-	<link href="<c:url value="/resources/mytheme/css/registration.css" />" rel="stylesheet">	
-	<link href="<c:url value="/resources/mytheme/css/Controls/RegistrationControl.css" />" rel="stylesheet">
-	
+
 </head>
 <body>
 
@@ -30,17 +27,16 @@
 		</ul>
 </div>
 
-
 <div id="container">
 
-	<h1 class="header-text">Create an account</h1>
-	<div id="ctrlRegistration"></div>
+	<h1 class="header-text">Instructor Portal</h1>
 
-
-
+	
 </div>
 
 <div id="footer">Copyright 2014 - Virtual Classroom</div>
+
+
 
 </body>
 </html>
