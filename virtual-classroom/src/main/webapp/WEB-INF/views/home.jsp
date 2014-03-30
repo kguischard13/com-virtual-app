@@ -10,7 +10,7 @@
 	<script src="<c:url value="/resources/mytheme/js/controls/RegistrationControl.js" />"></script>
 	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
 	<link href="<c:url value="/resources/mytheme/css/home.css" />" rel="stylesheet">	
-	<link href="<c:url value="/resources/mytheme/css/RegistrationControl.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/mytheme/css/Controls/RegistrationControl.css" />" rel="stylesheet">
 
 </head>
 <body>
