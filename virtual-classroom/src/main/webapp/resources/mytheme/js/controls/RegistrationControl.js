@@ -1,6 +1,14 @@
-/**
- * 
- */
+/*
+
+\brief This is a jQuery widget written in JavaScript for Registration Control
+\author Chris Forehand
+\date 3/20/14
+\verbatim
+	Test Cases: 
+	
+\endverbatim
+
+*/
 
 var VirtualClass = window.VirtualClass || {}; 
 
@@ -24,7 +32,6 @@ var VirtualClass = window.VirtualClass || {};
         var elm = self.element;
         var options = self.options;
         
-        
         var _strings = {
         	LabelFirstName: "First Name:",
         	LabelLastName: "Last Name:",
@@ -43,6 +50,11 @@ var VirtualClass = window.VirtualClass || {};
         var _foo = options.Foo;
         var _isLoginControl = self.options.IsLoginControl; 
         var _dataManager = self.options.DataManager; 
+        
+        if(_dataManager == null)
+    	{
+    		throw new error ("Data manager is required"); 
+    	}
         
         //  ------------------------------------------------------------------------------------------------
         // UI elements.
@@ -181,13 +193,37 @@ var VirtualClass = window.VirtualClass || {};
         
         var btnSubmit_click = function ()
         {
-            var url = "http://localhost:8080/app/user/login/{0}/{1}"; 
-            var username = txtUserName.val(); 
+            var username = txtUserName.val();
             var password = txtPassword.val(); 
-            
-            url = url.replace("{0}", username).replace("{1}", password); 
-                        
-            window.location = url;  
+        	
+        	var data =  { 
+            	Username: username,
+            	Password: password 
+            }; 
+        	
+        	var onSuccess = function (data, status)
+        	{
+        		console.log(data); 
+        	}; 
+        	
+        	var onError = function (jqxhr, data, err)
+        	{
+        		console.log(err);
+        	}; 
+        	
+        	
+        	return $.ajax({
+        		type: "POST", 
+        		url: _dataManager,
+        		data: data,
+        		contentType: "application/json",
+        		success: onSuccess, 
+        		error: onError
+        	}); 
+        	        	
+//        	var url = "http://localhost:8080/app/user/login/{0}/{1}"; 
+//            url = url.replace("{0}", username).replace("{1}", password); 
+//            window.location = url;  
         };
 
         var Value = function ()

@@ -1,3 +1,11 @@
+/*
+ * This class will handle all actions relating to the Note object
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * Major Modifications: The concept of Note Element has been abandoned
+ * */
+
 package com.vcclass.app.Controllers;
 
 import java.util.List;

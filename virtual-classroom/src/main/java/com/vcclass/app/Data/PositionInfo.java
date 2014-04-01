@@ -1,3 +1,11 @@
+/*
+ * This class is the PositionInfo data object
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * Major Modifications: Not using the class
+ * */
+
 package com.vcclass.app.Data;
 
 import org.codehaus.jackson.annotate.JsonProperty;

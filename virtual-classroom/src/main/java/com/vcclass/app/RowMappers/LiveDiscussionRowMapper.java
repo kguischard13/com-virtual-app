@@ -1,3 +1,11 @@
+/*
+ * This class will handle mapping relational database rows to the Live Discussion Object
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * 
+ * */
+
 package com.vcclass.app.RowMappers;
 
 import java.sql.ResultSet;

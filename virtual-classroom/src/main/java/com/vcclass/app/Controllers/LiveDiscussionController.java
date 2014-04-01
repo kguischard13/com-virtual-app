@@ -1,3 +1,11 @@
+/*
+ * This class will handle all actions relating to the Live Discussion Object
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * 
+ * */
+
 package com.vcclass.app.Controllers;
 
 import org.slf4j.Logger;
