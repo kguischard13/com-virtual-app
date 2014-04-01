@@ -30,7 +30,6 @@ var VirtualClass = window.VirtualClass || {};
     {
         var self = this;
         var elm = self.element;
-        var options = self.options;
         
         var _strings = {
         	LabelFirstName: "First Name:",
@@ -41,19 +40,18 @@ var VirtualClass = window.VirtualClass || {};
         	ButtonRegister: "Register", 
         	ButtonCancel: "Cancel",
         	ButtonLogin: "Login"
-        }
+        }; 
 
         //  ------------------------------------------------------------------------------------------------
         // Instance (global) variables.
         //  ------------------------------------------------------------------------------------------------
  
-        var _foo = options.Foo;
         var _isLoginControl = self.options.IsLoginControl; 
         var _dataManager = self.options.DataManager; 
         
         if(_dataManager == null)
     	{
-    		throw new error ("Data manager is required"); 
+    		throw new Error ("Data manager is required"); 
     	}
         
         //  ------------------------------------------------------------------------------------------------
