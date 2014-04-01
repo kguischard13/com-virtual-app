@@ -37,6 +37,35 @@ public class QuestionService implements QuestionDAO
 				+ "DateCreated, Contents, QuestionType, Public, Flag, AmtOfLikes, Anonymous) "
 				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+		
+		jdbcTemplateObject.update(
+	        		new PreparedStatementCreator()  
+	        		{	             
+						@Override
+						public java.sql.PreparedStatement createPreparedStatement(
+								java.sql.Connection arg0) throws SQLException {
+							   PreparedStatement ps =
+			                            (PreparedStatement) arg0.prepareStatement(sql, new String[] {"id"});
+			                        ps.setInt(1, question.GetCourseId());
+			                        ps.setInt(2, userId); 
+			                        ps.setDate(3, (Date) question.GetCreationDate());
+			                        ps.setString(4, question.GetContents());
+			                        ps.setInt(5, question.GetQuestionType());
+			                        ps.setBoolean(6, question.GetPublic());
+			                        ps.setBoolean(7, question.GetFlag());
+			                        ps.setInt(8, question.GetLikes());
+			                        ps.setBoolean(9, question.GetAnonymous());
+			                        return ps;
+						}
+	                }, keyHolder);
+	        
+        return keyHolder.getKey().intValue();
+		
+        /*
+		final String sql = "INSERT INTO Question (Course_Id, User_Id, "
+				+ "DateCreated, Contents, QuestionType, Public, Flag, AmtOfLikes, Anonymous) "
+				+ "values (?, ?, ?, ?, ?, ?, ?, ?, ?)";
 		
 		String sql2 = "select max(Id) from Question";
 		jdbcTemplateObject.update(sql, question.GetCourseId(), 
@@ -45,6 +74,8 @@ public class QuestionService implements QuestionDAO
 				question.GetAnonymous());
 		
 		return jdbcTemplateObject.queryForInt(sql2);
+		*/
+		
 		
 	}
 	

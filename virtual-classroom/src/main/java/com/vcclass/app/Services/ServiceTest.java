@@ -134,22 +134,31 @@ public class ServiceTest {
 		Question newQuestion = question.GetQuestion(5, 1, 2);
 		Comment newComment = comment.GetComment(1, 4, 1);
 		
+		System.out.println(" ");
 		System.out.println("This student is in the database: " + newStudent.GetFirstName() + " " + newStudent.GetLastName());
 		System.out.println("This teacher is in the database: " + newTeacher.GetFirstName() + " " + newTeacher.GetLastName());
 		System.out.println("This question is in the database: " + newQuestion.GetContents());
 		System.out.println("This comment is in the database: " + newComment.GetContents());
+		System.out.println(" ");
+
 		
 		
-		DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		java.util.Date mD = dateFormat.parse("2014-03-22 16:20:00");
+		//DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		//java.util.Date mD = dateFormat.parse("2014-03-22 17:20:00");
+		java.util.Date mD = new Date();
+		java.sql.Date sqlDate = new java.sql.Date(mD.getTime());
+		
+		System.out.println(mD);
+		System.out.println(sqlDate);
+		System.out.println(" ");
 		*/
 		
 		
-		/*//////ADD QUESTION TEST
-		Question addedQuestion = new Question(2, 1, mD, "Is this a question I just added?",
+		/*/////ADD QUESTION TEST
+		Question addedQuestion = new Question(2, 1, sqlDate, "Contents of updated ADD method.",
 				4, true, false, 2, false);
 		
-		int added = question.CreateQuestion(5, addedQuestion);
+		int added = question.CreateQuestion(2, addedQuestion);
 		
 		if(added != 0)
 			System.out.println("Question just added with ID number " + added);
@@ -165,16 +174,6 @@ public class ServiceTest {
 		else
 			System.out.println("Question was not updated.");
 		*/
-
-		/*//////ADD QUESTION TEST
-		Question addedQuestion2 = new Question(2, 1, mD, "Is this a second question I just added?",
-				4, true, false, 2, false);
-		
-		int added2 = question.CreateQuestion(5, addedQuestion2);
-		
-		if(added2 != 0)
-			System.out.println("Question just added with ID number " + added2);
-		*/
 		
 		/*//////DELETE QUESTION TEST
 		boolean deleted = question.DeleteQuestion(1,7);
@@ -186,9 +185,10 @@ public class ServiceTest {
 		*/
 		
 		/*//////ADD COMMENT TEST
-		Comment addedComment = new Comment(4, 1, "Just added a comment", mD);
+		Comment addedComment = new Comment(8, 1, "Contents of updated ADD comment method.", sqlDate);
 		
-		int added3 = comment.CreateComment(1, addedComment);
+		int added3 = comment.CreateComment(2, addedComment);
+		
 		
 		if(added3 != 0)
 			System.out.println("Comment just added with ID number " + added3);

@@ -31,17 +31,31 @@ public class CommentService implements CommentDAO
 	}
 	
 	@Override
-	public int CreateComment(int userId, Comment comment)
+	public int CreateComment(final int userId, final Comment comment)
 	{
-		String sql = "INSERT INTO Comment (Question_Id, User_Id,"
+		final String sql = "INSERT INTO Comment (Question_Id, User_Id,"
 				+ "Content, DateCreated) "
 				+ "values (?, ?, ?, ?)";
-		String sql2 = "select max(Id) from Comment";
-		jdbcTemplateObject.update(sql, comment.GetQuestionId(), 
-				comment.GetUserId(), comment.GetContents(), 
-				comment.GetDateCreated());
+		KeyHolder keyHolder = new GeneratedKeyHolder();
+
+		jdbcTemplateObject.update(
+	        		new PreparedStatementCreator()  
+	        		{	             
+						@Override
+						public java.sql.PreparedStatement createPreparedStatement(
+								java.sql.Connection arg0) throws SQLException {
+							   PreparedStatement ps =
+			                            (PreparedStatement) arg0.prepareStatement(sql, new String[] {"id"});
+			                        ps.setInt(1, comment.GetQuestionId());
+			                        ps.setInt(2, userId); 
+			                        ps.setString(3, comment.GetContents());
+			                        ps.setDate(4, (Date) comment.GetDateCreated());
+			                        return ps;
+						}
+	                }, keyHolder);
+	        
+        return keyHolder.getKey().intValue();
 		
-		return jdbcTemplateObject.queryForInt(sql2);
 		
 	}
 	
