@@ -1,3 +1,11 @@
+/*
+ * This class is the Note data object
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * 
+ * */
+
 package com.vcclass.app.Data;
 
 import java.util.Date;
