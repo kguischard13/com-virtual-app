@@ -195,13 +195,13 @@ var VirtualClass = window.VirtualClass || {};
             var password = txtPassword.val(); 
         	
         	var data =  { 
-            	Username: username,
+            	Email: username,
             	Password: password 
             }; 
         	
-        	var onSuccess = function (data, status)
+        	var onSuccess = function (data, status, jqxhr)
         	{
-        		console.log(data); 
+        		window.location = jqxhr.getResponseHeader("Location"); 
         	}; 
         	
         	var onError = function (jqxhr, data, err)
@@ -213,7 +213,8 @@ var VirtualClass = window.VirtualClass || {};
         	return $.ajax({
         		type: "POST", 
         		url: _dataManager,
-        		data: data,
+        		async: true, 
+        		data: JSON.stringify(data),
         		contentType: "application/json",
         		success: onSuccess, 
         		error: onError

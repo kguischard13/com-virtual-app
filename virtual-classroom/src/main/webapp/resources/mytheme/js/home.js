@@ -14,7 +14,7 @@ $(document).ready(function(){
 	var ctrlLogin = $("#ctrlLogin"); 
 	ctrlLogin.RegistrationControl({
 		IsLoginControl: true, 
-		DataManager: "http://localhost:8080/app/user/login/"
+		DataManager: "http://localhost:8080/app/home/login/"
 	}); 
 	
 	

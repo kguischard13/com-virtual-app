@@ -2,6 +2,8 @@ package com.vcclass.app.Controllers;
 
 import java.util.List;
 
+import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.ApplicationContext;
@@ -64,20 +66,5 @@ public class UserController {
 	@RequestMapping(value="/user/{userid}", method=RequestMethod.GET)
 	public @ResponseBody boolean ValidateUser(@PathVariable int userid){
 		return userService.ValidateUser(userid);  
-	}
-	
-	@RequestMapping(value="/user/login/{email}/{password}", method=RequestMethod.GET)
-	public String LoginUser(@PathVariable String email, @PathVariable String password)
-	{
-		User user = userService.LoginUser(email, password); 
-		
-		if(user == null)
-		{
-			return "unauthorized"; 
-		}
-		else
-		{
-			return "instructor-portal"; 
-		}
 	}
 }
