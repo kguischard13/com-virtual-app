@@ -1,3 +1,11 @@
+/*
+ * This class is an interface for the Note API
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * Major Modifications: Not using the class
+ * */
+
 package com.vcclass.app.Repository;
 
 import java.util.List;

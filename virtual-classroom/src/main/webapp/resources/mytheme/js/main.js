@@ -1,3 +1,15 @@
+/*
+
+\brief This is JavaScript for site wide use such as Navigation Menu
+\author Chris Forehand
+\date 3/20/14
+\verbatim
+	Test Cases: 
+	
+\endverbatim
+
+*/
+
 $(document).ready(function (){
 	
 	var subMenu = $("#sub-menu").hide(); 

@@ -1,3 +1,11 @@
+/*
+ * This class is the Live Discussion data object
+ * Chris Forehand
+ * 2/2014
+ * Test Cases: 
+ * 
+ * */
+
 package com.vcclass.app.Data;
 
 import java.util.List;

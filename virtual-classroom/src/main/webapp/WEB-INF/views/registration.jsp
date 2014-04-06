@@ -1,3 +1,14 @@
+<!-- 
+\brief This is the client-side registration view
+\author Chris Forehand
+\date 3/25/14
+\verbatim
+	Test Cases: 
+	
+\verbatim
+
+ -->
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ page session="false" %>
 <html>

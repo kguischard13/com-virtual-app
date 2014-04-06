@@ -1,6 +1,14 @@
-/**
- * 
- */
+/*
+
+\brief This is a jQuery widget written in JavaScript for Registration Control
+\author Chris Forehand
+\date 3/20/14
+\verbatim
+	Test Cases: 
+	
+\endverbatim
+
+*/
 
 var VirtualClass = window.VirtualClass || {}; 
 
@@ -22,8 +30,6 @@ var VirtualClass = window.VirtualClass || {};
     {
         var self = this;
         var elm = self.element;
-        var options = self.options;
-        
         
         var _strings = {
         	LabelFirstName: "First Name:",
@@ -34,15 +40,19 @@ var VirtualClass = window.VirtualClass || {};
         	ButtonRegister: "Register", 
         	ButtonCancel: "Cancel",
         	ButtonLogin: "Login"
-        }
+        }; 
 
         //  ------------------------------------------------------------------------------------------------
         // Instance (global) variables.
         //  ------------------------------------------------------------------------------------------------
  
-        var _foo = options.Foo;
         var _isLoginControl = self.options.IsLoginControl; 
         var _dataManager = self.options.DataManager; 
+        
+        if(_dataManager == null)
+    	{
+    		throw new Error ("Data manager is required"); 
+    	}
         
         //  ------------------------------------------------------------------------------------------------
         // UI elements.
@@ -181,13 +191,38 @@ var VirtualClass = window.VirtualClass || {};
         
         var btnSubmit_click = function ()
         {
-            var url = "http://localhost:8080/app/user/login/{0}/{1}"; 
-            var username = txtUserName.val(); 
+            var username = txtUserName.val();
             var password = txtPassword.val(); 
-            
-            url = url.replace("{0}", username).replace("{1}", password); 
-                        
-            window.location = url;  
+        	
+        	var data =  { 
+            	Email: username,
+            	Password: password 
+            }; 
+        	
+        	var onSuccess = function (data, status, jqxhr)
+        	{
+        		window.location = jqxhr.getResponseHeader("Location"); 
+        	}; 
+        	
+        	var onError = function (jqxhr, data, err)
+        	{
+        		console.log(err);
+        	}; 
+        	
+        	
+        	return $.ajax({
+        		type: "POST", 
+        		url: _dataManager,
+        		async: true, 
+        		data: JSON.stringify(data),
+        		contentType: "application/json",
+        		success: onSuccess, 
+        		error: onError
+        	}); 
+        	        	
+//        	var url = "http://localhost:8080/app/user/login/{0}/{1}"; 
+//            url = url.replace("{0}", username).replace("{1}", password); 
+//            window.location = url;  
         };
 
         var Value = function ()
