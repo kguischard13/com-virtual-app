@@ -73,9 +73,8 @@ public class ServiceTest {
 		DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd");
 		java.util.Date mD = dateFormat.parse("2014/02/16");
 		
-		
 		Course course = courses.GetCourse(6);
-		
+		/*
 		CourseSession sess = new CourseSession(course, mD, "Merge Sort");
 		int a = courses.CreateCourseSession(sess);
 		System.out.println("ID of a: "+a);
@@ -93,19 +92,32 @@ public class ServiceTest {
 		if( courses.DeleteCourseSession(sess.GetId() )){
 			System.out.println("ID of course "+sess.GetId() +" was deleted");
 		}
-		*/
 		
-		/*
-		User stud = new User("Student","KayVee", "GEE", "732873738", "kvgEEEe@test.com",  "good_luck");
+		
+		
+		User stud = new User("Student","Kay", "Grimm", "325296", "kgrimm@iona.edu",  "good_luck");
 		int a = student.AddUser(stud);
-		System.out.println("ID of new student: "+a+ " firstname: " +stud.GetFirstName()+ "\n");
+		System.out.println(a);
+		if(a != 0)
+			System.out.println("ID of new student: "+a+ " firstname: " +stud.GetFirstName()+ "\n");
+		else
+			System.out.println("Failed to add user.");
 		
 		stud = student.GetUser(a);
+		System.out.println(stud);
+		
 		stud.SetFirstName("Kester");
 		if(student.UpdateUser(stud))
-			System.out.println("ID: "+a+" was updated");
+		{
+			System.out.println("ID: "+a+" was updated to:");
+			System.out.println(stud.GetFirstName());
+		}
+		
+		else
+			System.out.println("ID update fail");
 		
 		
+		/*
 		System.out.println("ID: "+stud.GetUserId()+"\n");
 		System.out.println("Name: "+stud.GetFirstName()+" "+stud.GetLastName()+"\n");
 		
@@ -129,18 +141,21 @@ public class ServiceTest {
 		CommentService comment = (CommentService) context.getBean("commentService");
 		UserService user = (UserService) context.getBean("userService");		
 
+		
 		User newStudent = user.GetUser(1);
 		User newTeacher = user.GetUser(2);
 		Question newQuestion = question.GetQuestion(5, 1, 2);
 		Comment newComment = comment.GetComment(1, 4, 1);
 		
-		System.out.println(" ");
+		System.out.println("test");
+		
+		
 		System.out.println("This student is in the database: " + newStudent.GetFirstName() + " " + newStudent.GetLastName());
 		System.out.println("This teacher is in the database: " + newTeacher.GetFirstName() + " " + newTeacher.GetLastName());
 		System.out.println("This question is in the database: " + newQuestion.GetContents());
 		System.out.println("This comment is in the database: " + newComment.GetContents());
 		System.out.println(" ");
-
+		
 		
 		
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
