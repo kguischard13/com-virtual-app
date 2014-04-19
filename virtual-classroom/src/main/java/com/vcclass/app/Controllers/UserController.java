@@ -67,4 +67,9 @@ public class UserController {
 	public @ResponseBody boolean ValidateUser(@PathVariable int userid){
 		return userService.ValidateUser(userid);  
 	}
+	
+	@RequestMapping(value="/user/login/{email}/password/{password}", method=RequestMethod.GET)
+	public @ResponseBody User Login(@PathVariable String email, @PathVariable String password){
+		return userService.LoginUser(email, password);  
+	}
 }
