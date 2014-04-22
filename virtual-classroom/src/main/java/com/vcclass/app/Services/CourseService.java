@@ -168,13 +168,13 @@ public class CourseService implements CourseDAO {
 	}
 	public List<Course> GetCoursesOfStudent(int stud){
 		
-		String sql = "SELECT * FROM Student_Has_Course Join Course on Course_Id = Course.`Id` where "
-				+ "Student_Has_Course.`User_Id`= ?;";
+		String sql = "SELECT * FROM Course Join Student_has_Course on Student_has_Course.`Course_Id` = Course.`Id` where "
+				+ "Student_has_Course.`User_Id` = ?";
 		
 		List<Course> course = jdbcTemplateObject.query(sql,new Object[]{stud} ,new RowMapper<Course>(){
 			@Override
 			public Course mapRow(ResultSet rs, int rowNum) throws SQLException{
-				return new Course (rs.getInt("Id"), rs.getInt("User_Id"),
+				return new Course (rs.getInt("Id"), rs.getInt("Course.User_Id"),
 						rs.getDate("StartDate"),rs.getDate("EndDate"), rs.getString("CourseTitle"), rs.getString("CourseCode"));
 			}
 		});
