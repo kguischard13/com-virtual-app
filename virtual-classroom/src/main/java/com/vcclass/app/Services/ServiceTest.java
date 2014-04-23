@@ -57,11 +57,12 @@ public class ServiceTest {
 		}*/
 		
 		
-		/*
+		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		
 		UserService student = (UserService) context.getBean("userService");
-		
+		System.out.println("TEST");
+		/*
 		List<User> students = student.GetStudents();
 		
 		for(User user : students){
@@ -94,7 +95,7 @@ public class ServiceTest {
 		}
 		
 		
-		
+		*/
 		User stud = new User("Student","Kay", "Grimm", "325296", "kgrimm@iona.edu",  "good_luck");
 		int a = student.AddUser(stud);
 		System.out.println(a);
