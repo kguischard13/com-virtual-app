@@ -200,7 +200,7 @@ public class Question
 		return this.Anonymous;
 	}
 	
-	public void Setanonymous(boolean anonymous)
+	public void SetAnonymous(boolean anonymous)
 	{
 		this.Anonymous = anonymous; 
 	}

@@ -108,6 +108,35 @@ public class QuestionService implements QuestionDAO
 		return quest;
 	}
 	
+	public List<Question> GetQuestions(int studentId, int courseId) 
+	{			
+		String sql = "select * FROM Question WHERE User_Id = ? AND Course_Id = ?"; 
+		List<Question> questionList = new ArrayList<Question>();
+		
+		Object [] parameters = new Object[]{new Integer(studentId)};  
+		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, parameters);
+		
+		for(Map row: rows)
+		{
+			Question question = new Question(); 
+			question.SetQuestionId((Integer)row.get("Id")); 
+			question.SetCourseId((Integer)row.get("Course_Id"));
+			question.SetUserId((Integer)row.get("User_Id"));
+			question.SetCreationDate((Date)row.get("DateCreated"));
+			question.SetContents((String)row.get("Contents"));
+			question.SetQuestionType((Integer)row.get("QuestionType"));
+			question.SetPublic((Boolean)row.get("IsPublic"));
+			question.SetFlag((Boolean)row.get("FlagAsInappropriate"));
+			question.SetLikes((Integer)row.get("Likes"));
+			question.SetAnonymous((Boolean)row.get("Anonymous"));
+			//question.SetFilePath((String)row.get("FilePath"));
+			
+			questionList.add(question); 
+		}
+				
+		return questionList;
+	}
+	
 	
 	@Override
 	public boolean UpdateQuestion(Question question)

@@ -61,7 +61,7 @@ public class ServiceTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		
 		UserService student = (UserService) context.getBean("userService");
-		System.out.println("TEST");
+		System.out.println("TEST:");
 		/*
 		List<User> students = student.GetStudents();
 		
@@ -95,7 +95,7 @@ public class ServiceTest {
 		}
 		
 		
-		*/
+		
 		User stud = new User("Student","Kay", "Grimm", "325296", "kgrimm@iona.edu",  "good_luck");
 		int a = student.AddUser(stud);
 		System.out.println(a);
@@ -105,7 +105,7 @@ public class ServiceTest {
 			System.out.println("Failed to add user.");
 		
 		stud = student.GetUser(a);
-		System.out.println(stud);
+		//System.out.println(stud);
 		
 		stud.SetFirstName("Kester");
 		if(student.UpdateUser(stud))
