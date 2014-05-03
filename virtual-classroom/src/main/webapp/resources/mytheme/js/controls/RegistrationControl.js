@@ -49,10 +49,10 @@ var VirtualClass = window.VirtualClass || {};
         var _isLoginControl = self.options.IsLoginControl; 
         var _dataManager = self.options.DataManager; 
         
-        if(_dataManager == null)
+        /*if(_dataManager == null)
     	{
     		throw new Error ("Data manager is required"); 
-    	}
+    	}*/
         
         //  ------------------------------------------------------------------------------------------------
         // UI elements.

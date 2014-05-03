@@ -17,7 +17,7 @@ $(document).ready(function(){
 		DataManager: "http://localhost:8080/app/home/login/"
 	}); 
 	
-	
+	// make this so that it's included in a jsp so that we can use c:url to link to a resource
 	
 	
 }); 
