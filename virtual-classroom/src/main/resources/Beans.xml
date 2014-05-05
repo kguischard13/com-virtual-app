@@ -10,6 +10,8 @@
 		<property name="password" value="vcriona2014"/>
 	</bean>
 	
+
+	
 	<bean id="userService" 
 	class="com.vcclass.app.Services.UserService">
 		<property name="dataSource" ref="dataSource"/>

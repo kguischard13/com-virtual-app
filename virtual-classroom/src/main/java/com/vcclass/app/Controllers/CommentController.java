@@ -27,7 +27,7 @@ public class CommentController
 	private static final Logger logger = LoggerFactory.getLogger(CommentController.class); 
 
 	//Add comment
-	@RequestMapping(value = "/comment/createcomment", method = RequestMethod.POST)
+	@RequestMapping(value = "/comment/createcomment/{userid}/", method = RequestMethod.POST)
 	public @ResponseBody int CreateComment(@PathVariable int userid, @RequestBody Comment inccomment)
 	{
 		Comment comment = inccomment;
