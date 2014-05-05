@@ -9,6 +9,7 @@
 package com.vcclass.app.Services;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -54,7 +55,7 @@ public class NoteService implements NoteDAO
 			Note note = new Note(); 
 			note.Id = (Integer) row.get("Id"); 
 			note.CourseId = (Integer)row.get("Course_Id");
-			note.DateCreated = (Date)row.get("DateCreated"); 
+			note.DateCreated = (Timestamp)row.get("DateCreated"); 
 			note.FilePath = (String)row.get("FilePath"); 
 			note.OwnerId = (Integer)row.get("User_Id"); 
 			

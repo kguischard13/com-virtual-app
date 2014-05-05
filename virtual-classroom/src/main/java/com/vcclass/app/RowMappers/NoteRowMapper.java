@@ -23,7 +23,7 @@ public class NoteRowMapper implements RowMapper<Note>
 		Note note = new Note(); 
 		note.Id = rs.getInt("Note Id"); 
 		note.CourseId = rs.getInt("Courses_CourseID"); 
-		note.DateCreated = rs.getDate("DateCreated"); 
+		//note.DateCreated = rs.getDate("DateCreated"); 
 		//note.CourseCode = rs.getString("CourseCode"); 
 		note.FilePath = rs.getString("FilePath"); 
 		//note.CourseName = rs.getString("CourseName"); 
