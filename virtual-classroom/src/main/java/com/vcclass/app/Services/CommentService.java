@@ -86,10 +86,10 @@ public class CommentService implements CommentDAO
 	
 	public List<Comment> GetComments(int userId, int questionId) 
 	{			
-		String sql = "select * FROM Question WHERE User_Id = ? AND Question_Id = ?"; 
+		String sql = "select * FROM Comment WHERE User_Id = ? AND Question_Id = ?"; 
 		List<Comment> commentList = new ArrayList<Comment>();
 		
-		Object [] parameters = new Object[]{new Integer(userId)};  
+		Object [] parameters = new Object[]{new Integer(userId), new Integer(questionId)};  
 		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, parameters);
 		
 		for(Map row: rows)
@@ -98,8 +98,8 @@ public class CommentService implements CommentDAO
 			comment.SetCommentId((Integer)row.get("Id")); 
 			comment.SetQuestionId((Integer)row.get("Question_Id"));
 			comment.SetUserId((Integer)row.get("User_Id"));
-			comment.SetDateCreated((Date)row.get("DateCreated"));
-			comment.SetContents((String)row.get("Contents"));
+			comment.SetDateCreated((java.util.Date) row.get("DateCreated"));
+			comment.SetContents((String) row.get("Content"));
 			
 			commentList.add(comment); 
 		}
