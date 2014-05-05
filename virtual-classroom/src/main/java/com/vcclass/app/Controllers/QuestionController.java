@@ -43,13 +43,22 @@ public class QuestionController
 		return questionService.GetQuestion(questionid, userid, courseid);
 	}
 	
-	//Get all questions
+	//Get all student questions
 	@RequestMapping(value = "/question/getquestions/user/{userid}/course/{courseid}", 
 			method = RequestMethod.GET)
-	public @ResponseBody List<Question> GetQuestions(@PathVariable int userid, @PathVariable int courseid)
+	public @ResponseBody List<Question> GetStudentQuestions(@PathVariable int userid, @PathVariable int courseid)
 	{
-		return questionService.GetQuestions(userid, courseid);
+		return questionService.GetStudentQuestions(userid, courseid);
 	}
+	
+	//Get all public course questions
+		@RequestMapping(value = "/question/getquestions/course/{courseid}", 
+				method = RequestMethod.GET)
+		public @ResponseBody List<Question> GetAllQuestions(@PathVariable int courseid)
+		{
+			return questionService.GetAllQuestions(courseid);
+		}
+	
 	
 	//Update question
 	@RequestMapping(value = "/question/updatequestion/", method = RequestMethod.POST)
