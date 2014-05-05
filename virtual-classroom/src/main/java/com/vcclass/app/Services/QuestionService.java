@@ -89,6 +89,7 @@ public class QuestionService implements QuestionDAO
 			String sql = "SELECT * FROM Question WHERE Id = ?";
 			quest = jdbcTemplateObject.queryForObject(sql, new Object[]{questionId}, new RowMapper<Question>()
 					{
+						@Override
 						public Question mapRow(ResultSet rs, int rowNum) throws SQLException
 						{
 							return new Question ( 
@@ -107,6 +108,70 @@ public class QuestionService implements QuestionDAO
 		}
 		return quest;
 	}
+	
+	@Override
+	public List<Question> GetStudentQuestions(int studentId, int courseId) 
+	{			
+		String sql = "SELECT * FROM Question WHERE User_Id = ? AND Course_Id = ?"; 
+		List<Question> questionList = new ArrayList<Question>();
+		
+		Object [] parameters = new Object[]{new Integer(studentId), new Integer(courseId)};  
+		
+		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, parameters);
+		
+		for(Map row: rows)
+		{
+			Question question = new Question(); 
+			question.SetQuestionId((Integer)row.get("Id")); 
+			question.SetCourseId((Integer)row.get("Course_Id"));
+			question.SetUserId((Integer)row.get("User_Id"));
+			question.SetCreationDate((java.util.Date)row.get("DateCreated"));
+			question.SetContents((String)row.get("Contents"));
+			question.SetQuestionType((Integer)row.get("QuestionType"));
+			question.SetPublic((Boolean)row.get("Public"));
+			question.SetFlag((Boolean)row.get("Flag"));
+			question.SetLikes((Integer)row.get("AmtOfLikes"));
+			question.SetAnonymous((Boolean)row.get("Anonymous"));
+			//question.SetFilePath((String)row.get("FilePath"));
+			
+			questionList.add(question); 
+		}
+				
+		return questionList;
+	}
+	
+	@Override
+	public List<Question> GetAllQuestions(int courseId)
+	{
+		String sql = "SELECT * FROM Question WHERE Course_Id = ? AND Public = true"; 
+		List<Question> questionList = new ArrayList<Question>();
+		
+		Object [] parameters = new Object[]{new Integer(courseId)};  
+		
+		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, parameters);
+		
+		for(Map row: rows)
+		{
+			Question question = new Question(); 
+			question.SetQuestionId((Integer)row.get("Id")); 
+			question.SetCourseId((Integer)row.get("Course_Id"));
+			question.SetUserId((Integer)row.get("User_Id"));
+			question.SetCreationDate((java.util.Date)row.get("DateCreated"));
+			question.SetContents((String)row.get("Contents"));
+			question.SetQuestionType((Integer)row.get("QuestionType"));
+			question.SetPublic((Boolean)row.get("Public"));
+			question.SetFlag((Boolean)row.get("Flag"));
+			question.SetLikes((Integer)row.get("AmtOfLikes"));
+			question.SetAnonymous((Boolean)row.get("Anonymous"));
+			//question.SetFilePath((String)row.get("FilePath"));
+			
+			questionList.add(question); 
+		}
+		
+		return questionList;
+	}
+	
+	
 	
 	
 	@Override

@@ -61,7 +61,8 @@ public class ServiceTest {
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		
 		UserService student = (UserService) context.getBean("userService");
-		
+		System.out.println("TEST:");
+		/*
 		List<User> students = student.GetStudents();
 		
 		for(User user : students){
@@ -104,7 +105,7 @@ public class ServiceTest {
 			System.out.println("Failed to add user.");
 		
 		stud = student.GetUser(a);
-		System.out.println(stud);
+		//System.out.println(stud);
 		
 		stud.SetFirstName("Kester");
 		if(student.UpdateUser(stud))
@@ -134,30 +135,34 @@ public class ServiceTest {
 		
 		
 		/*****BEGIN QUESTION AND COMMENT TESTING******/
-		/*
+		
+		
 		ApplicationContext context = new ClassPathXmlApplicationContext("Beans.xml");
 		
 		QuestionService question = (QuestionService) context.getBean("questionService");
 		CommentService comment = (CommentService) context.getBean("commentService");
 		UserService user = (UserService) context.getBean("userService");		
-
 		
+		System.out.println("QUESTION TEST:");
+
+	
+		/*
 		User newStudent = user.GetUser(1);
 		User newTeacher = user.GetUser(2);
 		Question newQuestion = question.GetQuestion(5, 1, 2);
 		Comment newComment = comment.GetComment(1, 4, 1);
+		*/
 		
-		System.out.println("test");
 		
-		
+		/*
 		System.out.println("This student is in the database: " + newStudent.GetFirstName() + " " + newStudent.GetLastName());
 		System.out.println("This teacher is in the database: " + newTeacher.GetFirstName() + " " + newTeacher.GetLastName());
 		System.out.println("This question is in the database: " + newQuestion.GetContents());
 		System.out.println("This comment is in the database: " + newComment.GetContents());
 		System.out.println(" ");
+		*/
 		
-		
-		
+		/*
 		//DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 		//java.util.Date mD = dateFormat.parse("2014-03-22 17:20:00");
 		java.util.Date mD = new Date();
@@ -168,16 +173,39 @@ public class ServiceTest {
 		System.out.println(" ");
 		*/
 		
+		/*
+		/////ADD QUESTION TEST
+		Question addedQuestion = new Question(2, 10, sqlDate, "What is Calculus?",
+				1, true, false, 1, true);
 		
-		/*/////ADD QUESTION TEST
-		Question addedQuestion = new Question(2, 1, sqlDate, "Contents of updated ADD method.",
-				4, true, false, 2, false);
-		
-		int added = question.CreateQuestion(2, addedQuestion);
+		int added = question.CreateQuestion(10, addedQuestion);
 		
 		if(added != 0)
 			System.out.println("Question just added with ID number " + added);
 		*/
+		
+		///////GET QUESTIONS TEST	
+		
+		//GetQuestion
+		//Question quest = question.GetQuestion(1, 10, 1);
+		//System.out.println("ID: "+ quest.GetQuestionId() + "\t Contents: " + quest.GetContents());
+		
+		/*//GetStudentQuestions [list]
+		List<Question> questions = question.GetStudentQuestions(10, 1);
+		
+		for(Question q : questions){
+			System.out.println("ID: "+ q.GetQuestionId() + "\t\t Contents: " + q.GetContents());
+		}
+		*/
+		
+		/*//GetAllQuestions [list]
+		List<Question> questions = question.GetAllQuestions(1);
+		
+		for(Question q : questions){
+			System.out.println("ID: "+ q.GetQuestionId() + "\t\t Contents: " + q.GetContents() + "\t Public: " + q.GetPublic());
+		}
+		*/
+		
 		
 		/*//////UPDATE QUESTION TEST
 		Question updatedQuestion = new Question(5, 2, 1, mD, "Is this a question I just updated?", 4, true, false, 2, false);
@@ -189,9 +217,9 @@ public class ServiceTest {
 		else
 			System.out.println("Question was not updated.");
 		*/
-		
-		/*//////DELETE QUESTION TEST
-		boolean deleted = question.DeleteQuestion(1,7);
+		/*
+		//////DELETE QUESTION TEST
+		boolean deleted = question.DeleteQuestion(10,2);
 		
 		if(deleted)
 			System.out.println("Question was deleted.");
@@ -199,10 +227,11 @@ public class ServiceTest {
 			System.out.println("Question was not deleted.");
 		*/
 		
-		/*//////ADD COMMENT TEST
-		Comment addedComment = new Comment(8, 1, "Contents of updated ADD comment method.", sqlDate);
+		/*
+		//////ADD COMMENT TEST
+		Comment addedComment = new Comment(4, 10, "Calculus is Cady Heron's favorite subject!", sqlDate);
 		
-		int added3 = comment.CreateComment(2, addedComment);
+		int added3 = comment.CreateComment(10, addedComment);
 		
 		
 		if(added3 != 0)
