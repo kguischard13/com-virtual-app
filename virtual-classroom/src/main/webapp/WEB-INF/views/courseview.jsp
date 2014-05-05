@@ -1,5 +1,5 @@
 <!-- 
-\brief This is the client-side instructor main page
+\brief This is the client-side home view
 \author Chris Forehand
 \date 3/20/14
 \verbatim
@@ -14,13 +14,14 @@
 
 <html>
 <head>
-	<title>VirtualClass - Instructor Portal</title>
+	<title>VirtualClass - Login</title>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/jquery-1.10.2.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/ui/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/main.js" />"></script>
-	<script src="<c:url value="/resources/mytheme/js/instructorportal.js" />"></script>
+	<script src="<c:url value="/resources/mytheme/js/home.js" />"></script>
 	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
-
+	<link href="<c:url value="/resources/mytheme/css/home.css" />" rel="stylesheet">	
+	
 </head>
 <body>
 
@@ -41,10 +42,9 @@
 
 <div id="container">
 
-	<h1 class="header-text">Instructor Portal</h1>
-	
-	<button id="getCourseView">Get Course View</button>
+	<h1 class="header-text">Course View</h1>
 
+	<div id="displayCourses"></div>
 	
 </div>
 

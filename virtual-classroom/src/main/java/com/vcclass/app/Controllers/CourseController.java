@@ -25,6 +25,11 @@ public class CourseController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CourseController.class); 
 
+	@RequestMapping(value = "/course", method = RequestMethod.POST)
+	public String course()
+	{
+		return "courseview";  
+	}
 	
 	@RequestMapping(value = "/course/createcoursesession", method = RequestMethod.POST)
 	public @ResponseBody int CreateCourseSession(@RequestBody CourseSession coursesession){
