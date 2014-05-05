@@ -10,9 +10,9 @@
 
 */
 
-var DooDah = window.DooDah || {}; 
+var VirtualClassroom = window.VirtualClassroom || {}; 
 
-(function ($, dd, undefined)
+(function ($, vc, undefined)
 {
     //  ------------------------------------------------------------------------------------------------
     // Options for the widget
@@ -86,7 +86,7 @@ var DooDah = window.DooDah || {};
         var Init = function ()
         {
             /// <summary>Initialize the widget's DOM elements.</summary>
-			elm.addClass("emotion-registration-control"); 
+			elm.addClass("vc-registration-control"); 
 			
             pnlContainer = $("<div />")
                 .addClass("pnl-container")
@@ -379,9 +379,9 @@ var DooDah = window.DooDah || {};
     //  ------------------------------------------------------------------------------------------------
     // Create the jQuery widget class
     //  ------------------------------------------------------------------------------------------------
-    $.widget("DooDah.RegistrationControl", {
+    $.widget("VirtualClassroom.RegistrationControl", {
         options: _options,
         _create: create,
         destroy: destroy
     });
-})(jQuery, DooDah);
+})(jQuery, VirtualClassroom);
