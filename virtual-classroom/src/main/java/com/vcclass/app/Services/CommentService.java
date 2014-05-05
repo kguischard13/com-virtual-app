@@ -84,12 +84,12 @@ public class CommentService implements CommentDAO
 	}
 	
 	
-	public List<Comment> GetComments(int userId, int questionId) 
+	public List<Comment> GetComments(int questionId) 
 	{			
-		String sql = "select * FROM Comment WHERE User_Id = ? AND Question_Id = ?"; 
+		String sql = "select * FROM Comment WHERE Question_Id = ?"; 
 		List<Comment> commentList = new ArrayList<Comment>();
 		
-		Object [] parameters = new Object[]{new Integer(userId), new Integer(questionId)};  
+		Object [] parameters = new Object[]{new Integer(questionId)};  
 		List<Map<String, Object>> rows = jdbcTemplateObject.queryForList(sql, parameters);
 		
 		for(Map row: rows)
