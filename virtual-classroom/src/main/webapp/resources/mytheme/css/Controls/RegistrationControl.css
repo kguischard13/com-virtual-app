@@ -1,17 +1,17 @@
-.emotion-registration-control
+.vc-registration-control
 {
 	position: relative; 
 	width: 100%; 
 	height: 100%; 
 }
 
-.emotion-registration-control .pnl-container
+.vc-registration-control .pnl-container
 {
 	height: 100%;
 	width: 100%;
 }
 
-.emotion-registration-control .reg-form-label
+.vc-registration-control .reg-form-label
 {
 	display: block;
 	height: 60px;
@@ -20,7 +20,7 @@
 	width: 375px;
 }
 
-.emotion-registration-control .reg-form-input
+.vc-registration-control .reg-form-input
 {
 	position: absolute;
 	left: 122px;
@@ -29,13 +29,13 @@
 	font-size: 14px;
 }
 
-.emotion-registration-control .btn-form
+.vc-registration-control .btn-form
 {
 	height: 40px;
 	width: 120px; 
 }
 
-.emotion-registration-control .pnl-button-container
+.vc-registration-control .pnl-button-container
 {
 	position: relative;
 	width: auto;
@@ -43,14 +43,14 @@
 	margin-left: 128px;
 }
 
-.emotion-registration-control .pnl-forgot-password
+.vc-registration-control .pnl-forgot-password
 {
 	float: right;
 	padding-top: 10px;
 	font-size: 14px;
 }
 
-.emotion-registration-control .lnk-register-account
+.vc-registration-control .lnk-register-account
 {
 	padding-right: 43px; 
 }
@@ -60,7 +60,7 @@
 	margin-right: 10px; 
 }
 
-.emotion-registration-control .pnl-error-container
+.vc-registration-control .pnl-error-container
 {
 	position: relative;
 	height: 20px; 
@@ -68,12 +68,12 @@
 	padding-bottom: 10px; 
 }
 
-.emotion-registration-control .error
+.vc-registration-control .error
 {
 	color: red;
 }
 
-.emotion-registration-control .success
+.vc-registration-control .success
 {
 	color: green;
 }
