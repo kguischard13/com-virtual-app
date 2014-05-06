@@ -28,18 +28,6 @@
 <body>
 
 <div id="navigation-panel">
-		<ul>
-			<li class="navigation-item"><a href="<c:url value='/' />">Home</a></li>
-			<li class="navigation-item"><a href="#">Courses</a></li>
-			<li class="navigation-item"><a href="#">Students</a></li>
-			<li class="navigation-item"><a href="#">Reports</a></li>
-			<li class="navigation-item" id="myAccount"><a href="#">My Account</a></li>
-				<ul id="sub-menu">
-					<li class="sub-navigation-item"><a href="<c:url value='/' />" id="login" title="Log in if you already have an account.">Login</a></li>
-					<li class="sub-navigation-item"><a href="<c:url value='/registration' />" id="new-user" title="New users, register here">Sign up</a></li>
-					<li class="sub-navigation-item"><a href="#" id="forgot-password" title="Forgot your password?">Forgot my password</a></li>
-				</ul>
-		</ul>
 </div>
 
 <div id="container">

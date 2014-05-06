@@ -49,8 +49,7 @@ public class CommentController
 	}
 	
 	//Get all comments
-	@RequestMapping(value = "/comment/getcomments/question/{questionid}", 
-			method = RequestMethod.GET)
+	@RequestMapping(value = "/comment/getcomments/question/{questionid}", method = RequestMethod.GET)
 	public @ResponseBody List<Comment> GetComments( @PathVariable int questionid)
 	{
 		return commentService.GetComments(questionid);

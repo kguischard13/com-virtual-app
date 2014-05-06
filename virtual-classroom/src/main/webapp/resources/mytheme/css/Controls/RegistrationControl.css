@@ -1,17 +1,6 @@
-/*
-
-\brief This is CSS for the registration control
-\author Chris Forehand
-\date 3/20/14
-\verbatim
-	Test Cases: 
-	
-\endverbatim
-
-*/
-
 .vc-registration-control
 {
+	position: relative; 
 	width: 100%; 
 	height: 100%; 
 }
@@ -35,7 +24,7 @@
 {
 	position: absolute;
 	left: 122px;
-	width: 250px;
+	width: 249px;
 	height: 30px;
 	font-size: 14px;
 }
@@ -51,7 +40,7 @@
 	position: relative;
 	width: auto;
 	height: 40px;
-	left: 122px; 
+	margin-left: 128px;
 }
 
 .vc-registration-control .pnl-forgot-password
@@ -69,4 +58,22 @@
 #btnSubmit
 {
 	margin-right: 10px; 
+}
+
+.vc-registration-control .pnl-error-container
+{
+	position: relative;
+	height: 20px; 
+	width: 100%; 
+	padding-bottom: 10px; 
+}
+
+.vc-registration-control .error
+{
+	color: red;
+}
+
+.vc-registration-control .success
+{
+	color: green;
 }

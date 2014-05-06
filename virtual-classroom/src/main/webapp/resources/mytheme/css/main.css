@@ -36,10 +36,11 @@ body
 #container
 {
 	width: 900px;
+	min-height: 600px; 
 	margin-left: auto;
 	margin-right: auto;
 	padding-top: 10px; 
-	height: 550px;
+	height: auto;
 	background-color: white; 
 }
 
@@ -55,7 +56,7 @@ body
 	top: 87px;
 	border-bottom: 7px solid beige;
 	width: 193px;
-	left: 967px;
+	left: 952px;
 }
 
 .sub-navigation-item:hover,
@@ -84,16 +85,26 @@ body
 	list-style: none;
 }
 
+.control-button-container
+{
+	position: relative;
+	width: 100%;
+	height: auto;
+	display: block;
+	border: 1px black solid;
+}
+
 #footer
 {
 	position: relative;
-	display: block; 
-	width: 900px; 
-	height: 60px; 
+	display: block;
+	width: 900px;
+	height: 60px;
 	margin-right: auto;
-	margin-left: auto; 
-	background-color: lightblue; 
+	margin-left: auto;
+	background-color: lightblue;
 	border-top: 7px solid beige;
-	text-align: center; 
-	line-height: 60px; 
+	text-align: center;
+	top: -11px;
+	line-height: 60px;
 } 

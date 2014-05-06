@@ -99,8 +99,7 @@ public class CommentService implements CommentDAO
 			comment.SetQuestionId((Integer)row.get("Question_Id"));
 			comment.SetUserId((Integer)row.get("User_Id"));
 			comment.SetDateCreated((java.util.Date) row.get("DateCreated"));
-			comment.SetContents((String) row.get("Content"));
-			
+			comment.SetContents((String) row.get("Content"));			
 			commentList.add(comment); 
 		}
 				
