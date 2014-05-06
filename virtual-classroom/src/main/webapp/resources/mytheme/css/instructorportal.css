@@ -1,0 +1,18 @@
+button
+{
+	height: 49px;
+	padding: 17px;
+	width: 100%;
+	display: block;
+	margin-bottom: 10px;
+	font-size: 17px; 
+}
+
+#button-container
+{
+	position: relative;
+	height: auto; 
+	width: 450px; 
+	margin-right: auto;
+	margin-left: auto; 
+}

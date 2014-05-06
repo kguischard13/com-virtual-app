@@ -1,5 +1,5 @@
 <!-- 
-\brief This is the client-side instructor main page
+\brief This is the client-side home view
 \author Chris Forehand
 \date 3/20/14
 \verbatim
@@ -14,14 +14,20 @@
 
 <html>
 <head>
-	<title>VirtualClass - Instructor Portal</title>
+	<title>VirtualClass - User View</title>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/jquery-1.10.2.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/ui/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/main.js" />"></script>
-	<script src="<c:url value="/resources/mytheme/js/instructorportal.js" />"></script>
-	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
-	<link href="<c:url value="/resources/mytheme/css/instructorportal.css" />" rel="stylesheet">	
+	<script src="<c:url value="/resources/mytheme/js/userview.js" />"></script>
+	<script src="<c:url value="/resources/mytheme/js/controls/RegistrationControl.js" />"></script>
+	<link href="<c:url value="/resources/mytheme/css/Controls/RegistrationControl.css" />" rel="stylesheet">	
+	<link href="<c:url value="/resources/mytheme/css/userview.css" />" rel="stylesheet">	
 
+
+	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
+	<link href="<c:url value="/resources/mytheme/css/home.css" />" rel="stylesheet">
+	
+	
 </head>
 <body>
 
@@ -40,11 +46,11 @@
 
 <div id="container">
 
-	<h1 class="header-text">Instructor Portal</h1>
-	<div id="button-container">
-		<button id="getCourseView">Courses</button>
-		<button id="getUserView">Users</button>
-	</div>
+	<h1 class="header-text">User View</h1>
+	<div class="control-button-container" id="controlUserButtonContainer"></div>
+	<div id="ctrlRegistration"></div>
+	<div id="displayUsers"></div>
+	
 </div>
 
 <div id="footer">Copyright 2014 - Virtual Classroom</div>

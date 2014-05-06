@@ -44,6 +44,12 @@ public class HomeController {
 		return "registration";
 	}
 	
+	@RequestMapping(value = "/home/unauthorized", method = RequestMethod.GET)
+	public String unauthorized() 
+	{		
+		return "unauthorized";
+	}
+	
 	@RequestMapping(value = "/home/instructor-portal", method = RequestMethod.GET)
 	public String instructorPortal() 
 	{		
@@ -51,7 +57,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping(value="/home/login", method=RequestMethod.POST)
-	public String LoginUser(@RequestBody LoginCredentials creds, HttpServletResponse response)
+	public HttpServletResponse LoginUser(@RequestBody LoginCredentials creds, HttpServletResponse response)
 	{
 		String email = creds.Email; 
 		String password = creds.Password; 
@@ -60,13 +66,15 @@ public class HomeController {
 		
 		if(user == null)
 		{
-			return "unauthorized"; 
+			String unauthorizedUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("/home/unauthorized").build().toUriString();
+			response.setHeader("Location", unauthorizedUrl);
 		}
 		else
 		{
-			String url = ServletUriComponentsBuilder.fromCurrentContextPath().path("/home/instructor-portal").build().toUriString();
-			response.setHeader("Location", url);
-			return "instructor-portal"; 
+			String instructorPortalUrl = ServletUriComponentsBuilder.fromCurrentContextPath().path("/home/instructor-portal").build().toUriString();
+			response.setHeader("Location", instructorPortalUrl);
 		}
+		
+		return response; 
 	}
 }

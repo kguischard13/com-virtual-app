@@ -20,7 +20,9 @@
 	<script src="<c:url value="/resources/mytheme/js/main.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/courseview.js" />"></script>
 	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
-	<link href="<c:url value="/resources/mytheme/css/home.css" />" rel="stylesheet">	
+	<link href="<c:url value="/resources/mytheme/css/home.css" />" rel="stylesheet">
+	<link href="<c:url value="/resources/mytheme/css/course-view.css" />" rel="stylesheet">	
+	
 	
 </head>
 <body>
@@ -28,14 +30,12 @@
 <div id="navigation-panel">
 		<ul>
 			<li class="navigation-item"><a href="<c:url value='/' />">Home</a></li>
-			<li class="navigation-item"><a href="#">Courses</a></li>
+			<li class="navigation-item"><a href="/course">Courses</a></li>
 			<li class="navigation-item"><a href="#">Students</a></li>
 			<li class="navigation-item"><a href="#">Reports</a></li>
 			<li class="navigation-item" id="myAccount"><a href="#">My Account</a></li>
 				<ul id="sub-menu">
-					<li class="sub-navigation-item"><a href="<c:url value='/' />" id="login" title="Log in if you already have an account.">Login</a></li>
-					<li class="sub-navigation-item"><a href="<c:url value='/registration' />" id="new-user" title="New users, register here">Sign up</a></li>
-					<li class="sub-navigation-item"><a href="#" id="forgot-password" title="Forgot your password?">Forgot my password</a></li>
+					<li class="sub-navigation-item"><a href="<c:url value='/' />" id="login">Logout</a></li>
 				</ul>
 		</ul>
 </div>
@@ -43,9 +43,10 @@
 <div id="container">
 
 	<h1 class="header-text">Course View</h1>
-
-	<div id="displayCourses">
-	
+	<div class="control-button-container" id="controlButtonContainer"></div>
+	<div id="displayCourses"></div>
+	<div id="displayQuestions">
+		<button id='btnHideQuestions'>Cancel</button>
 	</div>
 	
 </div>
