@@ -14,11 +14,11 @@
 
 <html>
 <head>
-	<title>VirtualClass - Login</title>
+	<title>VirtualClass - Course View</title>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/jquery-1.10.2.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/jquery-ui-1.10.4/ui/jquery-ui.js" />"></script>
 	<script src="<c:url value="/resources/mytheme/js/main.js" />"></script>
-	<script src="<c:url value="/resources/mytheme/js/home.js" />"></script>
+	<script src="<c:url value="/resources/mytheme/js/courseview.js" />"></script>
 	<link href="<c:url value="/resources/mytheme/css/main.css" />" rel="stylesheet">	
 	<link href="<c:url value="/resources/mytheme/css/home.css" />" rel="stylesheet">	
 	
@@ -44,7 +44,9 @@
 
 	<h1 class="header-text">Course View</h1>
 
-	<div id="displayCourses"></div>
+	<div id="displayCourses">
+	
+	</div>
 	
 </div>
 
