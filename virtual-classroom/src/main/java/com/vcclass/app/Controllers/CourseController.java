@@ -25,7 +25,7 @@ public class CourseController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(CourseController.class); 
 
-	@RequestMapping(value = "/course", method = RequestMethod.POST)
+	@RequestMapping(value = "/course", method = RequestMethod.GET)
 	public String course()
 	{
 		return "courseview";  
