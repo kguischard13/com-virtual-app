@@ -22,7 +22,8 @@ var VirtualClassroom = window.VirtualClassroom || {};
         DataManager: null,
         IsLoginControl: false,
         LinkRegistration: null, 
-        LinkForgotPassword: null
+        LinkForgotPassword: null,
+        ShowLinks: false
     };
 
     //  ------------------------------------------------------------------------------------------------
@@ -37,9 +38,12 @@ var VirtualClassroom = window.VirtualClassroom || {};
         	LabelFirstName: "First Name:",
         	LabelLastName: "Last Name:",
         	LabelEmail: "Email:",
-        	LabelUserName: "Username:",
+        	LabelPhoneNumber: "Phone #:",
+        	LabelUserName: "Username: ", 
         	LabelPassword: "Password:",
-        	ButtonRegister: "Register", 
+        	LabelAccountType: "Account Type: ",
+        	LabelSchoolName: "School Name: ",
+        	ButtonRegister: "Add User", 
         	ButtonCancel: "Cancel",
         	ButtonLogin: "Login"
         }; 
@@ -52,6 +56,7 @@ var VirtualClassroom = window.VirtualClassroom || {};
         var _dataManager = self.options.DataManager; 
         var _lnkRegistration = self.options.LinkRegistration != null ? self.options.LinkRegistration : '#'; 
         var _lnkForgotPassword = self.options.LinkForgotPassword != null ? self.options.LinkForgotPassword : '#'; 
+        var _showLinks = self.options.ShowLinks; 
       
         /*if(_dataManager == null)
     	{
@@ -69,10 +74,16 @@ var VirtualClassroom = window.VirtualClassroom || {};
         var lblLastName = null; 
         var txtEmail = null; 
         var lblEmail = null; 
+        var txtPhoneNumber = null; 
+        var lblPhoneNumber = null; 
         var txtUserName = null;
         var lblUserName = null; 
         var txtPassword = null; 
         var lblPassword = null; 
+        var txtSchoolName = null;
+        var lblSchoolName = null; 
+        var txtAccountType = null; 
+        var lblAccountType = null; 
         var pnlButtonContainer = null; 
         var btnSubmit = null; 
         var btnCancel = null; 
@@ -117,7 +128,7 @@ var VirtualClassroom = window.VirtualClassroom || {};
             	.appendTo(pnlContainer)
             	.append(txtLastName);  
             
-            txtEmail =$("<input type='text' />")
+            txtEmail = $("<input type='text' />")
                 .addClass("reg-form-input")
                 .appendTo(pnlContainer);
                 
@@ -126,6 +137,16 @@ var VirtualClassroom = window.VirtualClassroom || {};
             	.html(_strings.LabelEmail)
             	.appendTo(pnlContainer)
             	.append(txtEmail);  
+            
+            txtPhoneNumber = $("<input type='text' />")
+            .addClass("reg-form-input")
+            .appendTo(pnlContainer);
+            
+	        lblPhoneNumber = $("<label class='reg-form-label' />")
+	        	.addClass("reg-form-label")
+	        	.html(_strings.LabelPhoneNumber)
+	        	.appendTo(pnlContainer)
+	        	.append(txtPhoneNumber);  
             	
             txtUserName =$("<input type='text' />")
                 .addClass("reg-form-input")
@@ -145,8 +166,31 @@ var VirtualClassroom = window.VirtualClassroom || {};
             	.addClass("reg-form-label")
             	.html(_strings.LabelPassword)
             	.appendTo(pnlContainer)
-            	.append(txtPassword);        
-            	
+            	.append(txtPassword);     
+            
+            txtSchoolName =$("<input type='text' />")
+	            .addClass("reg-form-input")
+	            .appendTo(pnlContainer)
+	            .val("Iona College")
+	            .prop("disabled", "disabled");
+            
+	        lblSchoolName = $("<label class='reg-form-label' />")
+	        	.addClass("reg-form-label")
+	        	.html(_strings.LabelSchoolName)
+	        	.appendTo(pnlContainer)
+	        	.append(txtSchoolName);  
+            
+	        txtAccountType = $("<select><option value='Teacher'>Teacher</option>" +
+	        		"<option value='Student'>Student</option>")
+	        		.addClass("reg-form-input")
+	        		.appendTo(pnlContainer); 
+	        
+	        lblAccountType = $("<label class='reg-form-label' />")
+	        	.addClass("reg-form-label")
+	        	.html(_strings.LabelAccountType)
+	        	.appendTo(pnlContainer)
+	        	.append(txtAccountType);  	
+	        
             pnlButtonContainer = $("<div />")
             	.addClass("pnl-button-container")
             	.appendTo(pnlContainer); 	
@@ -167,9 +211,9 @@ var VirtualClassroom = window.VirtualClassroom || {};
             	.appendTo(pnlContainer); 
             
             lnkRegisterAccount = $("<a href='" + _lnkRegistration + "'>Register Account</a>")
-        	.addClass("lnk-register-account")
-        	.appendTo(pnlForgotPassword)
-        	.hide(); 
+	        	.addClass("lnk-register-account")
+	        	.appendTo(pnlForgotPassword)
+	        	.hide(); 
             
             lnkForgotPassword = $("<a href='" + _lnkForgotPassword + "'>Forgot Password?</a>")
             	.addClass("lnk-forgot-password")
@@ -181,8 +225,26 @@ var VirtualClassroom = window.VirtualClassroom || {};
             	lblFirstName.hide();
             	lblLastName.hide(); 
             	lblEmail.hide(); 
+            	lblAccountType.hide();
+            	lblSchoolName.hide(); 
+            	lblPhoneNumber.hide(); 
             	lnkForgotPassword.show();
             	lnkRegisterAccount.show();
+        	}
+            else
+        	{
+            	lblUserName.hide(); 
+        	}
+            
+            if(_showLinks)
+        	{
+            	lnkRegisterAccount.show(); 
+            	lnkForgotPassword.show(); 
+        	}
+            else
+        	{
+            	lnkRegisterAccount.hide(); 
+            	lnkForgotPassword.hide(); 
         	}
             
         	SetSubmitLabel(); 
@@ -207,7 +269,9 @@ var VirtualClassroom = window.VirtualClassroom || {};
         		var firstName = credentials.FirstName;
         		var lastName = credentials.LastName;
         		var email = credentials.Email;
-        		var newUser = credentials.UserName;
+        		//var newUser = credentials.UserName;
+        		var phone = credentials.PhoneNumber; 
+        		var school = credentials.SchoolName; 
         		var newPassword = credentials.Password;
         		
         		if(firstName == null || firstName === "")
@@ -228,11 +292,11 @@ var VirtualClassroom = window.VirtualClassroom || {};
 					return false; 
 				}       		
         		
-        		if(newUser == null || newUser === "")
+        		/*if(newUser == null || newUser === "")
 				{
 					pnlErrorContainer.html("Please enter a username!"); 
 					return false; 
-				}
+				}*/
 				
 				if(newPassword == null || newPassword == "")
 				{
@@ -282,17 +346,29 @@ var VirtualClassroom = window.VirtualClassroom || {};
             {
 				if(!_isLoginControl)
 				{
-					return DooDah.Services.LoginService.CreateUser(LoginCredentials)
-						.done(function (data, status, jqxhr) 
-						{
-							Clear(); 
-							pnlErrorContainer.removeClass("error").addClass("success");
-							pnlErrorContainer.html("Account created! Click <b><a href='./HomeView.php'>here</a></b> to Login"); 
-						})
-						.error(function (data, status, jqxhr)
-						{
-							console.log("Error" + status); 
-						}); 
+					var onSuccess = function (data, status, jqxhr)
+					{
+						Clear(); 
+						pnlErrorContainer.removeClass("error").addClass("success");
+						pnlErrorContainer.html("Account created successfully!"); 
+					}; 
+					
+					var onError = function (data, status, jqxhr)
+					{
+						pnlErrorContainer.removeClass("success").addClass("error");
+						pnlErrorContainer.html("Account creation failed"); 
+					}; 
+					
+					return $.ajax({
+						type: "POST",
+						url: _dataManager,
+						async: true,
+						contentType: "application/json", 
+						data: JSON.stringify(LoginCredentials),
+						accept: "text/html",
+						success: onSuccess,
+						error: onError
+					}); 
 				}
 				else
 				{
@@ -301,15 +377,16 @@ var VirtualClassroom = window.VirtualClassroom || {};
 		        		window.location = jqxhr.getResponseHeader("Location");  
 					}; 
 			
-					var onError = function (data, status, jqxhr)
+					var onError = function (jqxhr, status, data)
 					{
-						console.log(data); 
+						window.location = jqxhr.getResponseHeader("Location");  
 					}; 
 			
 					return $.ajax({
 						type: "POST", 
 						url: _dataManager, 
 						async: true, 
+						accept: "text/html", 
 						data: JSON.stringify(LoginCredentials),
 						contentType: "application/json",
 						success: onSuccess, 
@@ -327,8 +404,10 @@ var VirtualClassroom = window.VirtualClassroom || {};
 					FirstName: $.trim(txtFirstName.val()),
 					LastName: $.trim(txtLastName.val()),
 					Email: $.trim(txtEmail.val()),
-					UserName: $.trim(txtUserName.val()),
-					Password: $.trim(txtPassword.val())
+					PhoneNumber: $.trim(txtPhoneNumber.val()),
+					Password: $.trim(txtPassword.val()),
+					SchoolName: $.trim(txtSchoolName.val()),
+					AccountType: txtAccountType.val()
 				};
 			}
 			else
@@ -347,6 +426,8 @@ var VirtualClassroom = window.VirtualClassroom || {};
             	txtFirstName.val(""); 
             	txtLastName.val(""); 
             	txtEmail.val(""); 
+            	txtSchoolName.val("");
+            	txtPhoneNumber.val(""); 
             }
 			
 			txtUserName.val(""); 

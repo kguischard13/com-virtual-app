@@ -1,0 +1,22 @@
+#ctrlRegistration
+{
+	position: relative;
+	height: 500px;
+	width: 400px;
+	padding-bottom: 20px;
+	margin-right: auto;
+	margin-left: auto;
+	
+}
+
+.user-record
+{
+	position: relative;
+	height: auto;
+	width: 100%;
+	margin-left: auto;
+	margin-right: auto;
+	padding-bottom: 10px;
+	padding-top: 10px; 
+	text-align: center;
+}; 

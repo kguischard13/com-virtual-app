@@ -19,6 +19,6 @@
 <body>
 
 <h1>You are unauthorized to continue.  Please create an account.</h1>
-
+<a href="http://localhost:8080/app/">Return to Home Page</a>
 </body>
 </html>
