@@ -28,7 +28,47 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
+
+	
 	<context:component-scan base-package="com.vcclass.app" />
+	
+	<beans:bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<beans:property name="url" value="jdbc:mysql://aa1rxdo0ad9fxe2.cdxcmdxmjjc1.us-east-1.rds.amazonaws.com:3306/mydb"/>
+		<beans:property name="username" value="vcr"/>
+		<beans:property name="password" value="vcriona2014"/>
+	</beans:bean>
+	
+	
+	<beans:bean id="userService" 
+	class="com.vcclass.app.Services.UserService">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean> 
+	
+	<beans:bean id="noteService"
+	class="com.vcclass.app.Services.NoteService">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<beans:bean id="liveDiscussionService"
+	class="com.vcclass.app.Services.LiveDiscussionService">
+		<beans:property name="dataSource" ref="dataSource" />
+	</beans:bean>
+		
+	<beans:bean id="courseService" 
+	class="com.vcclass.app.Services.CourseService">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<beans:bean id="questionService" 
+	class="com.vcclass.app.Services.QuestionService">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
+	
+	<beans:bean id="commentService" 
+	class="com.vcclass.app.Services.CommentService">
+		<beans:property name="dataSource" ref="dataSource"/>
+	</beans:bean>
 
 	
 </beans:beans>

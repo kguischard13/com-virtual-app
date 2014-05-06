@@ -4,6 +4,43 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
 	<!-- Root Context: defines shared resources visible to all other web components -->	
+	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver"/>
+		<property name="url" value="jdbc:mysql://aa1rxdo0ad9fxe2.cdxcmdxmjjc1.us-east-1.rds.amazonaws.com:3306/mydb"/>
+		<property name="username" value="vcr"/>
+		<property name="password" value="vcriona2014"/>
+	</bean>
 	
+
+	
+	<bean id="userService" 
+	class="com.vcclass.app.Services.UserService">
+		<property name="dataSource" ref="dataSource"/>
+	</bean> 
+	
+	<bean id="noteService"
+	class="com.vcclass.app.Services.NoteService">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="liveDiscussionService"
+	class="com.vcclass.app.Services.LiveDiscussionService">
+		<property name="dataSource" ref="dataSource" />
+	</bean>
+		
+	<bean id="courseService" 
+	class="com.vcclass.app.Services.CourseService">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="questionService" 
+	class="com.vcclass.app.Services.QuestionService">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
+	
+	<bean id="commentService" 
+	class="com.vcclass.app.Services.CommentService">
+		<property name="dataSource" ref="dataSource"/>
+	</bean>
 </beans>
 
