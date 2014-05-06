@@ -9,12 +9,12 @@ $(document).ready(function () {
 	var pnlUserDisplay = $("#displayUsers").hide(); 
 	
 	ctrlRegistration.RegistrationControl({
-		DataManager: "http://localhost:8080/app/user/adduser"
+		DataManager: "http://vcr-env.elasticbeanstalk.com/user/adduser"
 	}); 
 	
 	var btnBackToPortal_click = function ()
 	{
-		window.location.href = "http://localhost:8080/app/home/instructor-portal"; 
+		window.location.href = "http://vcr-env.elasticbeanstalk.com/home/instructor-portal"; 
 	}; 
 	
 	var btnViewUsers_click = function ()
@@ -25,7 +25,7 @@ $(document).ready(function () {
 		
 		return $.ajax({
 			type: "GET",
-			url: "http://localhost:8080/app/user/getallusers", 
+			url: "http://vcr-env.elasticbeanstalk.com/user/getallusers", 
 			async: true, 
 			accept: "application/json"
 		})

@@ -9,12 +9,12 @@ $(document).ready(function () {
 	
 	var btnGetCourseView_click = function ()
 	{
-		window.location.href = "http://localhost:8080/app/course/"; 
+		window.location.href = "http://vcr-env.elasticbeanstalk.com/course/"; 
 	}; 
 	
 	var btnGetUserView_click = function ()
 	{
-		window.location.href = "http://localhost:8080/app/user"; 
+		window.location.href = "http://vcr-env.elasticbeanstalk.com/user"; 
 	}; 
 	
 	btnGetCourseView.click(btnGetCourseView_click); 

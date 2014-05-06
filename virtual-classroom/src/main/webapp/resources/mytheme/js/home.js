@@ -14,7 +14,7 @@ $(document).ready(function(){
 	var ctrlLogin = $("#ctrlLogin"); 
 	ctrlLogin.RegistrationControl({
 		IsLoginControl: true, 
-		DataManager: "http://localhost:8080/app/home/login"
+		DataManager: "http://vcr-env.elasticbeanstalk.com/home/login"
 	}); 
 	
 	// make this so that it's included in a jsp so that we can use c:url to link to a resource

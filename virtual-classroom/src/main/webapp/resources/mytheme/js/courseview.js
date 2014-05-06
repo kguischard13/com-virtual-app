@@ -16,7 +16,7 @@ $(document).ready(function () {
 		
 		return $.ajax({
 			type: "GET",
-			url: "http://localhost:8080/app/course/getallcourses",
+			url: "http://vcr-env.elasticbeanstalk.com/course/getallcourses",
 			accept: "application/json",
 			async: true
 		})
@@ -33,7 +33,7 @@ $(document).ready(function () {
 	
 	var btnBackToPortal_click = function ()
 	{
-		window.location.href = "http://localhost:8080/app/home/instructor-portal"; 
+		window.location.href = "http://vcr-env.elasticbeanstalk.com/home/instructor-portal"; 
 	}; 
 		
 	var courseCodeLink_click = function (e)
